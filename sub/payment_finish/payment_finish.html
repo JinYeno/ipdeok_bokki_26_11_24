@@ -1,12 +1,1465 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/payment_finish.css">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>결제 완료 | 입덕볶이</title>
+
+    <!-- GOOGLE FONT -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+          href="./css/payment_finish.css">
+
+    <!-- LUCIDE ICON -->
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
 </head>
+
 <body>
-    
+
+    <div class="container">
+
+        <!-- =========================
+             HEADER
+        ========================== -->
+
+        <header class="header">
+
+            <a href="../../index.html"
+               class="icon-button"
+               aria-label="홈으로 이동">
+
+                <i data-lucide="house"></i>
+
+            </a>
+
+            <a href="../../index.html" class="logo">
+
+                <img src="../../img/logo.png"
+                     alt="입덕볶이">
+
+            </a>
+
+            <button type="button"
+                    class="icon-button"
+                    id="menuOpen"
+                    aria-label="메뉴 열기"
+                    aria-expanded="false"
+                    aria-controls="sideMenu">
+
+                <i data-lucide="menu"></i>
+
+            </button>
+
+        </header>
+
+
+        <!-- =========================
+             SIDE MENU
+        ========================== -->
+
+        <div class="menu-overlay" id="menuOverlay">
+
+            <div class="menu-dim" id="menuDim"></div>
+
+            <aside class="side-menu"
+                   id="sideMenu"
+                   role="dialog"
+                   aria-modal="true"
+                   aria-label="전체 메뉴"
+                   inert>
+
+                <div class="side-menu-header">
+
+                    <a href="../../index.html">
+
+                        <img src="../../img/logo.png"
+                             alt="입덕볶이">
+
+                    </a>
+
+                    <button type="button"
+                            class="icon-button"
+                            id="menuClose"
+                            aria-label="메뉴 닫기">
+
+                        <i data-lucide="x"></i>
+
+                    </button>
+
+                </div>
+
+                <div class="side-menu-welcome">
+
+                    <span>WELCOME!</span>
+
+                    <h2>오늘도 맛있게,<br>입덕볶이!</h2>
+
+                </div>
+
+                <nav class="side-menu-nav">
+
+                    <a href="../lists/lists.html">
+
+                        <i data-lucide="utensils"></i>
+                        <span>메뉴</span>
+                        <i data-lucide="chevron-right"></i>
+
+                    </a>
+
+                    <a href="../about/about.html">
+
+                        <i data-lucide="store"></i>
+                        <span>소개</span>
+                        <i data-lucide="chevron-right"></i>
+
+                    </a>
+
+                    <a href="../community/community.html">
+
+                        <i data-lucide="messages-square"></i>
+                        <span>커뮤니티</span>
+                        <i data-lucide="chevron-right"></i>
+
+                    </a>
+
+                    <a href="../login/login.html">
+
+                        <i data-lucide="user-round"></i>
+                        <span>로그인</span>
+                        <i data-lucide="chevron-right"></i>
+
+                    </a>
+
+                </nav>
+
+                <div class="side-menu-footer">
+
+                    <p>매콤달콤한 일상의 즐거움</p>
+
+                    <strong>입덕볶이</strong>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+
+        <main id="mainContent">
+
+            <!-- =========================
+                 EMPTY STATE
+            ========================== -->
+
+            <section class="empty-state"
+                     id="emptyState"
+                     hidden>
+
+                <div class="empty-icon">
+
+                    <i data-lucide="receipt-text"></i>
+
+                </div>
+
+                <h1>완료된 주문이 없어요</h1>
+
+                <p>
+                    메뉴를 선택하고 주문을 진행해 주세요.
+                </p>
+
+                <a href="../lists/lists.html"
+                   class="primary-button">
+
+                    메뉴 선택하기
+
+                    <i data-lucide="chevron-right"></i>
+
+                </a>
+
+                <a href="../../index.html"
+                   class="secondary-button">
+
+                    홈으로 돌아가기
+
+                </a>
+
+            </section>
+
+
+            <!-- =========================
+                 COMPLETE CONTENT
+            ========================== -->
+
+            <div id="completeContent" hidden>
+
+
+                <!-- =========================
+                     ORDER PROGRESS
+                ========================== -->
+
+                
+<!-- =========================
+     ORDER PROGRESS
+========================== -->
+
+<section class="order-progress" aria-label="주문 진행 단계">
+
+    <div class="step completed">
+        <div class="step-number">
+            <i data-lucide="check"></i>
+        </div>
+        <span>메뉴선택</span>
+    </div>
+
+    <i data-lucide="chevron-right" class="step-arrow"></i>
+
+    <div class="step completed">
+        <div class="step-number">
+            <i data-lucide="check"></i>
+        </div>
+        <span>옵션선택</span>
+    </div>
+
+    <i data-lucide="chevron-right" class="step-arrow"></i>
+
+    <div class="step completed">
+        <div class="step-number">
+            <i data-lucide="check"></i>
+        </div>
+        <span>주문·결제</span>
+    </div>
+
+    <i data-lucide="chevron-right" class="step-arrow"></i>
+
+    <div class="step active" aria-current="step">
+        <div class="step-number">
+            <i data-lucide="check"></i>
+        </div>
+        <span>결제완료</span>
+    </div>
+
+</section>
+
+
+
+                <!-- =========================
+                     SUCCESS HERO
+                ========================== -->
+
+                <section class="success-section">
+
+                    <!-- 색종이 애니메이션 -->
+
+                    <div class="confetti"
+                         id="confetti"
+                         aria-hidden="true"></div>
+
+
+                    <!-- 성공 체크 아이콘 -->
+
+                    <div class="success-badge">
+
+                        <div class="success-circle">
+
+                            <svg viewBox="0 0 48 48"
+                                 aria-hidden="true">
+
+                                <path class="success-check"
+                                      d="M12 24 L21 33 L37 15"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      stroke-width="5"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+
+                            </svg>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- 결제 완료 이미지 -->
+
+                    <div class="success-image">
+
+                        <img src="../../img/payment-finish.png"
+                             alt="입덕볶이 주문 완료 일러스트">
+
+                    </div>
+
+
+                    <!-- 완료 문구 -->
+
+                    <div class="success-message">
+
+                        <span class="eyebrow">
+
+                            ORDER COMPLETE!
+
+                        </span>
+
+                        <h1>결제가 완료되었습니다!</h1>
+
+                        <p>
+                            맛있는 떡볶이를 준비하고 있어요.<br>
+                            조금만 기다려 주세요!
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =========================
+                     CONTENT WRAPPER
+                ========================== -->
+
+                <div class="content-wrapper">
+
+
+                    <!-- =========================
+                         DELIVERY TIME
+                    ========================== -->
+
+                    <section class="delivery-card reveal">
+
+                        <div class="delivery-top">
+
+                            <div class="delivery-icon">
+
+                                <i data-lucide="bike"></i>
+
+                            </div>
+
+                            <div class="delivery-time">
+
+                                <span>예상 배달 소요시간</span>
+
+                                <strong>30~40분</strong>
+
+                            </div>
+
+                        </div>
+
+                        <div class="delivery-status">
+
+                            <span class="status-dot"></span>
+
+                            <p>주문 접수가 완료되었어요!</p>
+
+                        </div>
+
+                        <p class="delivery-notice">
+
+                            시연용 예상 배달시간입니다.
+
+                        </p>
+
+                    </section>
+
+
+                    <!-- =========================
+                         ORDER INFORMATION
+                    ========================== -->
+
+                    <section class="info-card reveal">
+
+                        <div class="card-heading">
+
+                            <i data-lucide="receipt-text"></i>
+
+                            <h2>주문 정보</h2>
+
+                        </div>
+
+                        <div class="info-body">
+
+                            <div class="info-row">
+
+                                <span>주문번호</span>
+
+                                <div class="copy-group">
+
+                                    <strong id="orderNumber">
+
+                                        -
+
+                                    </strong>
+
+                                    <button type="button"
+                                            class="copy-button"
+                                            id="copyButton"
+                                            aria-label="주문번호 복사">
+
+                                        <i data-lucide="copy"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                            <div class="info-row">
+
+                                <span>주문 매장</span>
+
+                                <strong id="storeName">-</strong>
+
+                            </div>
+
+                            <div class="info-row">
+
+                                <span>주문시간</span>
+
+                                <strong id="orderTime">-</strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- 주문 상품 상세 -->
+
+                        <details class="product-details" open>
+
+                            <summary>
+
+                                <span>주문 메뉴</span>
+
+                                <i data-lucide="chevron-up"
+                                   class="accordion-arrow"></i>
+
+                            </summary>
+
+                            <div class="product-item">
+
+                                <div class="product-image">
+
+                                    <img id="productImage"
+                                         alt="주문한 상품">
+
+                                </div>
+
+                                <div class="product-info">
+
+                                    <h3 id="productName">-</h3>
+
+                                    <p id="productQuantity"></p>
+
+                                    <p id="productToppings"></p>
+
+                                    <p id="productSides"></p>
+
+                                    <strong id="productPrice">
+
+                                        0원
+
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                        </details>
+
+
+                        <!-- 배달 주소 -->
+
+                        <div class="address-section">
+
+                            <div class="address-heading">
+
+                                <i data-lucide="map-pin"></i>
+
+                                <h3>배달 주소</h3>
+
+                            </div>
+
+                            <p id="deliveryAddress">-</p>
+
+                            <p id="deliveryDetailAddress"></p>
+
+                            <div class="request-box">
+
+                                <i data-lucide="message-square"></i>
+
+                                <div>
+
+                                    <span>배달 요청사항</span>
+
+                                    <p id="deliveryRequest">-</p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- =========================
+                         PAYMENT INFORMATION
+                    ========================== -->
+
+                    <section class="info-card reveal">
+
+                        <div class="card-heading">
+
+                            <i data-lucide="wallet"></i>
+
+                            <h2>결제 정보</h2>
+
+                        </div>
+
+                        <div class="info-body">
+
+                            <div class="info-row">
+
+                                <span>결제수단</span>
+
+                                <strong id="paymentMethod">
+
+                                    -
+
+                                </strong>
+
+                            </div>
+
+                            <div class="info-row">
+
+                                <span>상품 금액</span>
+
+                                <strong id="subtotal">0원</strong>
+
+                            </div>
+
+                            <div class="info-row">
+
+                                <span>배달비</span>
+
+                                <strong id="deliveryFee">
+
+                                    0원
+
+                                </strong>
+
+                            </div>
+
+                            <div class="info-row discount-row">
+
+                                <span>쿠폰 할인</span>
+
+                                <strong id="discountAmount">
+
+                                    0원
+
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                        <div class="total-price">
+
+                            <span>최종 결제금액</span>
+
+                            <strong id="finalAmount">
+
+                                0원
+
+                            </strong>
+
+                        </div>
+
+                        <div class="discount-message"
+                             id="discountMessage"
+                             hidden>
+
+                            <i data-lucide="party-popper"></i>
+
+                            <span id="discountText"></span>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- =========================
+                         ACTION BUTTONS
+                    ========================== -->
+
+                    <section class="action-section reveal">
+
+                        <a href="../../index.html"
+                           class="primary-button">
+
+                            <i data-lucide="house"></i>
+
+                            <span>홈으로 돌아가기</span>
+
+                        </a>
+
+                        <a href="../lists/lists.html"
+                           class="secondary-button">
+
+                            <i data-lucide="utensils"></i>
+
+                            <span>다른 메뉴 둘러보기</span>
+
+                        </a>
+
+                        <p class="demo-notice">
+
+                            본 서비스는 포트폴리오용 모의 주문
+                            서비스이며,<br>
+                            실제 결제 및 배달은 이루어지지 않습니다.
+
+                        </p>
+
+                    </section>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 FOOTER
+            ========================== -->
+
+            <footer class="footer">
+
+                <a href="../../index.html">
+
+                    <img src="../../img/logo.png"
+                         alt="입덕볶이">
+
+                </a>
+
+                <p>매콤달콤한 일상의 즐거움</p>
+
+                <span>
+
+                    © 2026 입덕볶이. All rights reserved.
+
+                </span>
+
+            </footer>
+
+        </main>
+
+
+        <!-- =========================
+             TOAST MESSAGE
+        ========================== -->
+
+        <div class="toast"
+             id="toast"
+             role="status"
+             aria-live="polite">
+
+            <i data-lucide="info"></i>
+
+            <span id="toastText"></span>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        // =========================
+        // 01. 공통 설정
+        // =========================
+
+        if (window.lucide) {
+
+            lucide.createIcons();
+
+        }
+
+        const $ = id => document.getElementById(id);
+
+        const reduceMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        const formatPrice = price =>
+
+            Number(price).toLocaleString("ko-KR") + "원";
+
+        let payment = null;
+
+        let toastTimer;
+
+
+        // =========================
+        // 02. 햄버거 메뉴
+        // =========================
+
+        const menuOverlay = $("menuOverlay");
+
+        const sideMenu = $("sideMenu");
+
+        const header = document.querySelector(".header");
+
+        function openMenu() {
+
+            menuOverlay.classList.add("active");
+
+            document.body.classList.add("menu-open");
+
+            $("menuOpen").setAttribute(
+                "aria-expanded", "true"
+            );
+
+            sideMenu.inert = false;
+
+            $("menuClose").focus();
+
+            header.inert = true;
+
+            $("mainContent").inert = true;
+
+        }
+
+        function closeMenu() {
+
+            header.inert = false;
+
+            $("mainContent").inert = false;
+
+            $("menuOpen").setAttribute(
+                "aria-expanded", "false"
+            );
+
+            $("menuOpen").focus();
+
+            sideMenu.inert = true;
+
+            menuOverlay.classList.remove("active");
+
+            document.body.classList.remove("menu-open");
+
+        }
+
+        $("menuOpen").addEventListener("click", openMenu);
+
+        $("menuClose").addEventListener("click", closeMenu);
+
+        $("menuDim").addEventListener("click", closeMenu);
+
+        document.addEventListener("keydown", function(e) {
+
+            if (!menuOverlay.classList.contains("active")) {
+
+                return;
+
+            }
+
+            if (e.key === "Escape") {
+
+                closeMenu();
+
+            }
+
+            if (e.key === "Tab") {
+
+                const elements =
+                    sideMenu.querySelectorAll("a, button");
+
+                const first = elements[0];
+
+                const last = elements[elements.length - 1];
+
+                if (e.shiftKey &&
+                    document.activeElement === first) {
+
+                    e.preventDefault();
+
+                    last.focus();
+
+                } else if (!e.shiftKey &&
+                           document.activeElement === last) {
+
+                    e.preventDefault();
+
+                    first.focus();
+
+                }
+
+            }
+
+        });
+
+
+        // =========================
+        // 03. 토스트 메시지
+        // =========================
+
+        function showToast(message) {
+
+            clearTimeout(toastTimer);
+
+            $("toastText").textContent = message;
+
+            $("toast").classList.add("visible");
+
+            toastTimer = setTimeout(function() {
+
+                $("toast").classList.remove("visible");
+
+            }, 2500);
+
+        }
+
+
+        // =========================
+        // 04. 주문 시간 변환
+        // =========================
+
+        function formatDate(value) {
+
+            const date = new Date(value);
+
+            if (Number.isNaN(date.getTime())) {
+
+                return "-";
+
+            }
+
+            const pad = number =>
+                String(number).padStart(2, "0");
+
+            return date.getFullYear() + "." +
+
+                pad(date.getMonth() + 1) + "." +
+
+                pad(date.getDate()) + " " +
+
+                pad(date.getHours()) + ":" +
+
+                pad(date.getMinutes());
+
+        }
+
+
+        // =========================
+        // 05. 옵션 정보 변환
+        // =========================
+
+        function formatOptions(items) {
+
+            if (!Array.isArray(items)) {
+
+                return "";
+
+            }
+
+            return items
+
+                .map(item => {
+
+                    if (typeof item === "string") {
+
+                        return item;
+
+                    }
+
+                    return item && typeof item.name === "string"
+                        ? item.name
+                        : "";
+
+                })
+
+                .filter(Boolean)
+
+                .join(", ");
+
+        }
+
+
+        // =========================
+        // 06. 결제 정보 불러오기
+        // =========================
+
+        function loadPayment() {
+
+            try {
+
+                const storedPayment =
+                    sessionStorage.getItem("ipdeokPayment");
+
+                payment = storedPayment
+
+                    ? JSON.parse(storedPayment)
+
+                    : null;
+
+            } catch (error) {
+
+                payment = null;
+
+            }
+
+
+            // 주문 데이터 검증
+
+            if (
+
+                !payment ||
+
+                payment.status !== "completed" ||
+
+                typeof payment.orderNumber !== "string" ||
+
+                typeof payment.name !== "string" ||
+
+                !Number.isFinite(payment.finalAmount) ||
+
+                payment.finalAmount < 0 ||
+
+                !Number.isFinite(payment.totalPrice) ||
+
+                payment.totalPrice <= 0 ||
+
+                !Number.isInteger(payment.quantity) ||
+
+                payment.quantity < 1 ||
+
+                !Number.isFinite(payment.deliveryFee) ||
+
+                payment.deliveryFee < 0 ||
+
+                !Number.isFinite(payment.discount) ||
+
+                payment.discount < 0 ||
+
+                payment.discount > payment.totalPrice ||
+
+                payment.finalAmount !==
+                    payment.totalPrice +
+                    payment.deliveryFee -
+                    payment.discount
+
+            ) {
+
+                payment = null;
+
+                $("emptyState").hidden = false;
+
+                $("completeContent").hidden = true;
+
+                return false;
+
+            }
+
+
+            // 주문 정보
+
+            $("orderNumber").textContent =
+                payment.orderNumber;
+
+            $("storeName").textContent =
+                payment.storeName || "입덕볶이";
+
+            $("orderTime").textContent =
+                formatDate(payment.paidAt);
+
+
+            // 상품 이미지
+
+            const validImages = [
+
+                "menu-01.png",
+
+                "menu-02.png",
+
+                "menu-03.png",
+
+                "menu-04.png"
+
+            ];
+
+            const imageName = validImages.includes(payment.image)
+
+                ? payment.image
+
+                : "menu-01.png";
+
+            $("productImage").src =
+                "../../img/" + imageName;
+
+            $("productImage").alt =
+                payment.name;
+
+
+            // 상품 정보
+
+            $("productName").textContent =
+                payment.name;
+
+            $("productQuantity").textContent =
+
+                (payment.spicy || "보통맛") +
+
+                " · " + payment.quantity + "개";
+
+            const toppings =
+                formatOptions(payment.toppings);
+
+            const sides =
+                formatOptions(payment.sides);
+
+            $("productToppings").textContent =
+
+                toppings
+
+                    ? "토핑 : " + toppings
+
+                    : "토핑 추가 없음";
+
+            $("productSides").textContent =
+
+                sides
+
+                    ? "사이드 : " + sides
+
+                    : "사이드 추가 없음";
+
+            $("productPrice").textContent =
+                formatPrice(payment.totalPrice);
+
+
+            // 배달 정보
+
+            $("deliveryAddress").textContent =
+                payment.address || "주소 정보 없음";
+
+            $("deliveryDetailAddress").textContent =
+                payment.detailAddress || "";
+
+            $("deliveryDetailAddress").hidden =
+                !payment.detailAddress;
+
+            $("deliveryRequest").textContent =
+                payment.deliveryRequest || "요청사항 없음";
+
+
+            // 결제 정보
+
+            $("paymentMethod").textContent =
+                payment.paymentMethod || "-";
+
+            $("subtotal").textContent =
+                formatPrice(payment.totalPrice);
+
+            $("deliveryFee").textContent =
+                formatPrice(payment.deliveryFee);
+
+            $("discountAmount").textContent =
+
+                payment.discount > 0
+
+                    ? "-" + formatPrice(payment.discount)
+
+                    : "0원";
+
+            $("finalAmount").textContent =
+                formatPrice(payment.finalAmount);
+
+
+            // 할인 메시지
+
+            if (payment.discount > 0) {
+
+                $("discountMessage").hidden = false;
+
+                $("discountText").textContent =
+
+                    formatPrice(payment.discount) +
+
+                    " 할인받았어요!";
+
+            }
+
+            $("emptyState").hidden = true;
+
+            $("completeContent").hidden = false;
+
+            return true;
+
+        }
+
+
+        // =========================
+        // 07. 주문번호 복사
+        // =========================
+
+        $("copyButton").addEventListener(
+
+            "click",
+
+            async function() {
+
+                if (!payment) {
+
+                    return;
+
+                }
+
+                try {
+
+                    await navigator.clipboard.writeText(
+                        payment.orderNumber
+                    );
+
+                    showToast("주문번호가 복사되었어요.");
+
+                    this.innerHTML =
+                        '<i data-lucide="check"></i>';
+
+                    this.classList.add("copied");
+
+                    if (window.lucide) {
+
+                        lucide.createIcons();
+
+                    }
+
+                    setTimeout(() => {
+
+                        this.innerHTML =
+                            '<i data-lucide="copy"></i>';
+
+                        this.classList.remove("copied");
+
+                        if (window.lucide) {
+
+                            lucide.createIcons();
+
+                        }
+
+                    }, 2000);
+
+                } catch (error) {
+
+                    showToast(
+                        "복사하지 못했어요. 주문번호를 직접 복사해 주세요."
+                    );
+
+                }
+
+            }
+
+        );
+
+
+        // =========================
+        // 08. 색종이 애니메이션
+        // =========================
+
+        function createConfetti() {
+
+            if (reduceMotion) {
+
+                return;
+
+            }
+
+            const confetti = $("confetti");
+
+            const colors = [
+
+                "#e63323",
+
+                "#ffb347",
+
+                "#f68c51",
+
+                "#ffd5a5",
+
+                "#bd2619"
+
+            ];
+
+            for (let i = 0; i < 36; i++) {
+
+                const particle =
+                    document.createElement("span");
+
+                particle.className = "confetti-piece";
+
+                const angle =
+                    Math.random() * Math.PI * 2;
+
+                const distance =
+                    60 + Math.random() * 150;
+
+                const x =
+                    Math.cos(angle) * distance;
+
+                const y =
+                    Math.sin(angle) * distance + 90;
+
+                particle.style.setProperty(
+                    "--x", x + "px"
+                );
+
+                particle.style.setProperty(
+                    "--y", y + "px"
+                );
+
+                particle.style.setProperty(
+                    "--rotation",
+                    Math.random() * 720 + "deg"
+                );
+
+                particle.style.backgroundColor =
+                    colors[i % colors.length];
+
+                particle.style.width =
+                    5 + Math.random() * 5 + "px";
+
+                particle.style.height =
+                    7 + Math.random() * 9 + "px";
+
+                particle.style.animationDelay =
+                    Math.random() * 0.3 + "s";
+
+                particle.style.animationDuration =
+                    1.2 + Math.random() * 0.8 + "s";
+
+                if (i % 3 === 0) {
+
+                    particle.style.borderRadius = "50%";
+
+                }
+
+                confetti.appendChild(particle);
+
+            }
+
+            setTimeout(function() {
+
+                confetti.replaceChildren();
+
+            }, 2600);
+
+        }
+
+
+        // =========================
+        // 09. 스크롤 등장 효과
+        // =========================
+
+        function initReveal() {
+
+            if (
+
+                !("IntersectionObserver" in window) ||
+
+                reduceMotion
+
+            ) {
+
+                return;
+
+            }
+
+            const observer = new IntersectionObserver(
+
+                function(entries) {
+
+                    entries.forEach(function(entry) {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add("visible");
+
+                            observer.unobserve(entry.target);
+
+                        }
+
+                    });
+
+                },
+
+                {
+
+                    threshold: 0.08
+
+                }
+
+            );
+
+            document.querySelectorAll(".reveal")
+
+                .forEach(function(element) {
+
+                    element.classList.add("reveal-ready");
+
+                    observer.observe(element);
+
+                });
+
+        }
+
+
+        // =========================
+        // 10. 이미지 오류 처리
+        // =========================
+
+        const successImage =
+            document.querySelector(".success-image img");
+
+        function hideBrokenSuccessImage() {
+
+            successImage.parentElement.hidden = true;
+
+        }
+
+        successImage.addEventListener(
+
+            "error",
+
+            hideBrokenSuccessImage
+
+        );
+
+        if (
+
+            successImage.complete &&
+
+            successImage.naturalWidth === 0
+
+        ) {
+
+            hideBrokenSuccessImage();
+
+        }
+
+        $("productImage").addEventListener(
+
+            "error",
+
+            function() {
+
+                this.hidden = true;
+
+            }
+
+        );
+
+
+        // =========================
+        // 11. 최초 실행
+        // =========================
+
+        if (loadPayment()) {
+
+            initReveal();
+
+            // 같은 주문의 색종이 효과는 한 번만 실행
+
+            let alreadyPlayed = false;
+
+            try {
+
+                alreadyPlayed =
+
+                    sessionStorage.getItem(
+                        "ipdeokCelebratedOrder"
+                    ) === payment.orderNumber;
+
+            } catch (error) {
+
+                alreadyPlayed = false;
+
+            }
+
+            if (!alreadyPlayed) {
+
+                createConfetti();
+
+                try {
+
+                    sessionStorage.setItem(
+
+                        "ipdeokCelebratedOrder",
+
+                        payment.orderNumber
+
+                    );
+
+                } catch (error) {
+
+                    // 애니메이션 기록 저장 실패 무시
+
+                }
+
+            }
+
+            // 완료된 주문의 임시 장바구니 데이터 제거
+
+            // 결제 완료 정보는 새로고침을 위해 유지
+
+            try {
+
+                sessionStorage.removeItem("ipdeokOrder");
+
+            } catch (error) {
+
+                // 저장소 접근 오류 무시
+
+            }
+
+        }
+
+
+        // =========================
+        // 12. 뒤로 가기 화면 복원
+        // =========================
+
+        window.addEventListener("pageshow", function() {
+
+            if (menuOverlay.classList.contains("active")) {
+
+                closeMenu();
+
+            }
+
+        });
+
+    </script>
+
 </body>
+
 </html>

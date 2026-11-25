@@ -1,12 +1,1021 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/lists.css">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>메뉴 선택 | 입덕볶이</title>
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="./css/lists.css">
+
+    <!-- Lucide Icon -->
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
 </head>
+
 <body>
-    
+
+    <div class="container">
+
+        <!-- =========================
+             HEADER
+        ========================== -->
+
+        <header class="header">
+
+            <a href="../../index.html"
+               class="back-button"
+               aria-label="메인 페이지로 돌아가기">
+
+                <i data-lucide="chevron-left"></i>
+
+            </a>
+
+            <a href="../../index.html"
+               class="logo">
+
+                <img src="../../img/logo.png"
+                     alt="입덕볶이">
+
+            </a>
+
+            <button class="icon-button"
+                    id="menuOpen"
+                    type="button"
+                    aria-label="메뉴 열기"
+                    aria-controls="sideMenu"
+                    aria-expanded="false">
+
+                <i data-lucide="menu"></i>
+
+            </button>
+
+        </header>
+
+
+        <!-- =========================
+             SIDE MENU
+        ========================== -->
+
+        <div class="menu-overlay"
+             id="menuOverlay">
+
+            <div class="menu-dim"
+                 id="menuDim"></div>
+
+            <aside class="side-menu"
+                   id="sideMenu"
+                   role="dialog"
+                   aria-modal="true"
+                   aria-label="전체 메뉴"
+                   inert>
+
+                <div class="side-menu-header">
+
+                    <a href="../../index.html">
+
+                        <img src="../../img/logo.png"
+                             alt="입덕볶이">
+
+                    </a>
+
+                    <button class="icon-button"
+                            id="menuClose"
+                            type="button"
+                            aria-label="메뉴 닫기">
+
+                        <i data-lucide="x"></i>
+
+                    </button>
+
+                </div>
+
+                <div class="side-menu-welcome">
+
+                    <span>WELCOME!</span>
+
+                    <h2>
+                        오늘도 맛있게,<br>
+                        입덕볶이!
+                    </h2>
+
+                </div>
+
+                <nav class="side-menu-nav">
+
+                    <a href="./lists.html"
+                       class="current"
+                       aria-current="page">
+
+                        <i data-lucide="utensils"></i>
+
+                        <span>메뉴</span>
+
+                        <i data-lucide="chevron-right"></i>
+
+                    </a>
+
+                    <a href="../about/about.html">
+
+                        <i data-lucide="store"></i>
+
+                        <span>소개</span>
+
+                        <i data-lucide="chevron-right"></i>
+
+                    </a>
+
+                    <a href="../community/community.html">
+
+                        <i data-lucide="messages-square"></i>
+
+                        <span>커뮤니티</span>
+
+                        <i data-lucide="chevron-right"></i>
+
+                    </a>
+
+                    <a href="../login/login.html">
+
+                        <i data-lucide="user-round"></i>
+
+                        <span>로그인</span>
+
+                        <i data-lucide="chevron-right"></i>
+
+                    </a>
+
+                </nav>
+
+                <div class="side-menu-footer">
+
+                    <p>매콤달콤한 일상의 즐거움</p>
+
+                    <strong>입덕볶이</strong>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+
+        <main id="mainContent">
+
+            <!-- =========================
+                 ORDER STEP
+            ========================== -->
+
+            
+<!-- =========================
+     ORDER PROGRESS
+========================== -->
+
+<section class="order-progress" aria-label="주문 진행 단계">
+
+    <div class="step active" aria-current="step">
+        <div class="step-number">1</div>
+        <span>메뉴선택</span>
+    </div>
+
+    <i data-lucide="chevron-right" class="step-arrow"></i>
+
+    <div class="step">
+        <div class="step-number">2</div>
+        <span>옵션선택</span>
+    </div>
+
+    <i data-lucide="chevron-right" class="step-arrow"></i>
+
+    <div class="step">
+        <div class="step-number">3</div>
+        <span>주문·결제</span>
+    </div>
+
+    <i data-lucide="chevron-right" class="step-arrow"></i>
+
+    <div class="step">
+        <div class="step-number">4</div>
+        <span>결제완료</span>
+    </div>
+
+</section>
+
+
+
+            <!-- =========================
+                 PAGE TITLE
+            ========================== -->
+
+            <section class="page-heading">
+
+                <span class="section-label">
+                    OUR MENU
+                </span>
+
+                <h1>
+                    오늘은 어떤 맛에<br>
+                    입덕할까요?
+                </h1>
+
+                <p>
+                    취향에 맞는 떡볶이를 선택해 보세요.
+                </p>
+
+            </section>
+
+
+            <!-- =========================
+                 SEARCH
+            ========================== -->
+
+            <section class="search-section">
+
+                <div class="search-box">
+
+                    <i data-lucide="search"></i>
+
+                    <input type="search"
+                           id="searchInput"
+                           placeholder="먹고 싶은 메뉴를 검색해 보세요"
+                           aria-label="메뉴 검색"
+                           autocomplete="off">
+
+                    <button class="search-clear"
+                            id="searchClear"
+                            type="button"
+                            aria-label="검색어 지우기"
+                            hidden>
+
+                        <i data-lucide="circle-x"></i>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 CATEGORY
+            ========================== -->
+
+            <section class="category-section"
+                     aria-label="메뉴 카테고리">
+
+                <div class="category-list">
+
+                    <button class="category-button active"
+                            type="button"
+                            data-category="all"
+                            aria-pressed="true">
+
+                        전체
+
+                    </button>
+
+                    <button class="category-button"
+                            type="button"
+                            data-category="original"
+                            aria-pressed="false">
+
+                        오리지널
+
+                    </button>
+
+                    <button class="category-button"
+                            type="button"
+                            data-category="rose"
+                            aria-pressed="false">
+
+                        로제
+
+                    </button>
+
+                    <button class="category-button"
+                            type="button"
+                            data-category="mala"
+                            aria-pressed="false">
+
+                        마라
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 MENU LIST
+            ========================== -->
+
+            <section class="menu-section">
+
+                <div class="list-heading">
+
+                    <h2>
+
+                        메뉴
+
+                        <span id="menuCount"
+                              aria-live="polite">4</span>
+
+                    </h2>
+
+                    <p>메뉴를 선택해 주세요</p>
+
+                </div>
+
+
+                <div class="menu-list"
+                     id="menuList">
+
+                    <!-- MENU 01 -->
+
+                    <a href="../detail/detail.html?menu=original"
+                       class="menu-card"
+                       data-category="original"
+                       data-name="오리지널 떡볶이">
+
+                        <div class="menu-image">
+
+                            <img src="../../img/menu-01.png"
+                                 alt="오리지널 떡볶이">
+
+                        </div>
+
+                        <div class="menu-info">
+
+                            <div class="menu-top">
+
+                                <span class="menu-badge best">
+                                    BEST
+                                </span>
+
+                                <h3>오리지널 떡볶이</h3>
+
+                                <p class="menu-description">
+                                    중독되는 매콤달콤한 맛
+                                </p>
+
+                            </div>
+
+                            <div class="menu-bottom">
+
+                                <p class="menu-price">
+                                    14,000<span>원</span>
+                                </p>
+
+                                <span class="select-icon">
+
+                                    <i data-lucide="chevron-right"></i>
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- MENU 02 -->
+
+                    <a href="../detail/detail.html?menu=rose"
+                       class="menu-card"
+                       data-category="rose"
+                       data-name="로제 떡볶이">
+
+                        <div class="menu-image">
+
+                            <img src="../../img/menu-02.png"
+                                 alt="로제 떡볶이"
+                                 loading="lazy">
+
+                        </div>
+
+                        <div class="menu-info">
+
+                            <div class="menu-top">
+
+                                <span class="menu-badge popular">
+                                    인기
+                                </span>
+
+                                <h3>로제 떡볶이</h3>
+
+                                <p class="menu-description">
+                                    부드럽고 고소한 크림의 풍미
+                                </p>
+
+                            </div>
+
+                            <div class="menu-bottom">
+
+                                <p class="menu-price">
+                                    14,000<span>원</span>
+                                </p>
+
+                                <span class="select-icon">
+
+                                    <i data-lucide="chevron-right"></i>
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- MENU 03 -->
+
+                    <a href="../detail/detail.html?menu=mala"
+                       class="menu-card"
+                       data-category="mala"
+                       data-name="마라 떡볶이">
+
+                        <div class="menu-image">
+
+                            <img src="../../img/menu-03.png"
+                                 alt="마라 떡볶이"
+                                 loading="lazy">
+
+                        </div>
+
+                        <div class="menu-info">
+
+                            <div class="menu-top">
+
+                                <h3>마라 떡볶이</h3>
+
+                                <p class="menu-description">
+                                    얼얼하고 강렬한 매운맛
+                                </p>
+
+                            </div>
+
+                            <div class="menu-bottom">
+
+                                <p class="menu-price">
+                                    14,000<span>원</span>
+                                </p>
+
+                                <span class="select-icon">
+
+                                    <i data-lucide="chevron-right"></i>
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- MENU 04 -->
+
+                    <a href="../detail/detail.html?menu=mala-rose"
+                       class="menu-card"
+                       data-category="mala rose"
+                       data-name="마라로제 떡볶이">
+
+                        <div class="menu-image">
+
+                            <img src="../../img/menu-04.png"
+                                 alt="마라로제 떡볶이"
+                                 loading="lazy">
+
+                        </div>
+
+                        <div class="menu-info">
+
+                            <div class="menu-top">
+
+                                <h3>마라로제 떡볶이</h3>
+
+                                <p class="menu-description">
+                                    마라와 로제의 완벽한 조합
+                                </p>
+
+                            </div>
+
+                            <div class="menu-bottom">
+
+                                <p class="menu-price">
+                                    14,000<span>원</span>
+                                </p>
+
+                                <span class="select-icon">
+
+                                    <i data-lucide="chevron-right"></i>
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+                <!-- 검색 결과 없음 -->
+
+                <div class="empty-state"
+                     id="emptyState"
+                     hidden>
+
+                    <div class="empty-icon">
+
+                        <i data-lucide="search-x"></i>
+
+                    </div>
+
+                    <h3>검색 결과가 없습니다.</h3>
+
+                    <p>
+                        다른 검색어로 다시 검색해 보세요.
+                    </p>
+
+                    <button id="resetButton"
+                            class="reset-button"
+                            type="button">
+
+                        전체 메뉴 보기
+
+                    </button>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- =========================
+             FOOTER
+        ========================== -->
+
+        <footer class="footer">
+
+            <a href="../../index.html">
+
+                <img src="../../img/logo.png"
+                     alt="입덕볶이">
+
+            </a>
+
+            <p>매콤달콤한 일상의 즐거움</p>
+
+            <span>
+                © 2026 입덕볶이.
+                All rights reserved.
+            </span>
+
+        </footer>
+
+
+        <!-- 상단 이동 버튼 -->
+
+        <button class="top-button"
+                id="topButton"
+                type="button"
+                aria-label="맨 위로 이동">
+
+            <i data-lucide="arrow-up"></i>
+
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        // Lucide 아이콘 실행
+
+        if (window.lucide) {
+
+            lucide.createIcons();
+
+        }
+
+
+        const reduceMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+
+        // =========================
+        // 01. 햄버거 메뉴
+        // =========================
+
+        const menuOpen =
+            document.getElementById("menuOpen");
+
+        const menuClose =
+            document.getElementById("menuClose");
+
+        const menuOverlay =
+            document.getElementById("menuOverlay");
+
+        const menuDim =
+            document.getElementById("menuDim");
+
+        const sideMenu =
+            document.getElementById("sideMenu");
+
+        const header =
+            document.querySelector(".header");
+
+        const mainContent =
+            document.getElementById("mainContent");
+
+        const footer =
+            document.querySelector(".footer");
+
+        const topButton =
+            document.getElementById("topButton");
+
+
+        function openMenu() {
+
+            menuOverlay.classList.add("active");
+
+            document.body.classList.add("menu-open");
+
+            menuOpen.setAttribute(
+                "aria-expanded", "true"
+            );
+
+            sideMenu.inert = false;
+
+            menuClose.focus();
+
+            header.inert = true;
+            mainContent.inert = true;
+            footer.inert = true;
+            topButton.inert = true;
+
+        }
+
+
+        function closeMenu() {
+
+            header.inert = false;
+            mainContent.inert = false;
+            footer.inert = false;
+            topButton.inert = false;
+
+            menuOpen.setAttribute(
+                "aria-expanded", "false"
+            );
+
+            menuOpen.focus();
+
+            sideMenu.inert = true;
+
+            menuOverlay.classList.remove("active");
+
+            document.body.classList.remove("menu-open");
+
+        }
+
+
+        menuOpen.addEventListener("click", openMenu);
+
+        menuClose.addEventListener("click", closeMenu);
+
+        menuDim.addEventListener("click", closeMenu);
+
+
+        document.addEventListener("keydown", function(e) {
+
+            if (!menuOverlay.classList.contains("active")) {
+
+                return;
+
+            }
+
+            if (e.key === "Escape") {
+
+                closeMenu();
+
+            }
+
+            if (e.key === "Tab") {
+
+                const focusable =
+                    sideMenu.querySelectorAll("a, button");
+
+                const first = focusable[0];
+
+                const last =
+                    focusable[focusable.length - 1];
+
+                if (
+                    e.shiftKey &&
+                    document.activeElement === first
+                ) {
+
+                    e.preventDefault();
+
+                    last.focus();
+
+                } else if (
+                    !e.shiftKey &&
+                    document.activeElement === last
+                ) {
+
+                    e.preventDefault();
+
+                    first.focus();
+
+                }
+
+            }
+
+        });
+
+
+        // =========================
+        // 02. 검색 및 카테고리 필터
+        // =========================
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+        const searchClear =
+            document.getElementById("searchClear");
+
+        const categoryButtons =
+            document.querySelectorAll(".category-button");
+
+        const menuCards =
+            document.querySelectorAll(".menu-card");
+
+        const menuCount =
+            document.getElementById("menuCount");
+
+        const emptyState =
+            document.getElementById("emptyState");
+
+        const resetButton =
+            document.getElementById("resetButton");
+
+
+        let selectedCategory = "all";
+
+
+        function normalizeText(text) {
+
+            return text
+                .toLowerCase()
+                .replace(/\s+/g, "");
+
+        }
+
+
+        function filterMenus() {
+
+            const keyword =
+                normalizeText(searchInput.value);
+
+            let count = 0;
+
+
+            menuCards.forEach(function(card) {
+
+                const name =
+                    normalizeText(card.dataset.name);
+
+                const description =
+                    normalizeText(
+                        card.querySelector(
+                            ".menu-description"
+                        ).textContent
+                    );
+
+                const categories =
+                    card.dataset.category.split(" ");
+
+                const matchSearch =
+                    name.includes(keyword) ||
+                    description.includes(keyword);
+
+                const matchCategory =
+                    selectedCategory === "all" ||
+                    categories.includes(selectedCategory);
+
+                const visible =
+                    matchSearch && matchCategory;
+
+                const wasHidden = card.hidden;
+
+                card.hidden = !visible;
+
+
+                if (visible) {
+
+                    count++;
+
+                    if (wasHidden && !reduceMotion) {
+
+                        card.animate(
+                            [
+                                {
+                                    opacity: 0,
+                                    transform: "translateY(12px)"
+                                },
+                                {
+                                    opacity: 1,
+                                    transform: "translateY(0)"
+                                }
+                            ],
+                            {
+                                duration: 300,
+                                easing: "ease-out"
+                            }
+                        );
+
+                    }
+
+                }
+
+            });
+
+
+            menuCount.textContent = count;
+
+            emptyState.hidden = count !== 0;
+
+            searchClear.hidden =
+                searchInput.value.length === 0;
+
+        }
+
+
+        searchInput.addEventListener(
+            "input",
+            filterMenus
+        );
+
+
+        searchClear.addEventListener("click", function() {
+
+            searchInput.value = "";
+
+            filterMenus();
+
+            searchInput.focus();
+
+        });
+
+
+        // 카테고리 선택
+
+        function selectCategory(category) {
+
+            selectedCategory = category;
+
+            categoryButtons.forEach(function(button) {
+
+                const active =
+                    button.dataset.category === category;
+
+                button.classList.toggle(
+                    "active", active
+                );
+
+                button.setAttribute(
+                    "aria-pressed",
+                    String(active)
+                );
+
+            });
+
+            filterMenus();
+
+        }
+
+
+        categoryButtons.forEach(function(button) {
+
+            button.addEventListener("click", function() {
+
+                selectCategory(button.dataset.category);
+
+            });
+
+        });
+
+
+        // 검색 및 필터 초기화
+
+        resetButton.addEventListener("click", function() {
+
+            searchInput.value = "";
+
+            selectCategory("all");
+
+        });
+
+
+        // =========================
+        // 03. 상품 카드 등장 애니메이션
+        // =========================
+
+        if (!reduceMotion) {
+
+            menuCards.forEach(function(card, index) {
+
+                card.animate(
+                    [
+                        {
+                            opacity: 0,
+                            transform: "translateY(20px)"
+                        },
+                        {
+                            opacity: 1,
+                            transform: "translateY(0)"
+                        }
+                    ],
+                    {
+                        duration: 450,
+                        delay: index * 90,
+                        easing: "ease-out",
+                        fill: "backwards"
+                    }
+                );
+
+            });
+
+        }
+
+
+        // =========================
+        // 04. 상단 이동 버튼
+        // =========================
+
+        window.addEventListener("scroll", function() {
+
+            topButton.classList.toggle(
+                "visible",
+                window.scrollY > 350
+            );
+
+        }, { passive: true });
+
+
+        topButton.addEventListener("click", function() {
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: reduceMotion
+                    ? "auto"
+                    : "smooth"
+
+            });
+
+        });
+
+
+        // 초기 메뉴 상태 설정
+
+        filterMenus();
+
+    </script>
+
 </body>
+
 </html>

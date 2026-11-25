@@ -1,0 +1,2920 @@
+
+/* ========================================
+   01. GLOBAL
+======================================== */
+
+:root {
+
+    --max-width: 500px;
+    --side-padding: 20px;
+
+    --primary: #e63323;
+    --primary-dark: #bd2619;
+    --secondary: #ffb347;
+
+    --background: #fff8ef;
+    --white: #ffffff;
+
+    --text: #302019;
+    --gray: #81756d;
+    --border: #ebddd0;
+
+    --light-orange: #ffe8d2;
+    --light-red: #fff1ed;
+
+    --radius: 16px;
+
+    --shadow:
+        0 5px 20px rgba(80, 40, 20, 0.06);
+
+}
+
+* {
+
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+body {
+
+    font-family: "Noto Sans KR", sans-serif;
+
+    font-size: 16px;
+    font-weight: 400;
+
+    background: #f1ebe5;
+
+    color: var(--text);
+
+    -webkit-tap-highlight-color: transparent;
+
+}
+
+button,
+input,
+select,
+textarea {
+
+    font: inherit;
+
+}
+
+button {
+
+    border: none;
+
+    background: none;
+
+    color: inherit;
+
+    cursor: pointer;
+
+}
+
+a {
+
+    text-decoration: none;
+
+    color: inherit;
+
+}
+
+img {
+
+    display: block;
+
+    max-width: 100%;
+
+}
+
+button,
+a,
+label {
+
+    touch-action: manipulation;
+
+}
+
+button:disabled {
+
+    cursor: not-allowed;
+
+}
+
+button:focus-visible,
+a:focus-visible,
+summary:focus-visible {
+
+    outline: 2px solid var(--primary);
+
+    outline-offset: 4px;
+
+}
+
+[hidden] {
+
+    display: none !important;
+
+}
+
+.container {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: var(--max-width);
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    margin: 0 auto;
+
+    padding-bottom:
+        calc(135px + env(safe-area-inset-bottom));
+
+    background: var(--background);
+
+    box-shadow:
+        0 0 40px rgba(0, 0, 0, 0.05);
+
+}
+
+
+/* ========================================
+   02. HEADER
+======================================== */
+
+.header {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    width: 100%;
+
+    height: 60px;
+
+    padding: 0 var(--side-padding);
+
+    background: var(--background);
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    height: 100%;
+
+}
+
+.logo img {
+
+    width: 105px;
+
+    height: 48px;
+
+    object-fit: contain;
+
+}
+
+.icon-button {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 12px;
+
+    transition: 0.2s ease;
+
+}
+
+.icon-button svg {
+
+    width: 25px;
+
+    height: 25px;
+
+    stroke-width: 1.8;
+
+}
+
+.icon-button:active {
+
+    background: var(--light-orange);
+
+    transform: scale(0.9);
+
+}
+
+
+/* ========================================
+   03. SIDE MENU
+======================================== */
+
+body.menu-open {
+
+    overflow: hidden;
+
+}
+
+.menu-overlay {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 100%;
+
+    max-width: var(--max-width);
+
+    height: 100vh;
+    height: 100dvh;
+
+    z-index: 1000;
+
+    overflow: hidden;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition: visibility 0s 0.35s;
+
+}
+
+.menu-overlay.active {
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transition-delay: 0s;
+
+}
+
+.menu-dim {
+
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    opacity: 0;
+
+    transition: opacity 0.35s ease;
+
+}
+
+.menu-overlay.active .menu-dim {
+
+    opacity: 1;
+
+}
+
+.side-menu {
+
+    position: absolute;
+
+    top: 0;
+
+    right: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    width: 66.6667%;
+
+    height: 100%;
+
+    padding: 0 16px;
+
+    overflow-y: auto;
+
+    background: var(--background);
+
+    transform: translateX(100%);
+
+    transition:
+        transform 0.35s
+        cubic-bezier(0.22, 1, 0.36, 1);
+
+}
+
+.menu-overlay.active .side-menu {
+
+    transform: translateX(0);
+
+}
+
+.side-menu-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    min-height: 70px;
+
+}
+
+.side-menu-header img {
+
+    width: 90px;
+
+    height: 45px;
+
+    object-fit: contain;
+
+}
+
+.side-menu-welcome {
+
+    margin: 12px 0 24px;
+
+    padding: 24px 16px;
+
+    border-radius: var(--radius);
+
+    background: var(--light-orange);
+
+}
+
+.side-menu-welcome span {
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    color: var(--primary);
+
+}
+
+.side-menu-welcome h2 {
+
+    margin-top: 10px;
+
+    font-size: 21px;
+
+    font-weight: 700;
+
+    line-height: 1.5;
+
+}
+
+.side-menu-nav {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+.side-menu-nav a {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-height: 60px;
+
+    padding: 14px 10px;
+
+    border-radius: 12px;
+
+    font-size: 17px;
+
+    font-weight: 500;
+
+    transition: 0.2s ease;
+
+}
+
+.side-menu-nav a span {
+
+    flex: 1;
+
+}
+
+.side-menu-nav a svg {
+
+    width: 21px;
+
+    height: 21px;
+
+    flex-shrink: 0;
+
+}
+
+.side-menu-nav a svg:last-child {
+
+    width: 16px;
+
+    color: var(--gray);
+
+}
+
+.side-menu-nav a:active {
+
+    transform: scale(0.97);
+
+    background: var(--light-orange);
+
+    color: var(--primary);
+
+}
+
+.side-menu-footer {
+
+    margin-top: auto;
+
+    padding: 50px 0 25px;
+
+    text-align: center;
+
+}
+
+.side-menu-footer p {
+
+    font-size: 11px;
+
+    color: var(--gray);
+
+}
+
+.side-menu-footer strong {
+
+    display: block;
+
+    margin-top: 6px;
+
+    color: var(--primary);
+
+}
+
+
+/* ========================================
+   04. ORDER PROGRESS
+======================================== */
+
+.order-progress {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: center;
+
+    gap: 3px;
+
+    padding: 16px 12px;
+
+    background: var(--white);
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+.step {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    flex: 1;
+
+    min-width: 0;
+
+    max-width: 64px;
+
+    gap: 7px;
+
+}
+
+.step-number {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 32px;
+
+    height: 32px;
+
+    border-radius: 50%;
+
+    background: #eeeeee;
+
+    color: #999999;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+}
+
+.step-number svg {
+
+    width: 17px;
+
+    height: 17px;
+
+}
+
+.step span {
+
+    font-size: 10px;
+
+    color: #999999;
+
+    white-space: nowrap;
+
+}
+
+.step-arrow {
+
+    width: 15px;
+
+    height: 15px;
+
+    margin-top: 8px;
+
+    flex-shrink: 0;
+
+    color: #d6d0ca;
+
+}
+
+.step.completed .step-number {
+
+    background: var(--light-orange);
+
+    color: var(--primary);
+
+}
+
+.step.completed span {
+
+    color: var(--primary);
+
+}
+
+.step.active .step-number {
+
+    background: var(--primary);
+
+    color: var(--white);
+
+    box-shadow:
+        0 3px 10px rgba(230, 51, 35, 0.22);
+
+    animation: popIn 0.4s ease-out;
+
+}
+
+.step.active span {
+
+    color: var(--primary);
+
+    font-weight: 700;
+
+}
+
+
+/* ========================================
+   05. PAGE TITLE
+======================================== */
+
+.page-title {
+
+    padding: 34px var(--side-padding) 26px;
+
+    animation: fadeUp 0.5s ease-out;
+
+}
+
+.eyebrow {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    color: var(--primary);
+
+}
+
+.page-title h1 {
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    letter-spacing: -1px;
+
+    line-height: 1.4;
+
+}
+
+.page-title p {
+
+    margin-top: 10px;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    color: var(--gray);
+
+    word-break: keep-all;
+
+}
+
+
+/* ========================================
+   06. CHECKOUT CONTENT
+======================================== */
+
+.checkout-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 16px;
+
+    padding: 0 var(--side-padding);
+
+}
+
+.checkout-card {
+
+    min-width: 0;
+
+    padding: 20px;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    background: var(--white);
+
+    box-shadow: var(--shadow);
+
+}
+
+.card-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 8px;
+
+    min-height: 32px;
+
+}
+
+.heading-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+}
+
+.heading-title > svg {
+
+    width: 22px;
+
+    height: 22px;
+
+    flex-shrink: 0;
+
+    color: var(--primary);
+
+}
+
+.heading-title h2 {
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.7px;
+
+}
+
+.heading-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+/* ========================================
+   07. ACCORDION
+======================================== */
+
+summary {
+
+    list-style: none;
+
+    cursor: pointer;
+
+}
+
+summary::-webkit-details-marker {
+
+    display: none;
+
+}
+
+.accordion-arrow {
+
+    width: 19px;
+
+    height: 19px;
+
+    flex-shrink: 0;
+
+    color: var(--gray);
+
+    transition: transform 0.25s ease;
+
+}
+
+details:not([open]) .accordion-arrow {
+
+    transform: rotate(180deg);
+
+}
+
+.accordion-content {
+
+    margin-top: 18px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid var(--border);
+
+}
+
+details[open] > .accordion-content {
+
+    animation: accordionOpen 0.3s ease-out;
+
+}
+
+@keyframes accordionOpen {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(-8px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* ========================================
+   08. ORDER PRODUCT
+======================================== */
+
+.product-item {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 16px;
+
+}
+
+.product-image {
+
+    flex-shrink: 0;
+
+    width: 110px;
+
+    aspect-ratio: 1 / 1;
+
+    overflow: hidden;
+
+    border-radius: 12px;
+
+    background: var(--light-orange);
+
+}
+
+.product-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+}
+
+.product-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    flex: 1;
+
+    min-width: 0;
+
+    min-height: 110px;
+
+}
+
+.product-info h3 {
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    line-height: 1.5;
+
+    letter-spacing: -0.5px;
+
+    word-break: keep-all;
+
+}
+
+.product-info p {
+
+    margin-top: 5px;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    color: var(--gray);
+
+    overflow-wrap: anywhere;
+
+}
+
+.product-info .product-option {
+
+    font-size: 11px;
+
+}
+
+.product-info > strong {
+
+    margin-top: auto;
+
+    padding-top: 12px;
+
+    text-align: right;
+
+    font-size: 19px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+
+}
+
+.product-total {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-top: 20px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid var(--border);
+
+}
+
+.product-total span {
+
+    font-size: 13px;
+
+    color: var(--gray);
+
+}
+
+.product-total strong {
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+}
+
+
+/* ========================================
+   09. DELIVERY INFORMATION
+======================================== */
+
+.delivery-content {
+
+    margin-top: 18px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid var(--border);
+
+}
+
+.field-label {
+
+    display: block;
+
+    margin-bottom: 9px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+.required {
+
+    color: var(--primary);
+
+}
+
+.text-input {
+
+    display: block;
+
+    width: 100%;
+
+    min-width: 0;
+
+    min-height: 50px;
+
+    margin-bottom: 18px;
+
+    padding: 12px 14px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #fffcf8;
+
+    color: var(--text);
+
+    font-size: 16px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+.text-input::placeholder {
+
+    font-size: 13px;
+
+    color: #9a9088;
+
+}
+
+.text-input:focus {
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(230, 51, 35, 0.08);
+
+}
+
+.text-input.invalid {
+
+    border-color: var(--primary);
+
+    background: var(--light-red);
+
+    animation: shake 0.3s ease;
+
+}
+
+select.text-input {
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+}
+
+.request-input {
+
+    min-height: 90px;
+
+    resize: vertical;
+
+}
+
+.delivery-notice {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    background: var(--background);
+
+}
+
+.delivery-notice svg {
+
+    width: 15px;
+
+    height: 15px;
+
+    flex-shrink: 0;
+
+    margin-top: 2px;
+
+    color: var(--gray);
+
+}
+
+.delivery-notice p {
+
+    font-size: 11px;
+
+    line-height: 1.7;
+
+    color: var(--gray);
+
+}
+
+
+/* ========================================
+   10. COUPON
+======================================== */
+
+.coupon-count {
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    color: var(--primary);
+
+    white-space: nowrap;
+
+}
+
+.coupon-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+}
+
+.coupon-card {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    width: 100%;
+
+    min-height: 115px;
+
+    padding: 18px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: var(--white);
+
+    text-align: left;
+
+    transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.2s ease;
+
+}
+
+.coupon-card.selected {
+
+    border-color: var(--primary);
+
+    background: var(--light-red);
+
+}
+
+.coupon-card:active {
+
+    transform: scale(0.98);
+
+}
+
+.coupon-info strong {
+
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 25px;
+
+    font-weight: 800;
+
+    letter-spacing: -0.8px;
+
+    color: var(--primary);
+
+}
+
+.coupon-info h3 {
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+.coupon-info p {
+
+    margin-top: 5px;
+
+    font-size: 11px;
+
+    color: var(--gray);
+
+}
+
+.coupon-check {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 24px;
+
+    height: 24px;
+
+    border: 1px solid #ccc3bb;
+
+    border-radius: 50%;
+
+    background: var(--white);
+
+    transition: 0.2s ease;
+
+}
+
+.coupon-check svg {
+
+    width: 15px;
+
+    height: 15px;
+
+    opacity: 0;
+
+    color: var(--white);
+
+    transform: scale(0.5);
+
+    transition: 0.2s ease;
+
+}
+
+.coupon-card.selected .coupon-check {
+
+    background: var(--primary);
+
+    border-color: var(--primary);
+
+}
+
+.coupon-card.selected .coupon-check svg {
+
+    opacity: 1;
+
+    transform: scale(1);
+
+}
+
+.coupon-bottom {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    min-height: 34px;
+
+    margin-top: 14px;
+
+}
+
+.coupon-bottom > span {
+
+    font-size: 12px;
+
+    color: var(--gray);
+
+}
+
+.small-button {
+
+    padding: 7px 12px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 7px;
+
+    background: var(--white);
+
+    font-size: 11px;
+
+    color: var(--gray);
+
+    transition: 0.2s ease;
+
+}
+
+.small-button:active {
+
+    background: var(--light-orange);
+
+}
+
+.small-notice {
+
+    margin-top: 10px;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+
+    color: var(--gray);
+
+}
+
+
+/* ========================================
+   11. BRAND PAYMENT
+======================================== */
+
+.brand-pay {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    width: 100%;
+
+    padding: 15px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: var(--background);
+
+    text-align: left;
+
+    transition: 0.2s ease;
+
+}
+
+.brand-pay-icon {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 10px;
+
+    background: var(--primary);
+
+    color: var(--white);
+
+}
+
+.brand-pay-icon svg {
+
+    width: 23px;
+
+    height: 23px;
+
+}
+
+.brand-pay-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    flex: 1;
+
+    gap: 5px;
+
+}
+
+.brand-pay-info strong {
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+}
+
+.brand-pay-info span {
+
+    font-size: 11px;
+
+    color: var(--gray);
+
+}
+
+.method-radio {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 22px;
+
+    height: 22px;
+
+    border: 1.5px solid #ccc3bb;
+
+    border-radius: 50%;
+
+    background: var(--white);
+
+}
+
+.method-radio::after {
+
+    content: "";
+
+    width: 10px;
+
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    transform: scale(0);
+
+    transition: transform 0.2s ease;
+
+}
+
+.brand-pay.selected .method-radio {
+
+    border-color: var(--primary);
+
+}
+
+.brand-pay.selected .method-radio::after {
+
+    transform: scale(1);
+
+}
+
+
+/* ========================================
+   12. PAYMENT GRID
+======================================== */
+
+.payment-subtitle {
+
+    margin-top: 26px;
+
+    margin-bottom: 14px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+.payment-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 10px;
+
+}
+
+.payment-grid .payment-method {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    min-width: 0;
+
+    min-height: 82px;
+
+    padding: 12px 4px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: var(--white);
+
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+.payment-grid .payment-method > svg {
+
+    width: 24px;
+
+    height: 24px;
+
+    stroke-width: 1.7;
+
+}
+
+.payment-grid .payment-method > span {
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+    white-space: nowrap;
+
+}
+
+.payment-method.selected {
+
+    border-color: var(--primary);
+
+    background: var(--light-red);
+
+}
+
+.payment-grid .payment-method.selected {
+
+    border-color: var(--primary);
+
+    background: var(--light-red);
+
+    color: var(--primary);
+
+}
+
+.payment-method:active {
+
+    transform: scale(0.95);
+
+}
+
+.pay-logo {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 23px;
+
+    padding: 3px 6px;
+
+    border-radius: 5px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: -0.4px;
+
+    white-space: nowrap;
+
+}
+
+.pay-logo.naver {
+
+    background: #03c75a;
+
+    color: #ffffff;
+
+}
+
+.pay-logo.kakao {
+
+    background: #fee500;
+
+    color: #222222;
+
+}
+
+.pay-logo.payco {
+
+    background: #e63323;
+
+    color: #ffffff;
+
+}
+
+.pay-logo.smile {
+
+    background: #ffca45;
+
+    color: #302019;
+
+}
+
+.pay-logo.apple {
+
+    background: #222222;
+
+    color: #ffffff;
+
+}
+
+
+/* ========================================
+   13. CHECKBOX
+======================================== */
+
+.check-label {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    cursor: pointer;
+
+}
+
+.check-label input {
+
+    position: absolute;
+
+    width: 1px;
+
+    height: 1px;
+
+    opacity: 0;
+
+}
+
+.check-mark {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 23px;
+
+    height: 23px;
+
+    border: 1.5px solid #ccc3bb;
+
+    border-radius: 6px;
+
+    background: var(--white);
+
+    transition: 0.2s ease;
+
+}
+
+.check-mark svg {
+
+    width: 16px;
+
+    height: 16px;
+
+    color: var(--white);
+
+    opacity: 0;
+
+    transform: scale(0.5);
+
+    transition: 0.2s ease;
+
+}
+
+.check-label input:checked + .check-mark {
+
+    background: var(--primary);
+
+    border-color: var(--primary);
+
+}
+
+.check-label input:checked + .check-mark svg {
+
+    opacity: 1;
+
+    transform: scale(1);
+
+}
+
+.check-label input:focus-visible + .check-mark {
+
+    outline: 2px solid var(--primary);
+
+    outline-offset: 3px;
+
+}
+
+.save-method {
+
+    margin-top: 25px;
+
+    padding: 5px 0;
+
+}
+
+
+/* ========================================
+   14. PAYMENT SUMMARY
+======================================== */
+
+.price-row {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 17px;
+
+}
+
+.price-row span {
+
+    font-size: 14px;
+
+    color: var(--gray);
+
+}
+
+.price-row strong {
+
+    font-size: 15px;
+
+    font-weight: 500;
+
+    font-variant-numeric: tabular-nums;
+
+}
+
+.discount-row strong {
+
+    color: var(--primary);
+
+}
+
+.final-price {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-top: 20px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid var(--border);
+
+}
+
+.final-price > span {
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+}
+
+.final-price strong {
+
+    font-size: 26px;
+
+    font-weight: 800;
+
+    letter-spacing: -1px;
+
+    color: var(--primary);
+
+    font-variant-numeric: tabular-nums;
+
+    white-space: nowrap;
+
+}
+
+.discount-message {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 18px;
+
+    padding: 13px;
+
+    border-radius: 10px;
+
+    background: var(--light-red);
+
+    color: var(--primary);
+
+    animation: fadeUp 0.3s ease-out;
+
+}
+
+.discount-message svg {
+
+    width: 18px;
+
+    height: 18px;
+
+}
+
+.discount-message span {
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+
+/* ========================================
+   15. AGREEMENT
+======================================== */
+
+.agreement-section {
+
+    padding: 12px 2px 24px;
+
+}
+
+.agreement-label {
+
+    align-items: flex-start;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    word-break: keep-all;
+
+}
+
+.agreement-label .check-mark {
+
+    margin-top: 1px;
+
+}
+
+.agreement-section > p {
+
+    margin-top: 14px;
+
+    padding-left: 33px;
+
+    font-size: 11px;
+
+    line-height: 1.8;
+
+    color: var(--gray);
+
+    word-break: keep-all;
+
+}
+
+
+/* ========================================
+   16. FIXED PAYMENT BUTTON
+======================================== */
+
+.payment-bottom {
+
+    position: fixed;
+
+    bottom: 0;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 200;
+
+    width: 100%;
+
+    max-width: var(--max-width);
+
+    padding: 14px var(--side-padding)
+        calc(16px + env(safe-area-inset-bottom));
+
+    border-top: 1px solid var(--border);
+
+    background: var(--white);
+
+    box-shadow:
+        0 -5px 25px rgba(80, 40, 20, 0.07);
+
+}
+
+.bottom-price {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 12px;
+
+}
+
+.bottom-price span {
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    color: var(--gray);
+
+}
+
+.bottom-price strong {
+
+    font-size: 21px;
+
+    font-weight: 800;
+
+    color: var(--primary);
+
+    font-variant-numeric: tabular-nums;
+
+}
+
+.primary-button {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    width: 100%;
+
+    min-height: 58px;
+
+    padding: 14px 30px;
+
+    border-radius: 14px;
+
+    background: var(--primary);
+
+    color: var(--white);
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 5px 15px rgba(230, 51, 35, 0.2);
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+.primary-button svg {
+
+    width: 21px;
+
+    height: 21px;
+
+    flex-shrink: 0;
+
+}
+
+.primary-button .button-arrow {
+
+    position: absolute;
+
+    right: 14px;
+
+    width: 18px;
+
+    height: 18px;
+
+}
+
+.primary-button:disabled {
+
+    background: #d3cbc5;
+
+    box-shadow: none;
+
+    color: #ffffff;
+
+}
+
+.primary-button:not(:disabled):active {
+
+    transform: scale(0.97);
+
+    background: var(--primary-dark);
+
+}
+
+
+/* ========================================
+   17. EMPTY ORDER
+======================================== */
+
+.empty-order {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 16px;
+
+    margin: 0 var(--side-padding) 40px;
+
+    padding: 40px 20px;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    background: var(--white);
+
+    text-align: center;
+
+}
+
+.empty-order > svg {
+
+    width: 48px;
+
+    height: 48px;
+
+    color: var(--primary);
+
+    stroke-width: 1.5;
+
+}
+
+.empty-order h2 {
+
+    font-size: 21px;
+
+}
+
+.empty-order p {
+
+    font-size: 13px;
+
+    color: var(--gray);
+
+}
+
+.empty-order .primary-button {
+
+    margin-top: 10px;
+
+}
+
+
+/* ========================================
+   18. TOAST
+======================================== */
+
+.toast {
+
+    position: fixed;
+
+    left: 50%;
+
+    bottom:
+        calc(145px + env(safe-area-inset-bottom));
+
+    z-index: 300;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    width: max-content;
+
+    max-width: min(90%, 440px);
+
+    padding: 14px 20px;
+
+    border-radius: 50px;
+
+    background: rgba(48, 32, 25, 0.94);
+
+    color: var(--white);
+
+    font-size: 12px;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transform: translate(-50%, 15px);
+
+    transition: 0.25s ease;
+
+}
+
+.toast.visible {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translate(-50%, 0);
+
+}
+
+.toast svg {
+
+    width: 18px;
+
+    height: 18px;
+
+    flex-shrink: 0;
+
+    color: var(--secondary);
+
+}
+
+
+/* ========================================
+   19. PAYMENT LOADING
+======================================== */
+
+.loading-overlay {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 2000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+    max-width: var(--max-width);
+
+    height: 100vh;
+    height: 100dvh;
+
+    padding: 30px;
+
+    background: rgba(48, 32, 25, 0.55);
+
+    backdrop-filter: blur(5px);
+
+    animation: fadeIn 0.25s ease-out;
+
+}
+
+.loading-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    width: 100%;
+
+    max-width: 340px;
+
+    padding: 40px 20px;
+
+    border-radius: 24px;
+
+    background: var(--white);
+
+    text-align: center;
+
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.15);
+
+    animation: popIn 0.35s ease-out;
+
+}
+
+.loading-spinner {
+
+    width: 64px;
+
+    height: 64px;
+
+    border: 5px solid var(--light-orange);
+
+    border-top-color: var(--primary);
+
+    border-radius: 50%;
+
+    animation: spin 0.8s linear infinite;
+
+}
+
+.loading-card h2 {
+
+    margin-top: 24px;
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.5px;
+
+    word-break: keep-all;
+
+}
+
+.loading-card p {
+
+    margin-top: 12px;
+
+    font-size: 13px;
+
+    color: var(--gray);
+
+}
+
+.success-icon {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 72px;
+
+    height: 72px;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    color: var(--white);
+
+    animation:
+        successPop 0.5s
+        cubic-bezier(0.34, 1.56, 0.64, 1);
+
+}
+
+.success-icon svg {
+
+    width: 40px;
+
+    height: 40px;
+
+    stroke-width: 3;
+
+}
+
+
+/* ========================================
+   20. FOOTER
+======================================== */
+
+.footer {
+
+    margin-top: 10px;
+
+    padding: 36px var(--side-padding);
+
+    border-top: 1px solid var(--border);
+
+    background: #f5e9dc;
+
+    text-align: center;
+
+}
+
+.footer img {
+
+    width: 100px;
+
+    margin: 0 auto 15px;
+
+}
+
+.footer p {
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    color: var(--gray);
+
+}
+
+.footer span {
+
+    display: block;
+
+    margin-top: 12px;
+
+    font-size: 11px;
+
+    color: var(--gray);
+
+}
+
+
+/* ========================================
+   21. ANIMATION
+======================================== */
+
+.reveal-ready {
+
+    opacity: 0;
+
+    transform: translateY(20px);
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+
+}
+
+.reveal-ready.visible {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+}
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+
+    }
+
+    to {
+
+        opacity: 1;
+
+    }
+
+}
+
+@keyframes popIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: scale(0.85);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+    }
+
+}
+
+@keyframes successPop {
+
+    from {
+
+        opacity: 0;
+
+        transform: scale(0.3);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+    }
+
+}
+
+@keyframes spin {
+
+    to {
+
+        transform: rotate(360deg);
+
+    }
+
+}
+
+@keyframes shake {
+
+    0%, 100% {
+
+        transform: translateX(0);
+
+    }
+
+    25%, 75% {
+
+        transform: translateX(-4px);
+
+    }
+
+    50% {
+
+        transform: translateX(4px);
+
+    }
+
+}
+
+
+/* ========================================
+   22. PC HOVER
+======================================== */
+
+@media (hover: hover) {
+
+    .icon-button:hover {
+
+        background: var(--light-orange);
+
+    }
+
+    .side-menu-nav a:hover {
+
+        background: var(--light-orange);
+
+        color: var(--primary);
+
+    }
+
+    .coupon-card:not(.selected):hover {
+
+        border-color: var(--secondary);
+
+        background: var(--background);
+
+    }
+
+    .payment-method:not(.selected):hover {
+
+        border-color: var(--secondary);
+
+    }
+
+    .primary-button:not(:disabled):hover {
+
+        background: var(--primary-dark);
+
+    }
+
+}
+
+
+/* ========================================
+   23. SMALL MOBILE
+======================================== */
+
+@media (max-width: 380px) {
+
+    .checkout-card {
+
+        padding: 16px;
+
+    }
+
+    .heading-title {
+
+        gap: 7px;
+
+    }
+
+    .heading-title h2 {
+
+        font-size: 17px;
+
+    }
+
+    .heading-title > svg {
+
+        width: 20px;
+
+        height: 20px;
+
+    }
+
+    .product-image {
+
+        width: 85px;
+
+    }
+
+    .product-item {
+
+        gap: 12px;
+
+    }
+
+    .product-info h3 {
+
+        font-size: 15px;
+
+    }
+
+    .product-info > strong {
+
+        font-size: 17px;
+
+    }
+
+    .coupon-card {
+
+        padding: 14px;
+
+    }
+
+    .payment-grid {
+
+        gap: 7px;
+
+    }
+
+    .payment-grid .payment-method > span {
+
+        font-size: 10px;
+
+    }
+
+    .pay-logo {
+
+        font-size: 9px;
+
+        padding: 3px 4px;
+
+    }
+
+    .final-price strong {
+
+        font-size: 22px;
+
+    }
+
+    .final-price > span {
+
+        font-size: 14px;
+
+    }
+
+    .step span {
+
+        font-size: 9px;
+
+    }
+
+    .step-arrow {
+
+        width: 12px;
+
+    }
+
+    .primary-button {
+
+        font-size: 15px;
+
+    }
+
+}
+
+
+/* ========================================
+   24. REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+
+        scroll-behavior: auto;
+
+    }
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+
+    }
+
+    .reveal-ready {
+
+        opacity: 1;
+
+        transform: none;
+
+    }
+
+}
+
+/* ========================================
+   ORDER PROGRESS - 4 STEP UPDATE
+======================================== */
+
+.order-progress {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    width: 100%;
+
+    gap: 6px;
+    padding: 16px 20px;
+
+    background: #ffffff;
+    border-bottom: 1px solid #ebddd0;
+}
+
+
+/* 단계별 영역 */
+
+.order-progress .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+
+    gap: 8px;
+}
+
+
+/* 기본 단계 원형 */
+
+.order-progress .step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #eeeeee;
+    color: #999999;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    box-shadow: none;
+
+    transition: background-color 0.25s ease,
+                color 0.25s ease;
+}
+
+
+/* 기본 단계 텍스트 */
+
+.order-progress .step > span {
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.5;
+
+    color: #999999;
+
+    text-align: center;
+    white-space: nowrap;
+}
+
+
+/* 단계 사이 화살표 */
+
+.order-progress .step-arrow {
+    flex-shrink: 0;
+
+    width: 14px;
+    height: 14px;
+
+    margin-top: 10px;
+
+    color: #d5cdc5;
+
+    stroke-width: 1.8;
+}
+
+
+/* 완료된 단계 */
+
+.order-progress .step.completed .step-number {
+    background: #ffe8d2;
+    color: #e63323;
+}
+
+.order-progress .step.completed > span {
+    color: #e63323;
+}
+
+
+/* 현재 진행 중인 단계 */
+
+.order-progress .step.active .step-number {
+    background: #e63323;
+    color: #ffffff;
+
+    box-shadow: 0 3px 10px rgba(230, 51, 35, 0.2);
+
+    animation: progressStepPop 0.4s ease-out;
+}
+
+.order-progress .step.active > span {
+    color: #e63323;
+    font-weight: 700;
+}
+
+
+/* 체크 아이콘 */
+
+.order-progress .step-number svg {
+    width: 18px;
+    height: 18px;
+
+    stroke-width: 2.2;
+}
+
+
+/* 현재 단계 등장 애니메이션 */
+
+@keyframes progressStepPop {
+    from {
+        opacity: 0;
+        transform: scale(0.75);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* 작은 모바일 화면 */
+
+@media (max-width: 380px) {
+
+    .order-progress {
+        padding: 16px 14px;
+        gap: 4px;
+    }
+
+    .order-progress .step-number {
+        width: 32px;
+        height: 32px;
+    }
+
+    .order-progress .step > span {
+        font-size: 10px;
+    }
+
+    .order-progress .step-arrow {
+        width: 12px;
+        height: 12px;
+    }
+
+}
+
+
+/* 애니메이션 최소화 설정 */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .order-progress .step.active .step-number {
+        animation: none;
+    }
+
+    .order-progress .step-number {
+        transition: none;
+    }
+
+}

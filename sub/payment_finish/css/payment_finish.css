@@ -1,0 +1,2514 @@
+
+/* ========================================
+   01. GLOBAL
+======================================== */
+
+:root {
+
+    --max-width: 500px;
+    --side-padding: 20px;
+
+    --primary: #e63323;
+    --primary-dark: #bd2619;
+    --secondary: #ffb347;
+
+    --background: #fff8ef;
+    --white: #ffffff;
+
+    --text: #302019;
+    --gray: #81756d;
+    --border: #ebddd0;
+
+    --light-orange: #ffe8d2;
+    --light-red: #fff1ed;
+
+    --radius: 16px;
+
+    --shadow:
+        0 5px 20px rgba(80, 40, 20, 0.06);
+
+}
+
+* {
+
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+body {
+
+    font-family: "Noto Sans KR", sans-serif;
+
+    font-size: 16px;
+    font-weight: 400;
+
+    background: #f1ebe5;
+
+    color: var(--text);
+
+    -webkit-tap-highlight-color: transparent;
+
+}
+
+button {
+
+    font: inherit;
+
+    color: inherit;
+
+    background: none;
+
+    border: none;
+
+    cursor: pointer;
+
+}
+
+a {
+
+    text-decoration: none;
+
+    color: inherit;
+
+}
+
+img {
+
+    display: block;
+
+    max-width: 100%;
+
+}
+
+button,
+a {
+
+    touch-action: manipulation;
+
+}
+
+button:focus-visible,
+a:focus-visible,
+summary:focus-visible {
+
+    outline: 2px solid var(--primary);
+
+    outline-offset: 4px;
+
+}
+
+[hidden] {
+
+    display: none !important;
+
+}
+
+.container {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: var(--max-width);
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    margin: 0 auto;
+
+    background: var(--background);
+
+    box-shadow:
+        0 0 40px rgba(0, 0, 0, 0.05);
+
+    animation: fadeIn 0.4s ease-out;
+
+}
+
+
+/* ========================================
+   02. HEADER
+======================================== */
+
+.header {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    width: 100%;
+
+    height: 60px;
+
+    padding: 0 var(--side-padding);
+
+    background: var(--background);
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    height: 100%;
+
+}
+
+.logo img {
+
+    width: 105px;
+
+    height: 48px;
+
+    object-fit: contain;
+
+}
+
+.icon-button {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 12px;
+
+    transition: 0.2s ease;
+
+}
+
+.icon-button svg {
+
+    width: 25px;
+
+    height: 25px;
+
+    stroke-width: 1.8;
+
+}
+
+.icon-button:active {
+
+    background: var(--light-orange);
+
+    transform: scale(0.9);
+
+}
+
+
+/* ========================================
+   03. SIDE MENU
+======================================== */
+
+body.menu-open {
+
+    overflow: hidden;
+
+}
+
+.menu-overlay {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 100%;
+
+    max-width: var(--max-width);
+
+    height: 100vh;
+    height: 100dvh;
+
+    z-index: 1000;
+
+    overflow: hidden;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition: visibility 0s 0.35s;
+
+}
+
+.menu-overlay.active {
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transition-delay: 0s;
+
+}
+
+.menu-dim {
+
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    opacity: 0;
+
+    transition: opacity 0.35s ease;
+
+}
+
+.menu-overlay.active .menu-dim {
+
+    opacity: 1;
+
+}
+
+.side-menu {
+
+    position: absolute;
+
+    top: 0;
+
+    right: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    width: 66.6667%;
+
+    height: 100%;
+
+    padding: 0 16px;
+
+    overflow-y: auto;
+
+    background: var(--background);
+
+    transform: translateX(100%);
+
+    transition:
+        transform 0.35s
+        cubic-bezier(0.22, 1, 0.36, 1);
+
+}
+
+.menu-overlay.active .side-menu {
+
+    transform: translateX(0);
+
+}
+
+.side-menu-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    min-height: 70px;
+
+}
+
+.side-menu-header img {
+
+    width: 90px;
+
+    height: 45px;
+
+    object-fit: contain;
+
+}
+
+.side-menu-welcome {
+
+    margin: 12px 0 24px;
+
+    padding: 24px 16px;
+
+    border-radius: var(--radius);
+
+    background: var(--light-orange);
+
+}
+
+.side-menu-welcome span {
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    color: var(--primary);
+
+}
+
+.side-menu-welcome h2 {
+
+    margin-top: 10px;
+
+    font-size: 21px;
+
+    font-weight: 700;
+
+    line-height: 1.5;
+
+}
+
+.side-menu-nav {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+.side-menu-nav a {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-height: 60px;
+
+    padding: 14px 10px;
+
+    border-radius: 12px;
+
+    font-size: 17px;
+
+    font-weight: 500;
+
+    transition: 0.2s ease;
+
+}
+
+.side-menu-nav a span {
+
+    flex: 1;
+
+}
+
+.side-menu-nav a svg {
+
+    width: 21px;
+
+    height: 21px;
+
+    flex-shrink: 0;
+
+}
+
+.side-menu-nav a svg:last-child {
+
+    width: 16px;
+
+    color: var(--gray);
+
+}
+
+.side-menu-nav a:active {
+
+    transform: scale(0.97);
+
+    background: var(--light-orange);
+
+    color: var(--primary);
+
+}
+
+.side-menu-footer {
+
+    margin-top: auto;
+
+    padding: 50px 0 25px;
+
+    text-align: center;
+
+}
+
+.side-menu-footer p {
+
+    font-size: 11px;
+
+    color: var(--gray);
+
+}
+
+.side-menu-footer strong {
+
+    display: block;
+
+    margin-top: 6px;
+
+    color: var(--primary);
+
+}
+
+
+/* ========================================
+   04. ORDER PROGRESS
+======================================== */
+
+.order-progress {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: center;
+
+    gap: 3px;
+
+    padding: 16px 12px;
+
+    background: var(--white);
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+.step {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    flex: 1;
+
+    min-width: 0;
+
+    max-width: 64px;
+
+    gap: 7px;
+
+}
+
+.step-number {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 32px;
+
+    height: 32px;
+
+    border-radius: 50%;
+
+    background: var(--light-orange);
+
+    color: var(--primary);
+
+}
+
+.step-number svg {
+
+    width: 17px;
+
+    height: 17px;
+
+    stroke-width: 2.5;
+
+}
+
+.step span {
+
+    font-size: 10px;
+
+    color: var(--primary);
+
+    white-space: nowrap;
+
+}
+
+.step-arrow {
+
+    width: 15px;
+
+    height: 15px;
+
+    margin-top: 8px;
+
+    flex-shrink: 0;
+
+    color: #d6d0ca;
+
+}
+
+.step.active .step-number {
+
+    background: var(--primary);
+
+    color: var(--white);
+
+    box-shadow:
+        0 3px 10px rgba(230, 51, 35, 0.22);
+
+    animation: popIn 0.6s ease-out;
+
+}
+
+.step.active span {
+
+    font-weight: 700;
+
+}
+
+
+/* ========================================
+   05. SUCCESS HERO
+======================================== */
+
+.success-section {
+
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    padding: 36px var(--side-padding) 32px;
+
+    overflow: hidden;
+
+    text-align: center;
+
+    isolation: isolate;
+
+}
+
+
+/* 성공 체크 아이콘 */
+
+.success-badge {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 82px;
+
+    height: 82px;
+
+    border-radius: 50%;
+
+    background: var(--light-orange);
+
+    animation: ringAppear 0.7s ease-out both;
+
+}
+
+.success-circle {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 62px;
+
+    height: 62px;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    color: var(--white);
+
+    box-shadow:
+        0 6px 20px rgba(230, 51, 35, 0.25);
+
+    animation:
+        successPop 0.65s
+        cubic-bezier(0.34, 1.56, 0.64, 1)
+        both;
+
+}
+
+.success-circle svg {
+
+    width: 40px;
+
+    height: 40px;
+
+}
+
+.success-check {
+
+    stroke-dasharray: 60;
+
+    stroke-dashoffset: 60;
+
+    animation:
+        drawCheck 0.5s 0.35s ease-out forwards;
+
+}
+
+
+/* 결제 완료 이미지 */
+
+.success-image {
+
+    position: relative;
+
+    z-index: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+    max-width: 300px;
+
+    height: 230px;
+
+    margin: 14px auto 8px;
+
+    animation: fadeUp 0.7s 0.15s both;
+
+}
+
+.success-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    animation:
+        floating 3s 0.8s ease-in-out 3;
+
+}
+
+
+/* 완료 문구 */
+
+.success-message {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 12px;
+
+    animation: fadeUp 0.7s 0.35s both;
+
+}
+
+.eyebrow {
+
+    display: block;
+
+    margin-bottom: 12px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    color: var(--primary);
+
+}
+
+.success-message h1 {
+
+    font-size: clamp(23px, 6vw, 30px);
+
+    font-weight: 800;
+
+    letter-spacing: -1.3px;
+
+    line-height: 1.5;
+
+    word-break: keep-all;
+
+}
+
+.success-message p {
+
+    margin-top: 14px;
+
+    font-size: 14px;
+
+    font-weight: 400;
+
+    line-height: 1.9;
+
+    color: var(--gray);
+
+}
+
+
+/* ========================================
+   06. CONFETTI
+======================================== */
+
+.confetti {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 3;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+}
+
+.confetti-piece {
+
+    position: absolute;
+
+    top: 76px;
+
+    left: 50%;
+
+    border-radius: 2px;
+
+    opacity: 0;
+
+    animation-name: confettiBurst;
+
+    animation-timing-function: ease-out;
+
+    animation-fill-mode: both;
+
+}
+
+@keyframes confettiBurst {
+
+    0% {
+
+        transform:
+            translate(0, 0)
+            rotate(0);
+
+        opacity: 0;
+
+    }
+
+    12% {
+
+        opacity: 1;
+
+    }
+
+    70% {
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        transform:
+            translate(var(--x), var(--y))
+            rotate(var(--rotation));
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* ========================================
+   07. CONTENT WRAPPER
+======================================== */
+
+.content-wrapper {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 16px;
+
+    padding: 0 var(--side-padding) 30px;
+
+}
+
+
+/* ========================================
+   08. DELIVERY CARD
+======================================== */
+
+.delivery-card {
+
+    padding: 22px;
+
+    border: 1px solid #f1d5b9;
+
+    border-radius: var(--radius);
+
+    background: linear-gradient(
+
+        135deg,
+
+        #fff0de,
+
+        #ffe4c9
+
+    );
+
+}
+
+.delivery-top {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+}
+
+.delivery-icon {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 60px;
+
+    height: 60px;
+
+    border-radius: 50%;
+
+    background: var(--white);
+
+    color: var(--primary);
+
+    box-shadow:
+        0 4px 12px rgba(120, 65, 25, 0.07);
+
+}
+
+.delivery-icon svg {
+
+    width: 30px;
+
+    height: 30px;
+
+    stroke-width: 1.8;
+
+}
+
+.delivery-time {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+}
+
+.delivery-time span {
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+    color: var(--gray);
+
+}
+
+.delivery-time strong {
+
+    font-size: 30px;
+
+    font-weight: 800;
+
+    letter-spacing: -1.2px;
+
+    line-height: 1.4;
+
+    color: var(--primary);
+
+}
+
+.delivery-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 20px;
+
+    padding-top: 17px;
+
+    border-top: 1px solid #edcdb0;
+
+}
+
+.status-dot {
+
+    position: relative;
+
+    flex-shrink: 0;
+
+    width: 9px;
+
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+}
+
+.status-dot::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    animation: pulse 1.8s ease-out 3;
+
+}
+
+.delivery-status p {
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+.delivery-notice {
+
+    margin-top: 10px;
+
+    padding-left: 19px;
+
+    font-size: 11px;
+
+    color: var(--gray);
+
+}
+
+
+/* ========================================
+   09. INFORMATION CARD
+======================================== */
+
+.info-card {
+
+    min-width: 0;
+
+    padding: 22px 20px;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    background: var(--white);
+
+    box-shadow: var(--shadow);
+
+}
+
+.card-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    min-height: 32px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+.card-heading > svg {
+
+    width: 23px;
+
+    height: 23px;
+
+    flex-shrink: 0;
+
+    color: var(--primary);
+
+}
+
+.card-heading h2 {
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.6px;
+
+}
+
+.info-body {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+    padding: 22px 0;
+
+}
+
+.info-row {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    min-width: 0;
+
+}
+
+.info-row > span {
+
+    flex-shrink: 0;
+
+    font-size: 13px;
+
+    font-weight: 400;
+
+    color: var(--gray);
+
+}
+
+.info-row strong {
+
+    min-width: 0;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    text-align: right;
+
+    overflow-wrap: anywhere;
+
+    font-variant-numeric: tabular-nums;
+
+}
+
+
+/* ========================================
+   10. ORDER NUMBER COPY
+======================================== */
+
+.copy-group {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 7px;
+
+    min-width: 0;
+
+}
+
+.copy-group strong {
+
+    user-select: all;
+
+}
+
+.copy-button {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 30px;
+
+    height: 30px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 7px;
+
+    background: var(--background);
+
+    color: var(--gray);
+
+    transition: 0.2s ease;
+
+}
+
+.copy-button svg {
+
+    width: 14px;
+
+    height: 14px;
+
+}
+
+.copy-button:active {
+
+    transform: scale(0.9);
+
+}
+
+.copy-button.copied {
+
+    background: var(--light-red);
+
+    border-color: var(--primary);
+
+    color: var(--primary);
+
+}
+
+
+/* ========================================
+   11. PRODUCT ACCORDION
+======================================== */
+
+.product-details {
+
+    padding: 18px 0;
+
+    border-top: 1px solid var(--border);
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+.product-details summary {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    list-style: none;
+
+    cursor: pointer;
+
+}
+
+.product-details summary::-webkit-details-marker {
+
+    display: none;
+
+}
+
+.product-details summary span {
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+}
+
+.accordion-arrow {
+
+    width: 19px;
+
+    height: 19px;
+
+    color: var(--gray);
+
+    transition: transform 0.25s ease;
+
+}
+
+.product-details:not([open]) .accordion-arrow {
+
+    transform: rotate(180deg);
+
+}
+
+.product-details[open] .product-item {
+
+    animation: accordionOpen 0.3s ease-out;
+
+}
+
+.product-item {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 14px;
+
+    margin-top: 20px;
+
+}
+
+.product-image {
+
+    flex-shrink: 0;
+
+    width: 105px;
+
+    aspect-ratio: 1 / 1;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    background: var(--light-orange);
+
+}
+
+.product-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+}
+
+.product-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    flex: 1;
+
+    min-width: 0;
+
+    min-height: 105px;
+
+}
+
+.product-info h3 {
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.4px;
+
+    word-break: keep-all;
+
+}
+
+.product-info p {
+
+    margin-top: 5px;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+
+    color: var(--gray);
+
+    overflow-wrap: anywhere;
+
+}
+
+.product-info strong {
+
+    display: block;
+
+    margin-top: auto;
+
+    padding-top: 12px;
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+    text-align: right;
+
+    white-space: nowrap;
+
+}
+
+
+/* ========================================
+   12. DELIVERY ADDRESS
+======================================== */
+
+.address-section {
+
+    padding-top: 20px;
+
+}
+
+.address-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 12px;
+
+}
+
+.address-heading svg {
+
+    width: 17px;
+
+    height: 17px;
+
+    color: var(--primary);
+
+}
+
+.address-heading h3 {
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+}
+
+.address-section > p {
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    color: var(--gray);
+
+    overflow-wrap: anywhere;
+
+}
+
+.request-box {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-top: 16px;
+
+    padding: 14px;
+
+    border-radius: 10px;
+
+    background: var(--background);
+
+}
+
+.request-box > svg {
+
+    width: 17px;
+
+    height: 17px;
+
+    margin-top: 2px;
+
+    flex-shrink: 0;
+
+    color: var(--gray);
+
+}
+
+.request-box > div {
+
+    min-width: 0;
+
+}
+
+.request-box span {
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    color: var(--gray);
+
+}
+
+.request-box p {
+
+    margin-top: 5px;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+
+    overflow-wrap: anywhere;
+
+}
+
+
+/* ========================================
+   13. PAYMENT INFORMATION
+======================================== */
+
+.discount-row strong {
+
+    color: var(--primary);
+
+}
+
+.total-price {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid var(--border);
+
+}
+
+.total-price > span {
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+}
+
+.total-price strong {
+
+    font-size: 27px;
+
+    font-weight: 800;
+
+    letter-spacing: -1px;
+
+    color: var(--primary);
+
+    font-variant-numeric: tabular-nums;
+
+    white-space: nowrap;
+
+}
+
+.discount-message {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 18px;
+
+    padding: 13px;
+
+    border-radius: 10px;
+
+    background: var(--light-red);
+
+    color: var(--primary);
+
+}
+
+.discount-message svg {
+
+    width: 18px;
+
+    height: 18px;
+
+    flex-shrink: 0;
+
+}
+
+.discount-message span {
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+
+/* ========================================
+   14. ACTION BUTTONS
+======================================== */
+
+.action-section {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-top: 10px;
+
+}
+
+.primary-button,
+.secondary-button {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    width: 100%;
+
+    min-height: 58px;
+
+    padding: 15px 20px;
+
+    border-radius: 14px;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+.primary-button {
+
+    background: var(--primary);
+
+    color: var(--white);
+
+    box-shadow:
+        0 5px 15px rgba(230, 51, 35, 0.2);
+
+}
+
+.secondary-button {
+
+    border: 1px solid var(--primary);
+
+    background: transparent;
+
+    color: var(--primary);
+
+}
+
+.primary-button svg,
+.secondary-button svg {
+
+    width: 21px;
+
+    height: 21px;
+
+    flex-shrink: 0;
+
+}
+
+.primary-button:active {
+
+    transform: scale(0.97);
+
+    background: var(--primary-dark);
+
+}
+
+.secondary-button:active {
+
+    transform: scale(0.97);
+
+    background: var(--light-orange);
+
+}
+
+.demo-notice {
+
+    margin-top: 12px;
+
+    padding: 0 5px;
+
+    font-size: 11px;
+
+    line-height: 1.9;
+
+    text-align: center;
+
+    color: var(--gray);
+
+    word-break: keep-all;
+
+}
+
+
+/* ========================================
+   15. EMPTY STATE
+======================================== */
+
+.empty-state {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 16px;
+
+    min-height: 65vh;
+
+    padding: 70px var(--side-padding);
+
+    text-align: center;
+
+}
+
+.empty-icon {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100px;
+
+    height: 100px;
+
+    border-radius: 50%;
+
+    background: var(--light-orange);
+
+    color: var(--primary);
+
+}
+
+.empty-icon svg {
+
+    width: 45px;
+
+    height: 45px;
+
+    stroke-width: 1.5;
+
+}
+
+.empty-state h1 {
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.7px;
+
+}
+
+.empty-state p {
+
+    font-size: 13px;
+
+    color: var(--gray);
+
+}
+
+.empty-state .primary-button {
+
+    margin-top: 20px;
+
+}
+
+
+/* ========================================
+   16. FOOTER
+======================================== */
+
+.footer {
+
+    margin-top: 10px;
+
+    padding: 36px var(--side-padding)
+        calc(36px + env(safe-area-inset-bottom));
+
+    border-top: 1px solid var(--border);
+
+    background: #f5e9dc;
+
+    text-align: center;
+
+}
+
+.footer img {
+
+    width: 100px;
+
+    margin: 0 auto 15px;
+
+}
+
+.footer p {
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    color: var(--gray);
+
+}
+
+.footer span {
+
+    display: block;
+
+    margin-top: 12px;
+
+    font-size: 11px;
+
+    color: var(--gray);
+
+}
+
+
+/* ========================================
+   17. TOAST MESSAGE
+======================================== */
+
+.toast {
+
+    position: fixed;
+
+    bottom: calc(30px + env(safe-area-inset-bottom));
+
+    left: 50%;
+
+    z-index: 500;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    width: max-content;
+
+    max-width: min(90%, 440px);
+
+    padding: 14px 20px;
+
+    border-radius: 50px;
+
+    background: rgba(48, 32, 25, 0.94);
+
+    color: var(--white);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transform: translate(-50%, 15px);
+
+    transition: 0.25s ease;
+
+}
+
+.toast.visible {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translate(-50%, 0);
+
+}
+
+.toast svg {
+
+    width: 18px;
+
+    height: 18px;
+
+    flex-shrink: 0;
+
+    color: var(--secondary);
+
+}
+
+
+/* ========================================
+   18. SCROLL REVEAL
+======================================== */
+
+.reveal-ready {
+
+    opacity: 0;
+
+    transform: translateY(22px);
+
+    transition:
+
+        opacity 0.6s ease,
+
+        transform 0.6s
+        cubic-bezier(0.22, 1, 0.36, 1);
+
+}
+
+.reveal-ready.visible {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+}
+
+
+/* ========================================
+   19. ANIMATIONS
+======================================== */
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+
+    }
+
+    to {
+
+        opacity: 1;
+
+    }
+
+}
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(18px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+@keyframes popIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: scale(0.7);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+    }
+
+}
+
+@keyframes ringAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform: scale(0.4);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+    }
+
+}
+
+@keyframes successPop {
+
+    from {
+
+        opacity: 0;
+
+        transform: scale(0);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+    }
+
+}
+
+@keyframes drawCheck {
+
+    to {
+
+        stroke-dashoffset: 0;
+
+    }
+
+}
+
+@keyframes floating {
+
+    0%, 100% {
+
+        transform: translateY(0);
+
+    }
+
+    50% {
+
+        transform: translateY(-7px);
+
+    }
+
+}
+
+@keyframes pulse {
+
+    0% {
+
+        opacity: 0.6;
+
+        transform: scale(1);
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform: scale(2.8);
+
+    }
+
+}
+
+@keyframes accordionOpen {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(-7px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* ========================================
+   20. PC HOVER
+======================================== */
+
+@media (hover: hover) {
+
+    .icon-button:hover {
+
+        background: var(--light-orange);
+
+    }
+
+    .side-menu-nav a:hover {
+
+        background: var(--light-orange);
+
+        color: var(--primary);
+
+    }
+
+    .copy-button:hover {
+
+        border-color: var(--primary);
+
+        color: var(--primary);
+
+    }
+
+    .primary-button:hover {
+
+        background: var(--primary-dark);
+
+        box-shadow:
+            0 7px 20px rgba(230, 51, 35, 0.25);
+
+    }
+
+    .secondary-button:hover {
+
+        background: var(--light-orange);
+
+    }
+
+}
+
+
+/* ========================================
+   21. SMALL MOBILE
+======================================== */
+
+@media (max-width: 380px) {
+
+    .success-section {
+
+        padding-top: 28px;
+
+    }
+
+    .success-image {
+
+        height: 190px;
+
+        max-width: 260px;
+
+    }
+
+    .success-message h1 {
+
+        font-size: 23px;
+
+    }
+
+    .success-message p {
+
+        font-size: 13px;
+
+    }
+
+    .step span {
+
+        font-size: 9px;
+
+    }
+
+    .step-arrow {
+
+        width: 12px;
+
+    }
+
+    .info-card {
+
+        padding: 18px 16px;
+
+    }
+
+    .delivery-card {
+
+        padding: 18px;
+
+    }
+
+    .delivery-time strong {
+
+        font-size: 27px;
+
+    }
+
+    .card-heading h2 {
+
+        font-size: 17px;
+
+    }
+
+    .info-row {
+
+        gap: 8px;
+
+    }
+
+    .info-row strong {
+
+        font-size: 12px;
+
+    }
+
+    .product-image {
+
+        width: 82px;
+
+    }
+
+    .product-item {
+
+        gap: 12px;
+
+    }
+
+    .product-info h3 {
+
+        font-size: 14px;
+
+    }
+
+    .total-price strong {
+
+        font-size: 23px;
+
+    }
+
+    .total-price > span {
+
+        font-size: 14px;
+
+    }
+
+}
+
+
+/* ========================================
+   22. REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+
+        scroll-behavior: auto;
+
+    }
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: 0.01ms !important;
+
+        animation-delay: 0s !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+
+    }
+
+    .reveal-ready {
+
+        opacity: 1;
+
+        transform: none;
+
+    }
+
+    .success-check {
+
+        stroke-dashoffset: 0;
+
+    }
+
+    .confetti {
+
+        display: none;
+
+    }
+
+}
+
+/* ========================================
+   ORDER PROGRESS - 4 STEP UPDATE
+======================================== */
+
+.order-progress {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    width: 100%;
+
+    gap: 6px;
+    padding: 16px 20px;
+
+    background: #ffffff;
+    border-bottom: 1px solid #ebddd0;
+}
+
+
+/* 단계별 영역 */
+
+.order-progress .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+
+    gap: 8px;
+}
+
+
+/* 기본 단계 원형 */
+
+.order-progress .step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #eeeeee;
+    color: #999999;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    box-shadow: none;
+
+    transition: background-color 0.25s ease,
+                color 0.25s ease;
+}
+
+
+/* 기본 단계 텍스트 */
+
+.order-progress .step > span {
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.5;
+
+    color: #999999;
+
+    text-align: center;
+    white-space: nowrap;
+}
+
+
+/* 단계 사이 화살표 */
+
+.order-progress .step-arrow {
+    flex-shrink: 0;
+
+    width: 14px;
+    height: 14px;
+
+    margin-top: 10px;
+
+    color: #d5cdc5;
+
+    stroke-width: 1.8;
+}
+
+
+/* 완료된 단계 */
+
+.order-progress .step.completed .step-number {
+    background: #ffe8d2;
+    color: #e63323;
+}
+
+.order-progress .step.completed > span {
+    color: #e63323;
+}
+
+
+/* 현재 진행 중인 단계 */
+
+.order-progress .step.active .step-number {
+    background: #e63323;
+    color: #ffffff;
+
+    box-shadow: 0 3px 10px rgba(230, 51, 35, 0.2);
+
+    animation: progressStepPop 0.4s ease-out;
+}
+
+.order-progress .step.active > span {
+    color: #e63323;
+    font-weight: 700;
+}
+
+
+/* 체크 아이콘 */
+
+.order-progress .step-number svg {
+    width: 18px;
+    height: 18px;
+
+    stroke-width: 2.2;
+}
+
+
+/* 현재 단계 등장 애니메이션 */
+
+@keyframes progressStepPop {
+    from {
+        opacity: 0;
+        transform: scale(0.75);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* 작은 모바일 화면 */
+
+@media (max-width: 380px) {
+
+    .order-progress {
+        padding: 16px 14px;
+        gap: 4px;
+    }
+
+    .order-progress .step-number {
+        width: 32px;
+        height: 32px;
+    }
+
+    .order-progress .step > span {
+        font-size: 10px;
+    }
+
+    .order-progress .step-arrow {
+        width: 12px;
+        height: 12px;
+    }
+
+}
+
+
+/* 애니메이션 최소화 설정 */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .order-progress .step.active .step-number {
+        animation: none;
+    }
+
+    .order-progress .step-number {
+        transition: none;
+    }
+
+}

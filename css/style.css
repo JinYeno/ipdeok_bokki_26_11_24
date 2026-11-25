@@ -1,28 +1,30 @@
 
 /* ========================================
-   01. GLOBAL : 공통 설정
+   01. GLOBAL
 ======================================== */
 
 :root {
+
     --max-width: 500px;
     --side-padding: 20px;
 
-    --color-black: #000000;
-    --color-white: #ffffff;
-    --color-gray: #838383;
-    --color-dark-gray: #555555;
-    --color-light-gray: #d1d1d1;
+    --primary: #e63323;
+    --primary-dark: #bd2619;
+    --secondary: #ffb347;
 
-    --border-radius: 16px;
+    --background: #fff8ef;
+    --white: #ffffff;
+    --text: #302019;
+    --gray: #81756d;
+    --border: #ebddd0;
+    --light-orange: #ffe8d2;
 
-    --font-light: 300;
-    --font-regular: 400;
-    --font-medium: 500;
-    --font-bold: 700;
+    --radius: 16px;
+
+    --shadow:
+        0 5px 20px rgba(80, 40, 20, 0.08);
+
 }
-
-
-/* 기본 스타일 초기화 */
 
 * {
     margin: 0;
@@ -30,140 +32,276 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
+
     font-family: "Noto Sans KR", sans-serif;
-    font-weight: var(--font-regular);
-    color: var(--color-black);
-    background-color: var(--color-white);
+    font-size: 16px;
+    font-weight: 400;
+
+    color: var(--text);
+    background: #f1ebe5;
+
+    -webkit-tap-highlight-color: transparent;
+
+}
+
+button,
+input {
+    font: inherit;
 }
 
 button {
-    font-family: inherit;
+
     border: none;
     background: none;
+    color: inherit;
     cursor: pointer;
+
 }
 
 a {
-    text-decoration: none;
+
     color: inherit;
+    text-decoration: none;
+
 }
 
 img {
+
     display: block;
     max-width: 100%;
+
 }
 
+button,
+a {
+    touch-action: manipulation;
+}
 
-/* 전체 페이지 */
+button:focus-visible,
+a:focus-visible {
+
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
+
+}
+
+[hidden] {
+    display: none !important;
+}
 
 .container {
+
+    position: relative;
+
     width: 100%;
     max-width: var(--max-width);
+    min-height: 100vh;
+
     margin: 0 auto;
+
+    background: var(--background);
+
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+
+}
+
+main {
     overflow: hidden;
-    background-color: var(--color-white);
 }
-
-
-/* 공통 섹션 타이틀 */
-
-.section-title {
-    font-size: 30px;
-    font-weight: var(--font-medium);
-    color: var(--color-black);
-    line-height: 1.4;
-    text-align: center;
-}
-
-
-/* 공통 탭 버튼 그룹 */
-
-.tab-list {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    gap: 20px;
-    margin-top: 30px;
-}
-
-
-/* 공통 탭 버튼 */
-
-.tab-button {
-    height: 35px;
-    padding: 0 10px;
-
-    border: 1px solid var(--color-gray);
-    border-radius: 50px;
-
-    font-size: 14px;
-    font-weight: var(--font-medium);
-    color: var(--color-gray);
-
-    white-space: nowrap;
-}
-
-
-/* 활성화된 탭 버튼 */
-
-.tab-button.active {
-    background-color: var(--color-gray);
-    color: var(--color-white);
-}
-
 
 
 /* ========================================
-   02. HEADER : 헤더
+   02. COMMON
+======================================== */
+
+.section-heading {
+
+    padding: 0 var(--side-padding);
+    text-align: center;
+
+}
+
+.section-label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+
+    color: var(--primary);
+
+}
+
+.section-title {
+
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.4;
+
+    color: #000000;
+
+}
+
+.section-description {
+
+    margin-top: 10px;
+
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.6;
+
+    color: var(--gray);
+
+}
+
+
+/* 공통 탭 */
+
+.tab-list {
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    padding: 0 20px;
+    margin-top: 26px;
+
+}
+
+.tab-button {
+
+    min-width: 72px;
+    height: 35px;
+
+    padding: 0 14px;
+
+    border: 1px solid var(--border);
+    border-radius: 50px;
+
+    background: var(--white);
+
+    font-size: 13px;
+    font-weight: 500;
+
+    color: var(--gray);
+
+    transition: 0.25s ease;
+
+}
+
+.tab-button.active {
+
+    background: var(--primary);
+    border-color: var(--primary);
+
+    color: var(--white);
+
+}
+
+.tab-button:active {
+    transform: scale(0.94);
+}
+
+
+/* ========================================
+   03. HEADER
 ======================================== */
 
 .header {
-    width: 100%;
-    height: 60px;
-    padding: 0 var(--side-padding);
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    width: 100%;
+    height: 60px;
+
+    padding: 0 var(--side-padding);
+
+    background: var(--background);
+
+    border-bottom: 1px solid var(--border);
+
 }
 
+.logo {
 
-/* 로고 */
+    display: flex;
+    align-items: center;
+
+    height: 100%;
+
+}
 
 .logo img {
-    display: block;
+
+    width: 105px;
+    height: 48px;
+
+    object-fit: contain;
+
 }
 
+.menu-open,
+.menu-close {
 
-/* 햄버거 메뉴 버튼 */
-
-.menu-button {
     display: flex;
     align-items: center;
     justify-content: center;
 
-    color: var(--color-black);
+    width: 40px;
+    height: 40px;
+
+    border-radius: 12px;
+
+    transition: 0.2s ease;
+
 }
 
+.menu-open svg,
+.menu-close svg {
+
+    width: 25px;
+    height: 25px;
+
+    stroke-width: 1.8;
+
+}
+
+.menu-open:active,
+.menu-close:active {
+
+    background: var(--light-orange);
+    transform: scale(0.9);
+
+}
 
 
 /* ========================================
-   03. SIDE MENU : 슬라이드 메뉴
+   04. SIDE MENU
 ======================================== */
 
-
-/* 메뉴가 열리면 메인 페이지 스크롤 제한 */
-
-body.menu-open {
+body.is-menu-open {
     overflow: hidden;
 }
 
-
-/* 슬라이드 메뉴 전체 영역 */
-
 .menu-overlay {
+
     position: fixed;
 
     top: 0;
@@ -177,588 +315,1298 @@ body.menu-open {
     height: 100vh;
     height: 100dvh;
 
-    z-index: 1000;
-
     overflow: hidden;
+
+    z-index: 1000;
 
     visibility: hidden;
     pointer-events: none;
 
-    transition: visibility 0s linear 0.3s;
+    transition: visibility 0s 0.35s;
+
 }
 
-
-/* 메뉴 활성화 */
-
 .menu-overlay.active {
+
     visibility: visible;
     pointer-events: auto;
 
     transition-delay: 0s;
+
 }
 
-
-/* 메뉴 외부 어두운 배경 */
-
 .menu-dim {
+
     position: absolute;
     inset: 0;
 
-    background-color: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.45);
 
     opacity: 0;
 
-    transition: opacity 0.3s ease;
+    transition: opacity 0.35s ease;
+
 }
-
-
-/* 메뉴가 열리면 배경 활성화 */
 
 .menu-overlay.active .menu-dim {
     opacity: 1;
 }
 
-
-/* 슬라이드 메뉴 */
-
 .side-menu {
-    position: absolute;
 
+    position: absolute;
     top: 0;
     right: 0;
+
+    display: flex;
+    flex-direction: column;
 
     width: 66.6667%;
     height: 100%;
 
-    background-color: var(--color-white);
+    padding: 0 16px;
 
-    padding: 0 var(--side-padding);
+    background: var(--background);
 
     overflow-y: auto;
 
     transform: translateX(100%);
 
-    transition: transform 0.3s ease;
+    transition: transform 0.35s
+        cubic-bezier(0.22, 1, 0.36, 1);
 
-    z-index: 1;
 }
-
-
-/* 메뉴가 열렸을 때 위치 */
 
 .menu-overlay.active .side-menu {
     transform: translateX(0);
 }
 
-
-/* 메뉴 상단 */
-
 .side-menu-header {
-    width: 100%;
-    height: 60px;
 
     display: flex;
-    justify-content: flex-end;
     align-items: center;
+    justify-content: space-between;
+
+    min-height: 70px;
+
 }
 
+.side-menu-header img {
 
-/* 메뉴 닫기 버튼 */
+    width: 90px;
+    height: 45px;
 
-.menu-close {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    object-fit: contain;
 
-    color: var(--color-black);
 }
 
+.side-menu-welcome {
 
-/* 메뉴 목록 영역 */
+    margin: 12px 0 24px;
+    padding: 24px 16px;
+
+    border-radius: var(--radius);
+
+    background: var(--light-orange);
+
+}
+
+.side-menu-welcome span {
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+
+    color: var(--primary);
+
+}
+
+.side-menu-welcome h2 {
+
+    margin-top: 10px;
+
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.5;
+
+}
 
 .side-menu-nav {
-    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
 }
 
+.side-menu-nav a {
 
-/* 메뉴 리스트 */
+    display: flex;
+    align-items: center;
 
-.side-menu-list {
-    list-style: none;
+    gap: 10px;
+
+    min-height: 60px;
+    padding: 14px 10px;
+
+    border-radius: 12px;
+
+    font-size: 17px;
+    font-weight: 500;
+
+    transition: 0.2s ease;
+
 }
 
-
-/* 메뉴 항목 */
-
-.side-menu-list li {
-    border-bottom: 1px solid #dddddd;
+.side-menu-nav a span {
+    flex: 1;
 }
 
+.side-menu-nav a svg {
 
-/* 메뉴 링크 */
+    width: 21px;
+    height: 21px;
 
-.side-menu-list a {
+    flex-shrink: 0;
+
+}
+
+.side-menu-nav a svg:last-child {
+
+    width: 16px;
+
+    color: var(--gray);
+
+}
+
+.side-menu-nav a:active {
+
+    background: var(--primary);
+    color: var(--white);
+
+    transform: scale(0.97);
+
+}
+
+.side-menu-footer {
+
+    margin-top: auto;
+    padding: 50px 0 25px;
+
+    text-align: center;
+
+}
+
+.side-menu-footer p {
+
+    font-size: 11px;
+    color: var(--gray);
+
+}
+
+.side-menu-footer strong {
+
     display: block;
+    margin-top: 6px;
+
+    color: var(--primary);
+
+}
+
+
+/* ========================================
+   05. HERO
+======================================== */
+
+.hero {
 
     width: 100%;
-    padding: 20px 0;
 
-    font-size: 16px;
-    font-weight: var(--font-medium);
-    color: var(--color-black);
+    background: var(--light-orange);
+
+    overflow: hidden;
+
 }
 
+.hero img {
 
-/* 메뉴 애니메이션 최소화 설정 */
+    width: 100%;
+    height: auto;
 
-@media (prefers-reduced-motion: reduce) {
+    object-fit: contain;
 
-    .menu-overlay,
-    .menu-dim,
-    .side-menu {
-        transition: none;
+    animation: heroFade 0.7s ease-out;
+
+}
+
+@keyframes heroFade {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
     }
 
 }
 
 
-
 /* ========================================
-   04. HERO : 메인 비주얼
-======================================== */
-
-.hero {
-    width: 100%;
-    height: 500px;
-
-    background-color: var(--color-gray);
-
-    /* 메인 비주얼 이미지 임시 경로 */
-
-    background-image: url("../images/hero.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-
-
-/* ========================================
-   05. SECTION 1 : 주문 영역
+   06. SECTION 1 : 주문
 ======================================== */
 
 .section_1 {
-    width: 100%;
-    padding: 40px var(--side-padding);
 
     display: flex;
     flex-direction: column;
+
     gap: 16px;
+
+    padding: 32px var(--side-padding);
+
 }
 
-
-/* 주문 버튼 공통 */
-
 .order-button {
-    width: 100%;
-    height: 80px;
 
-    background-color: var(--color-gray);
-    color: var(--color-white);
-
-    border-radius: var(--border-radius);
-
-    font-size: 20px;
-    font-weight: var(--font-medium);
+    position: relative;
 
     display: flex;
     align-items: center;
     justify-content: center;
-}
 
+    gap: 10px;
 
-/* 배달 주문하기 */
-
-.delivery-button {
     width: 100%;
+    height: 80px;
+
+    border-radius: var(--radius);
+
+    font-size: 20px;
+    font-weight: 500;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+
 }
 
+.order-button svg {
 
-/* 전화 주문하기 / 쿠폰 사용 */
-
-.order-row {
-    display: flex;
-    gap: 16px;
-}
-
-.order-row .order-button {
-    flex: 1;
-    min-width: 0;
-}
-
-
-
-/* ========================================
-   06. SECTION 2 : 추천 메뉴
-======================================== */
-
-.section_2 {
-    width: 100%;
-    padding: 90px 0;
-
-    background-color: var(--color-light-gray);
-    overflow: hidden;
-}
-
-
-/* 추천 메뉴 콘텐츠 영역 */
-
-.recommend-wrap {
-    width: 100%;
-    height: 400px;
-
-    margin-top: 14px;
-    overflow: hidden;
-
-    position: relative;
-}
-
-
-/* 추천 메뉴 카드 그룹 */
-
-.recommend-list {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-
-    width: max-content;
-
-    position: absolute;
-    top: 0;
-    left: 50%;
-
-    transform: translateX(-50%);
-}
-
-
-/* 추천 메뉴 카드 */
-
-.recommend-card {
-    position: relative;
+    width: 23px;
+    height: 23px;
 
     flex-shrink: 0;
 
-    width: 260px;
-    height: 300px;
-
-    padding: 30px 15px;
-
-    background-color: var(--color-gray);
-    border-radius: var(--border-radius);
-
-    text-align: center;
-    color: var(--color-white);
 }
 
+.delivery-button {
 
-/* 중앙 추천 카드 */
+    background: var(--primary);
+    color: var(--white);
 
-.recommend-card.active {
-    margin-top: 32px;
+    box-shadow:
+        0 6px 16px rgba(230, 51, 35, 0.22);
+
 }
 
-
-/* BEST 순위 */
-
-.recommend-rank {
-    display: block;
-
-    font-size: 16px;
-    font-weight: var(--font-medium);
-}
-
-
-/* 추천 메뉴 타이틀 */
-
-.recommend-title {
-    margin-top: 4px;
-
-    font-size: 20px;
-    font-weight: var(--font-medium);
-}
-
-
-/* 추천 메뉴 주문하기 버튼 */
-
-.recommend-button {
-    width: 120px;
-    height: 35px;
-
-    margin-top: 25px;
-
-    border: 1px solid var(--color-white);
-    border-radius: 50px;
-
-    font-size: 18px;
-    font-weight: var(--font-medium);
-    color: var(--color-white);
-}
-
-
-/* 추천 메뉴 상품 이미지 */
-
-.recommend-image {
-    width: 170px;
-    height: 170px;
+.order-arrow {
 
     position: absolute;
-    left: 50%;
-    bottom: -40px;
+    right: 18px;
 
-    transform: translateX(-50%);
-
-    background-color: #303030;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
+.order-row {
 
-/* 추천 메뉴 이미지 임시 경로 */
+    display: flex;
 
-.recommend-image-01 {
-    background-image: url("../images/recommend-01.png");
+    gap: 16px;
+
 }
 
-.recommend-image-02 {
-    background-image: url("../images/recommend-02.png");
+.order-row .order-button {
+
+    flex: 1;
+    min-width: 0;
+
 }
 
-.recommend-image-03 {
-    background-image: url("../images/recommend-03.png");
+.secondary-button {
+
+    background: var(--secondary);
+
+    font-size: 18px;
+
+    color: var(--text);
+
 }
 
+.order-button:active {
+
+    transform: scale(0.96);
+
+    box-shadow: none;
+
+}
 
 
 /* ========================================
-   07. SECTION 3 : 메뉴
+   07. SECTION 2 : 추천 메뉴
+======================================== */
+
+.section_2 {
+
+    padding: 64px 0 50px;
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--background),
+            var(--light-orange),
+            var(--background)
+        );
+
+}
+
+.recommend-slider {
+
+    position: relative;
+
+    width: 100%;
+
+    margin-top: 30px;
+
+}
+
+.slider-viewport {
+
+    width: 100%;
+
+    overflow: hidden;
+
+    padding: 12px 0 40px;
+
+    touch-action: pan-y;
+
+}
+
+.slider-track {
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 16px;
+
+    width: 100%;
+
+    will-change: transform;
+
+}
+
+.recommend-card {
+
+    position: relative;
+
+    flex: 0 0 72%;
+
+    min-width: 0;
+
+    padding: 26px 16px 20px;
+
+    border-radius: 24px;
+
+    background: var(--secondary);
+
+    text-align: center;
+
+    opacity: 0.7;
+
+    transform: scale(0.9);
+
+    transition:
+        transform 0.4s ease,
+        opacity 0.4s ease,
+        background-color 0.4s ease;
+
+}
+
+.recommend-card.active {
+
+    background: var(--primary);
+
+    color: var(--white);
+
+    opacity: 1;
+
+    transform: translateY(14px) scale(1);
+
+    box-shadow:
+        0 12px 25px rgba(230, 51, 35, 0.18);
+
+}
+
+.best-label {
+
+    display: inline-block;
+
+    padding: 5px 12px;
+
+    border-radius: 50px;
+
+    background: rgba(255, 255, 255, 0.2);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+}
+
+.recommend-card h3 {
+
+    margin-top: 12px;
+
+    font-size: 21px;
+    font-weight: 700;
+
+}
+
+.recommend-card p {
+
+    margin-top: 6px;
+
+    font-size: 13px;
+    font-weight: 400;
+
+}
+
+.recommend-order {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    height: 38px;
+
+    margin-top: 18px;
+    padding: 0 18px;
+
+    border-radius: 50px;
+
+    background: var(--white);
+
+    color: var(--primary);
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition: transform 0.2s ease;
+
+}
+
+.recommend-order svg {
+
+    width: 16px;
+    height: 16px;
+
+}
+
+.recommend-order:active {
+    transform: scale(0.94);
+}
+
+.recommend-card img {
+
+    width: 100%;
+    max-width: 210px;
+
+    height: auto;
+
+    margin: 22px auto 0;
+
+    aspect-ratio: 1 / 1;
+
+    object-fit: contain;
+
+    border-radius: 14px;
+
+    background: var(--background);
+
+}
+
+
+/* 슬라이드 좌우 버튼 */
+
+.slider-button {
+
+    position: absolute;
+
+    top: 48%;
+
+    z-index: 5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid var(--border);
+    border-radius: 50%;
+
+    background: var(--white);
+
+    box-shadow: var(--shadow);
+
+    transform: translateY(-50%);
+
+    transition: 0.2s ease;
+
+}
+
+.slider-button svg {
+
+    width: 22px;
+    height: 22px;
+
+}
+
+.prev-button {
+    left: 12px;
+}
+
+.next-button {
+    right: 12px;
+}
+
+.slider-button:active {
+
+    background: var(--primary);
+    color: var(--white);
+
+    transform: translateY(-50%) scale(0.9);
+
+}
+
+
+/* 슬라이드 페이지 표시 */
+
+.slider-dots {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+
+}
+
+.dot {
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 20px;
+
+    background: #ddc9b9;
+
+    transition: 0.3s ease;
+
+}
+
+.dot.active {
+
+    width: 26px;
+
+    background: var(--primary);
+
+}
+
+
+/* ========================================
+   08. SECTION 3 : 메뉴
 ======================================== */
 
 .section_3 {
-    width: 100%;
-    padding: 50px var(--side-padding);
+
+    padding: 50px var(--side-padding) 60px;
+
 }
 
-
-/* 메뉴 콘텐츠 그룹 */
+.section_3 .section-heading {
+    padding: 0;
+}
 
 .menu-list {
+
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
 
-    column-gap: 16px;
-    row-gap: 24px;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
-    margin-top: 44px;
+    gap: 16px;
+
+    margin-top: 30px;
+
 }
-
-
-/* 메뉴 콘텐츠 */
 
 .menu-item {
-    width: 100%;
+
+    display: block;
+
     min-width: 0;
-}
 
+    background: var(--white);
 
-/* 메뉴 이미지 */
-
-.menu-image {
-    width: 100%;
-    height: 200px;
-
-    background-color: var(--color-gray);
-    border-radius: var(--border-radius);
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-
-/* 메뉴 콘텐츠 타이틀 */
-
-.menu-title {
-    margin-top: 4px;
-
-    font-size: 14px;
-    font-weight: var(--font-medium);
-    color: var(--color-black);
-}
-
-
-/* 메뉴 이미지 임시 경로 */
-
-.menu-image-01 {
-    background-image: url("../images/menu-01.png");
-}
-
-.menu-image-02 {
-    background-image: url("../images/menu-02.png");
-}
-
-.menu-image-03 {
-    background-image: url("../images/menu-03.png");
-}
-
-.menu-image-04 {
-    background-image: url("../images/menu-04.png");
-}
-
-
-
-/* ========================================
-   08. SECTION 4 : 이벤트
-======================================== */
-
-.section_4 {
-    width: 100%;
-    padding: 60px 0;
-}
-
-
-/* 이벤트 설명 문단 */
-
-.section-description {
-    margin-top: 12px;
-    padding: 0 var(--side-padding);
-
-    font-size: 14px;
-    font-weight: var(--font-medium);
-    color: var(--color-gray);
-
-    text-align: center;
-}
-
-
-/* 이벤트 탭 메뉴 그룹 */
-
-.event-tabs {
-    display: flex;
-    align-items: center;
-
-    width: 100%;
-    height: 46px;
-
-    margin-top: 16px;
-
-    border-top: 1px solid #d9d9d9;
-    border-bottom: 1px solid #d9d9d9;
-}
-
-
-/* 이벤트 탭 메뉴 */
-
-.event-tab {
-    flex: 1;
-    height: 100%;
-
-    font-size: 14px;
-    font-weight: var(--font-medium);
-    color: var(--color-dark-gray);
-}
-
-
-/* 활성화된 이벤트 탭 */
-
-.event-tab.active {
-    font-weight: var(--font-bold);
-    color: var(--color-black);
-}
-
-
-/* 이벤트 콘텐츠 그룹 */
-
-.event-list {
-    padding: 0 var(--side-padding);
-    margin-top: 28px;
-}
-
-
-/* 이벤트 카드 */
-
-.event-card {
-    width: 100%;
-
-    border: 1px solid #dddddd;
-    border-radius: var(--border-radius);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
 
     overflow: hidden;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
 }
 
+.menu-image {
 
-/* 이벤트 이미지 */
+    position: relative;
 
-.event-image {
     width: 100%;
-    height: 240px;
 
-    background-color: var(--color-gray);
+    aspect-ratio: 1 / 1;
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    overflow: hidden;
+
+    background: var(--light-orange);
+
 }
 
+.menu-image img {
 
-/* 이벤트 이미지 임시 경로 */
+    width: 100%;
+    height: 100%;
 
-.event-image-01 {
-    background-image: url("../images/event-01.png");
+    object-fit: contain;
+
+    transition: transform 0.4s ease;
+
 }
 
+.menu-badge {
 
-/* 이벤트 텍스트 영역 */
+    position: absolute;
 
-.event-content {
-    padding: 16px;
+    top: 8px;
+    left: 8px;
+
+    padding: 5px 9px;
+
+    border-radius: 6px;
+
+    background: var(--primary);
+
+    color: var(--white);
+
+    font-size: 10px;
+    font-weight: 800;
+
 }
 
+.menu-info {
+    padding: 14px 12px;
+}
 
-/* 이벤트 서브 타이틀 */
+.menu-info h3 {
 
-.event-subtitle {
     font-size: 14px;
-    font-weight: var(--font-medium);
-    color: var(--color-dark-gray);
-}
-
-
-/* 이벤트 타이틀 */
-
-.event-title {
-    margin-top: 8px;
-
-    font-size: 16px;
-    font-weight: var(--font-medium);
-    color: var(--color-black);
+    font-weight: 500;
 
     line-height: 1.5;
 
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+}
 
-    overflow: hidden;
+.menu-info p {
+
+    margin-top: 10px;
+
+    font-size: 18px;
+    font-weight: 800;
+
+    color: var(--text);
+
+}
+
+.menu-info p span {
+
+    font-size: 13px;
+    font-weight: 500;
+
+}
+
+.menu-item:active {
+    transform: scale(0.96);
 }
 
 
-/* 이벤트 날짜 */
+/* 전체 메뉴 보기 */
 
-.event-date {
+.more-button {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    width: 100%;
+    height: 54px;
+
     margin-top: 24px;
 
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    background: var(--white);
+
+    font-size: 15px;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+
+}
+
+.more-button svg {
+
+    width: 18px;
+    height: 18px;
+
+}
+
+.more-button:active {
+
+    background: var(--light-orange);
+
+    transform: scale(0.97);
+
+}
+
+
+/* ========================================
+   09. SECTION 4 : 이벤트
+======================================== */
+
+.section_4 {
+
+    padding: 50px 0 70px;
+
+    border-top: 1px solid var(--border);
+
+}
+
+.event-tabs {
+
+    display: flex;
+
+    height: 50px;
+
+    margin: 24px 20px 0;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+.event-tab {
+
+    position: relative;
+
+    flex: 1;
+
     font-size: 14px;
-    font-weight: var(--font-light);
-    color: var(--color-dark-gray);
+    font-weight: 500;
+
+    color: var(--gray);
+
+}
+
+.event-tab.active {
+
+    color: var(--primary);
+
+    font-weight: 700;
+
+}
+
+.event-tab::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 15%;
+    right: 15%;
+    bottom: 0;
+
+    height: 3px;
+
+    border-radius: 3px;
+
+    background: var(--primary);
+
+    transform: scaleX(0);
+
+    transition: transform 0.25s ease;
+
+}
+
+.event-tab.active::after {
+    transform: scaleX(1);
+}
+
+.event-list {
+
+    margin-top: 24px;
+
+    padding: 0 var(--side-padding);
+
+}
+
+.event-card {
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    overflow: hidden;
+
+    background: var(--white);
+
+    box-shadow: var(--shadow);
+
+}
+
+.event-image {
+
+    position: relative;
+
+    width: 100%;
+
+    background: var(--light-orange);
+
+}
+
+.event-image img {
+
+    width: 100%;
+    height: auto;
+
+    object-fit: contain;
+
+}
+
+.event-badge {
+
+    position: absolute;
+
+    top: 14px;
+    right: 14px;
+
+    padding: 7px 12px;
+
+    border-radius: 50px;
+
+    background: var(--primary);
+
+    color: var(--white);
+
+    font-size: 12px;
+    font-weight: 700;
+
+}
+
+.event-content {
+    padding: 20px;
+}
+
+.event-subtitle {
+
+    font-size: 14px;
+    font-weight: 500;
+
+    color: var(--primary);
+
+}
+
+.event-title {
+
+    margin-top: 8px;
+
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.6;
+
+    color: #000000;
+
+}
+
+.event-date {
+
+    margin-top: 18px;
+
+    font-size: 14px;
+    font-weight: 300;
+
+    color: #555555;
+
+}
+
+
+/* 이벤트 빈 화면 */
+
+.empty-event {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    min-height: 200px;
+
+    padding: 30px 20px;
+
+    color: var(--gray);
+
+    font-size: 14px;
+
+}
+
+.empty-event svg {
+
+    width: 42px;
+    height: 42px;
+
+    stroke-width: 1.3;
+
+}
+
+
+/* ========================================
+   10. FOOTER
+======================================== */
+
+.footer {
+
+    padding: 36px var(--side-padding);
+
+    border-top: 1px solid var(--border);
+
+    background: #f5e9dc;
+
+    text-align: center;
+
+}
+
+.footer img {
+
+    width: 100px;
+
+    margin: 0 auto 15px;
+
+}
+
+.footer p {
+
+    font-size: 13px;
+    font-weight: 500;
+
+    color: var(--gray);
+
+}
+
+.footer span {
+
+    display: block;
+
+    margin-top: 12px;
+
+    font-size: 11px;
+
+    color: var(--gray);
+
+}
+
+
+/* ========================================
+   11. TOP BUTTON
+======================================== */
+
+.top-button {
+
+    position: fixed;
+
+    right: max(
+        20px,
+        calc((100vw - 500px) / 2 + 20px)
+    );
+
+    bottom: 24px;
+
+    z-index: 90;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+
+    border: 1px solid var(--border);
+    border-radius: 50%;
+
+    background: var(--white);
+
+    box-shadow: var(--shadow);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(15px);
+
+    transition: 0.25s ease;
+
+}
+
+.top-button.visible {
+
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+
+}
+
+.top-button svg {
+
+    width: 22px;
+    height: 22px;
+
+}
+
+
+/* ========================================
+   12. TOAST MESSAGE
+======================================== */
+
+.toast {
+
+    position: fixed;
+
+    left: 50%;
+    bottom: 85px;
+
+    z-index: 1100;
+
+    width: max-content;
+    max-width: calc(100% - 40px);
+
+    padding: 14px 22px;
+
+    border-radius: 12px;
+
+    background: var(--text);
+
+    color: var(--white);
+
+    font-size: 14px;
+
+    text-align: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translate(-50%, 15px);
+
+    transition: 0.25s ease;
+
+}
+
+.toast.visible {
+
+    opacity: 1;
+    visibility: visible;
+
+    transform: translate(-50%, 0);
+
+}
+
+
+/* ========================================
+   13. SCROLL ANIMATION
+======================================== */
+
+.reveal-ready {
+
+    opacity: 0;
+
+    transform: translateY(24px);
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+
+}
+
+.reveal-ready.visible {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+}
+
+
+/* ========================================
+   14. PC HOVER
+======================================== */
+
+@media (hover: hover) {
+
+    .delivery-button:hover {
+
+        background: var(--primary-dark);
+
+        transform: translateY(-2px);
+
+    }
+
+    .secondary-button:hover {
+
+        background: #ffa52f;
+
+    }
+
+    .menu-item:hover {
+
+        transform: translateY(-4px);
+
+        box-shadow:
+            0 10px 25px rgba(80, 40, 20, 0.12);
+
+    }
+
+    .menu-item:hover img {
+
+        transform: scale(1.04);
+
+    }
+
+    .side-menu-nav a:hover {
+
+        background: var(--light-orange);
+
+        color: var(--primary);
+
+    }
+
+    .slider-button:hover {
+
+        background: var(--primary);
+
+        color: var(--white);
+
+    }
+
+    .more-button:hover {
+
+        border-color: var(--primary);
+
+        color: var(--primary);
+
+    }
+
+}
+
+
+/* ========================================
+   15. SMALL MOBILE
+======================================== */
+
+@media (max-width: 360px) {
+
+    .order-button {
+        font-size: 17px;
+    }
+
+    .secondary-button {
+        font-size: 15px;
+    }
+
+    .order-button svg {
+
+        width: 19px;
+        height: 19px;
+
+    }
+
+    .recommend-card h3 {
+        font-size: 18px;
+    }
+
+    .recommend-card p {
+        font-size: 12px;
+    }
+
+    .menu-info {
+        padding: 12px 10px;
+    }
+
+    .menu-info h3 {
+        font-size: 13px;
+    }
+
+    .side-menu-nav a {
+        font-size: 15px;
+    }
+
+}
+
+
+/* ========================================
+   16. REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: 0.01ms !important;
+
+        transition-duration: 0.01ms !important;
+
+    }
+
+    .reveal-ready {
+
+        opacity: 1;
+
+        transform: none;
+
+    }
+
 }

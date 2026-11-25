@@ -1,0 +1,1609 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>커뮤니티 | 입덕볶이</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/community.css">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <a href="../../index.html"
+           class="header-button"
+           aria-label="메인 페이지로 이동">
+            <i data-lucide="chevron-left"></i>
+        </a>
+
+        <a href="../../index.html" class="header-logo">
+            <img src="../../img/logo.png" alt="입덕볶이">
+        </a>
+
+        <button type="button"
+                class="header-button"
+                id="menuOpen"
+                aria-label="메뉴 열기"
+                aria-expanded="false"
+                aria-controls="sideMenu">
+            <i data-lucide="menu"></i>
+        </button>
+
+    </header>
+
+
+    <!-- SIDE MENU -->
+
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <aside class="side-menu"
+           id="sideMenu"
+           aria-label="전체 메뉴"
+           aria-hidden="true"
+           inert>
+
+        <div class="side-menu-header">
+
+            <a href="../../index.html">
+                <img src="../../img/logo.png" alt="입덕볶이">
+            </a>
+
+            <button type="button"
+                    class="header-button"
+                    id="menuClose"
+                    aria-label="메뉴 닫기">
+                <i data-lucide="x"></i>
+            </button>
+
+        </div>
+
+        <div class="side-welcome">
+            <span>WELCOME!</span>
+            <h2>오늘도 맛있게,<br>입덕볶이!</h2>
+        </div>
+
+        <nav class="side-navigation">
+
+            <a href="../lists/lists.html">
+                <i data-lucide="utensils"></i>
+                <span>메뉴</span>
+                <i data-lucide="chevron-right"></i>
+            </a>
+
+            <a href="../about/about.html">
+                <i data-lucide="store"></i>
+                <span>소개</span>
+                <i data-lucide="chevron-right"></i>
+            </a>
+
+            <a href="./community.html"
+               class="current"
+               aria-current="page">
+                <i data-lucide="messages-square"></i>
+                <span>커뮤니티</span>
+                <i data-lucide="chevron-right"></i>
+            </a>
+
+            <a href="../login/login.html">
+                <i data-lucide="user-round"></i>
+                <span>로그인</span>
+                <i data-lucide="chevron-right"></i>
+            </a>
+
+        </nav>
+
+        <div class="side-bottom">
+            <p>매콤달콤한 일상의 즐거움</p>
+            <strong>입덕볶이</strong>
+        </div>
+
+    </aside>
+
+
+    <main id="mainContent">
+
+        <!-- PAGE TITLE -->
+
+        <section class="page-intro">
+
+            <span class="eyebrow">OUR COMMUNITY</span>
+
+            <h1>맛있는 이야기,<br>함께 나눠요!</h1>
+
+            <p>
+                입덕볶이의 새로운 소식과 특별한 혜택,<br>
+                고객님들의 솔직한 이야기를 만나보세요.
+            </p>
+
+        </section>
+
+
+        <!-- TAB MENU -->
+
+        <div class="tab-menu" role="tablist"
+             aria-label="커뮤니티 메뉴">
+
+            <button type="button"
+                    class="tab-button active"
+                    id="tab-notice"
+                    data-tab="notice"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="noticePanel">
+                공지사항
+            </button>
+
+            <button type="button"
+                    class="tab-button"
+                    id="tab-event"
+                    data-tab="event"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="eventPanel"
+                    tabindex="-1">
+                이벤트
+            </button>
+
+            <button type="button"
+                    class="tab-button"
+                    id="tab-review"
+                    data-tab="review"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="reviewPanel"
+                    tabindex="-1">
+                고객 리뷰
+            </button>
+
+            <div class="tab-indicator"></div>
+
+        </div>
+
+
+        <!-- NOTICE PANEL -->
+
+        <section class="tab-panel"
+                 id="noticePanel"
+                 role="tabpanel"
+                 aria-labelledby="tab-notice">
+
+            <div class="search-box">
+
+                <i data-lucide="search"></i>
+
+                <input type="search"
+                       id="noticeSearch"
+                       aria-label="공지사항 검색"
+                       placeholder="궁금한 소식을 검색해 보세요">
+
+            </div>
+
+            <div class="list-heading">
+                <p id="noticeCount" aria-live="polite">전체 4건</p>
+                <span>최신순</span>
+            </div>
+
+            <div id="noticeList" class="notice-list"></div>
+
+
+            <!-- EVENT BANNER -->
+
+            <div class="event-banner">
+
+                <span class="banner-label">SPECIAL EVENT</span>
+
+                <h2>
+                    입덕볶이와 함께하는<br>
+                    특별한 혜택!
+                </h2>
+
+                <p>놓치기 아쉬운 이벤트를 확인해 보세요.</p>
+
+                <button type="button" id="eventShortcut">
+                    이벤트 보러가기
+                    <i data-lucide="arrow-right"></i>
+                </button>
+
+                <i data-lucide="gift" class="banner-decoration"></i>
+
+            </div>
+
+        </section>
+
+
+        <!-- EVENT PANEL -->
+
+        <section class="tab-panel"
+                 id="eventPanel"
+                 role="tabpanel"
+                 aria-labelledby="tab-event"
+                 hidden>
+
+            <div class="filter-group" id="eventFilters">
+
+                <button type="button"
+                        class="filter-button active"
+                        data-filter="ongoing"
+                        aria-pressed="true">
+                    진행중
+                </button>
+
+                <button type="button"
+                        class="filter-button"
+                        data-filter="ended"
+                        aria-pressed="false">
+                    종료
+                </button>
+
+                <button type="button"
+                        class="filter-button"
+                        data-filter="winner"
+                        aria-pressed="false">
+                    당첨자
+                </button>
+
+            </div>
+
+            <div id="eventList"></div>
+
+        </section>
+
+
+        <!-- REVIEW PANEL -->
+
+        <section class="tab-panel"
+                 id="reviewPanel"
+                 role="tabpanel"
+                 aria-labelledby="tab-review"
+                 hidden>
+
+            <div class="review-summary">
+
+                <span class="summary-label">고객 만족도</span>
+
+                <div class="average-score">
+                    <strong id="averageScore">4.7</strong>
+                    <span>/ 5</span>
+                </div>
+
+                <div class="summary-stars" id="summaryStars">
+                    ★★★★★
+                </div>
+
+                <p id="reviewCount">리뷰 3개</p>
+
+                <span class="demo-label">
+                    포트폴리오용 예시 리뷰
+                </span>
+
+            </div>
+
+            <div class="search-box review-search">
+
+                <i data-lucide="search"></i>
+
+                <input type="search"
+                       id="reviewSearch"
+                       aria-label="리뷰 검색"
+                       placeholder="궁금한 리뷰를 검색해 보세요">
+
+            </div>
+
+            <div class="filter-group" id="reviewFilters">
+
+                <button type="button"
+                        class="filter-button active"
+                        data-filter="전체"
+                        aria-pressed="true">전체</button>
+
+                <button type="button"
+                        class="filter-button"
+                        data-filter="오리지널"
+                        aria-pressed="false">오리지널</button>
+
+                <button type="button"
+                        class="filter-button"
+                        data-filter="로제"
+                        aria-pressed="false">로제</button>
+
+                <button type="button"
+                        class="filter-button"
+                        data-filter="마라"
+                        aria-pressed="false">마라</button>
+
+                <button type="button"
+                        class="filter-button"
+                        data-filter="마라로제"
+                        aria-pressed="false">마라로제</button>
+
+            </div>
+
+            <div class="list-heading">
+                <p id="filteredReviewCount" aria-live="polite"></p>
+
+                <select id="reviewSort" aria-label="리뷰 정렬">
+                    <option value="latest">최신순</option>
+                    <option value="rating">별점 높은순</option>
+                    <option value="likes">좋아요순</option>
+                </select>
+            </div>
+
+            <div id="reviewList" class="review-list"></div>
+
+            <button type="button"
+                    class="primary-button"
+                    id="writeReview">
+
+                <i data-lucide="square-pen"></i>
+                리뷰 작성하기
+
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- REVIEW MODAL -->
+
+    <dialog class="review-dialog" id="reviewDialog">
+
+        <form id="reviewForm">
+
+            <div class="modal-header">
+
+                <div>
+                    <span class="eyebrow">WRITE A REVIEW</span>
+                    <h2>리뷰 작성하기</h2>
+                </div>
+
+                <button type="button"
+                        class="header-button"
+                        id="closeReview"
+                        aria-label="리뷰 작성 닫기">
+                    <i data-lucide="x"></i>
+                </button>
+
+            </div>
+
+            <p class="modal-description">
+                어떤 맛에 입덕하셨나요?<br>
+                솔직한 후기를 남겨주세요.
+            </p>
+
+            <div class="form-group">
+
+                <label for="reviewName">닉네임</label>
+
+                <input type="text"
+                       id="reviewName"
+                       maxlength="12"
+                       placeholder="닉네임을 입력해 주세요"
+                       required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="reviewProduct">주문한 메뉴</label>
+
+                <select id="reviewProduct" required>
+                    <option value="">메뉴를 선택해 주세요</option>
+                    <option value="오리지널">오리지널 떡볶이</option>
+                    <option value="로제">로제 떡볶이</option>
+                    <option value="마라">마라 떡볶이</option>
+                    <option value="마라로제">마라로제 떡볶이</option>
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>메뉴는 만족스러우셨나요?</label>
+
+                <div class="rating-buttons"
+                     id="ratingButtons"
+                     role="group"
+                     aria-label="별점 선택">
+
+                    <button type="button" data-rating="1"
+                            aria-label="1점">★</button>
+
+                    <button type="button" data-rating="2"
+                            aria-label="2점">★</button>
+
+                    <button type="button" data-rating="3"
+                            aria-label="3점">★</button>
+
+                    <button type="button" data-rating="4"
+                            aria-label="4점">★</button>
+
+                    <button type="button" data-rating="5"
+                            aria-label="5점">★</button>
+
+                </div>
+
+                <p class="rating-message" id="ratingMessage">
+                    정말 맛있어요!
+                </p>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="reviewText">리뷰 내용</label>
+
+                <textarea id="reviewText"
+                          rows="5"
+                          maxlength="300"
+                          placeholder="메뉴에 대한 솔직한 후기를 작성해 주세요."
+                          required></textarea>
+
+                <p class="character-count">
+                    <span id="characterCount">0</span> / 300
+                </p>
+
+            </div>
+
+            <p class="form-error" id="formError" role="alert"></p>
+
+            <button type="submit" class="primary-button">
+                리뷰 등록하기
+                <i data-lucide="arrow-right"></i>
+            </button>
+
+            <p class="storage-guide">
+                작성한 리뷰는 현재 브라우저에만 저장됩니다.
+            </p>
+
+        </form>
+
+    </dialog>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer" id="footer">
+
+        <a href="../../index.html">
+            <img src="../../img/logo.png" alt="입덕볶이">
+        </a>
+
+        <p>매콤달콤한 일상의 즐거움</p>
+
+        <nav class="footer-navigation">
+            <a href="../lists/lists.html">메뉴</a>
+            <a href="../about/about.html">소개</a>
+            <a href="./community.html">커뮤니티</a>
+            <a href="../login/login.html">로그인</a>
+        </nav>
+
+        <div class="footer-divider"></div>
+
+        <small>© 2026 입덕볶이. All rights reserved.</small>
+
+    </footer>
+
+
+    <!-- TOP BUTTON -->
+
+    <button type="button"
+            class="top-button"
+            id="topButton"
+            aria-label="최상단으로 이동">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+
+    <!-- TOAST MESSAGE -->
+
+    <div class="toast" id="toast" role="status"></div>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+    /* =================================
+       01. LUCIDE ICONS
+    ================================= */
+
+    function refreshIcons() {
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+    }
+
+    refreshIcons();
+
+
+    /* =================================
+       02. SIDE MENU
+    ================================= */
+
+    const menuOpen = document.getElementById('menuOpen');
+    const menuClose = document.getElementById('menuClose');
+    const sideMenu = document.getElementById('sideMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    const backgroundElements = [
+        document.querySelector('.header'),
+        document.getElementById('mainContent'),
+        document.getElementById('footer'),
+        document.getElementById('topButton')
+    ];
+
+    function openMenu() {
+
+        sideMenu.inert = false;
+
+        sideMenu.classList.add('active');
+        menuOverlay.classList.add('active');
+
+        document.body.classList.add('is-menu-open');
+
+        menuOpen.setAttribute('aria-expanded', 'true');
+        sideMenu.setAttribute('aria-hidden', 'false');
+
+        menuClose.focus();
+
+        backgroundElements.forEach(element => {
+            element.inert = true;
+        });
+
+    }
+
+    function closeMenu() {
+
+        backgroundElements.forEach(element => {
+            element.inert = false;
+        });
+
+        menuOpen.setAttribute('aria-expanded', 'false');
+
+        menuOpen.focus();
+
+        sideMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+
+        document.body.classList.remove('is-menu-open');
+
+        sideMenu.setAttribute('aria-hidden', 'true');
+        sideMenu.inert = true;
+
+    }
+
+    menuOpen.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+
+    sideMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', event => {
+
+        if (!sideMenu.classList.contains('active')) return;
+
+        if (event.key === 'Escape') {
+            closeMenu();
+        }
+
+        if (event.key === 'Tab') {
+
+            const elements = sideMenu.querySelectorAll(
+                'a[href], button'
+            );
+
+            const first = elements[0];
+            const last = elements[elements.length - 1];
+
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            }
+
+            if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
+
+        }
+
+    });
+
+
+    /* =================================
+       03. TAB MENU
+    ================================= */
+
+    const tabs = [...document.querySelectorAll('.tab-button')];
+
+    const panels = {
+        notice: document.getElementById('noticePanel'),
+        event: document.getElementById('eventPanel'),
+        review: document.getElementById('reviewPanel')
+    };
+
+    const tabIndicator = document.querySelector('.tab-indicator');
+
+    function changeTab(tabName) {
+
+        if (!panels[tabName]) return;
+
+        tabs.forEach((tab, index) => {
+
+            const active = tab.dataset.tab === tabName;
+
+            tab.classList.toggle('active', active);
+            tab.setAttribute('aria-selected', String(active));
+            tab.tabIndex = active ? 0 : -1;
+
+            if (active) {
+                tabIndicator.style.transform =
+                    `translateX(${index * 100}%)`;
+            }
+
+        });
+
+        Object.keys(panels).forEach(key => {
+            panels[key].hidden = key !== tabName;
+        });
+
+    }
+
+    tabs.forEach((tab, index) => {
+
+        tab.addEventListener('click', () => {
+            changeTab(tab.dataset.tab);
+        });
+
+        tab.addEventListener('keydown', event => {
+
+            let nextIndex;
+
+            if (event.key === 'ArrowRight') {
+                nextIndex = (index + 1) % tabs.length;
+            } else if (event.key === 'ArrowLeft') {
+                nextIndex = (index - 1 + tabs.length) % tabs.length;
+            } else if (event.key === 'Home') {
+                nextIndex = 0;
+            } else if (event.key === 'End') {
+                nextIndex = tabs.length - 1;
+            } else {
+                return;
+            }
+
+            event.preventDefault();
+
+            changeTab(tabs[nextIndex].dataset.tab);
+            tabs[nextIndex].focus();
+
+        });
+
+    });
+
+    document.getElementById('eventShortcut')
+        .addEventListener('click', () => {
+
+            changeTab('event');
+
+            document.querySelector('.tab-menu').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+
+            document.getElementById('tab-event').focus({
+                preventScroll: true
+            });
+
+        });
+
+
+    /* =================================
+       04. NOTICE DATA
+    ================================= */
+
+    const notices = [
+
+        {
+            category: '필독',
+            title: '입덕볶이 공식 웹사이트 오픈 안내',
+            date: '2026.11.24',
+            content: '입덕볶이 공식 웹사이트에 오신 것을 환영합니다. 다양한 메뉴와 새로운 소식, 특별한 이벤트를 만나보세요.'
+        },
+
+        {
+            category: '공지',
+            title: '인기 메뉴 세트 할인 이벤트 안내',
+            date: '2026.11.23',
+            content: '입덕볶이의 인기 메뉴 이벤트를 소개합니다. 자세한 내용은 이벤트 탭에서 확인해 주세요.'
+        },
+
+        {
+            category: '공지',
+            title: '배달 주문 이용 안내',
+            date: '2026.11.22',
+            content: '원하는 메뉴를 선택하고 맵기와 토핑을 설정해 주세요. 배달 정보를 입력한 후 결제 화면에서 주문을 진행할 수 있습니다.'
+        },
+
+        {
+            category: '소식',
+            title: '입덕볶이의 네 가지 시그니처 메뉴',
+            date: '2026.11.21',
+            content: '오리지널, 로제, 마라, 마라로제까지! 오늘의 기분과 취향에 맞는 떡볶이를 만나보세요.'
+        }
+
+    ];
+
+    const noticeList = document.getElementById('noticeList');
+    const noticeSearch = document.getElementById('noticeSearch');
+
+    function emptyState(message, icon = 'inbox') {
+
+        return `
+            <div class="empty-state">
+                <i data-lucide="${icon}"></i>
+                <p>${message}</p>
+            </div>
+        `;
+
+    }
+
+    function renderNotices() {
+
+        const keyword = noticeSearch.value.trim().toLowerCase();
+
+        const filtered = notices.filter(notice => {
+
+            return (
+                notice.title + ' ' +
+                notice.content + ' ' +
+                notice.category
+            ).toLowerCase().includes(keyword);
+
+        });
+
+        document.getElementById('noticeCount').textContent =
+            `전체 ${filtered.length}건`;
+
+        if (filtered.length === 0) {
+
+            noticeList.innerHTML =
+                emptyState('검색 결과가 없습니다.', 'search-x');
+
+            refreshIcons();
+            return;
+
+        }
+
+        noticeList.innerHTML = filtered.map((notice, index) => `
+
+            <article class="notice-card"
+                     style="--item-index:${index}">
+
+                <button type="button"
+                        class="notice-button"
+                        aria-expanded="false"
+                        aria-controls="notice-content-${index}">
+
+                    <span class="notice-tag
+                        ${notice.category === '필독' ? 'important' : ''}">
+                        ${notice.category}
+                    </span>
+
+                    <div class="notice-title">
+
+                        <strong>${notice.title}</strong>
+
+                        <i data-lucide="chevron-down"></i>
+
+                    </div>
+
+                    <span class="notice-date">${notice.date}</span>
+
+                </button>
+
+                <div class="notice-answer"
+                     id="notice-content-${index}"
+                     inert>
+
+                    <div class="notice-answer-inner">
+                        <p>${notice.content}</p>
+                    </div>
+
+                </div>
+
+            </article>
+
+        `).join('');
+
+        noticeList.querySelectorAll('.notice-button')
+            .forEach(button => {
+
+                button.addEventListener('click', () => {
+
+                    const card = button.closest('.notice-card');
+                    const answer = card.querySelector('.notice-answer');
+
+                    const active = card.classList.toggle('expanded');
+
+                    button.setAttribute(
+                        'aria-expanded',
+                        String(active)
+                    );
+
+                    answer.inert = !active;
+
+                });
+
+            });
+
+        refreshIcons();
+
+    }
+
+    noticeSearch.addEventListener('input', renderNotices);
+
+
+    /* =================================
+       05. EVENT FILTER
+    ================================= */
+
+    const eventList = document.getElementById('eventList');
+
+    function setActiveFilter(group, value) {
+
+        group.querySelectorAll('.filter-button')
+            .forEach(button => {
+
+                const active = button.dataset.filter === value;
+
+                button.classList.toggle('active', active);
+
+                button.setAttribute(
+                    'aria-pressed',
+                    String(active)
+                );
+
+            });
+
+    }
+
+    function renderEvents(filter) {
+
+        const today = new Date();
+
+        const eventStart = new Date('2026-11-23T00:00:00');
+        const eventEnd = new Date('2027-01-01T00:00:00');
+
+        const isOngoing = today >= eventStart && today < eventEnd;
+        const isEnded = today >= eventEnd;
+
+        const showEvent =
+            (filter === 'ongoing' && isOngoing) ||
+            (filter === 'ended' && isEnded);
+
+        if (showEvent) {
+
+            eventList.innerHTML = `
+
+                <article class="event-card">
+
+                    <div class="event-image">
+
+                        <img src="../../img/event.png"
+                             alt="입덕볶이 이벤트 이미지">
+
+                        <span class="event-status
+                            ${isEnded ? 'ended' : ''}">
+                            ${isEnded ? '종료' : '진행중'}
+                        </span>
+
+                    </div>
+
+                    <div class="event-info">
+
+                        <span class="eyebrow">IPDEOK SPECIAL</span>
+
+                        <h2>입덕볶이 특별 이벤트</h2>
+
+                        <p>2026.11.23 ~ 2026.12.31</p>
+
+                        <details class="event-details">
+
+                            <summary>
+                                이벤트 자세히 보기
+                                <i data-lucide="chevron-down"></i>
+                            </summary>
+
+                            <p>
+                                입덕볶이의 다양한 메뉴와 특별한
+                                혜택을 만나보세요.
+                                본 이벤트는 포트폴리오용 예시이며
+                                실제 할인은 적용되지 않습니다.
+                            </p>
+
+                            <a href="../lists/lists.html"
+                               class="primary-button">
+                                메뉴 보러가기
+                                <i data-lucide="arrow-right"></i>
+                            </a>
+
+                        </details>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        } else {
+
+            const messages = {
+                ongoing: '현재 진행 중인 이벤트가 없습니다.',
+                ended: '종료된 이벤트가 없습니다.',
+                winner: '발표된 당첨자 내역이 없습니다.'
+            };
+
+            eventList.innerHTML = emptyState(
+                messages[filter],
+                'calendar-days'
+            );
+
+        }
+
+        refreshIcons();
+
+    }
+
+    const eventFilters = document.getElementById('eventFilters');
+
+    eventFilters.querySelectorAll('.filter-button')
+        .forEach(button => {
+
+            button.addEventListener('click', () => {
+
+                setActiveFilter(eventFilters, button.dataset.filter);
+                renderEvents(button.dataset.filter);
+
+            });
+
+        });
+
+
+    /* =================================
+       06. REVIEW DATA & STORAGE
+    ================================= */
+
+    const STORAGE_KEY = 'ipdeok-community-reviews-v1';
+
+    const defaultReviews = [
+
+        {
+            id: 'sample-1',
+            name: '떡볶이러버',
+            menu: '오리지널',
+            rating: 5,
+            text: '매콤달콤해서 계속 생각나는 맛이에요! 떡도 쫄깃하고 정말 맛있어요.',
+            date: '2026-11-24T10:00:00',
+            likes: 12,
+            liked: false,
+            sample: true
+        },
+
+        {
+            id: 'sample-2',
+            name: '로제좋아',
+            menu: '로제',
+            rating: 5,
+            text: '소스가 부드럽고 고소해서 정말 맛있어요. 다음에도 주문하고 싶어요!',
+            date: '2026-11-23T10:00:00',
+            likes: 8,
+            liked: false,
+            sample: true
+        },
+
+        {
+            id: 'sample-3',
+            name: '마라입덕',
+            menu: '마라',
+            rating: 4,
+            text: '얼얼한 매운맛이 매력적이에요. 마라를 좋아한다면 추천합니다!',
+            date: '2026-11-22T10:00:00',
+            likes: 5,
+            liked: false,
+            sample: true
+        }
+
+    ];
+
+    const menuNames = [
+        '오리지널',
+        '로제',
+        '마라',
+        '마라로제'
+    ];
+
+    function loadReviews() {
+
+        try {
+
+            const saved = localStorage.getItem(STORAGE_KEY);
+
+            if (saved) {
+
+                const data = JSON.parse(saved);
+
+                if (Array.isArray(data) && data.length > 0) {
+
+                    const valid = data.every(review =>
+                        typeof review.id === 'string' &&
+                        typeof review.name === 'string' &&
+                        menuNames.includes(review.menu) &&
+                        Number.isInteger(review.rating) &&
+                        review.rating >= 1 &&
+                        review.rating <= 5 &&
+                        typeof review.text === 'string' &&
+                        !Number.isNaN(Date.parse(review.date)) &&
+                        Number.isInteger(review.likes) &&
+                        review.likes >= 0
+                    );
+
+                    if (valid) return data;
+
+                }
+
+            }
+
+        } catch (error) {
+            console.warn('리뷰 데이터를 불러오지 못했습니다.');
+        }
+
+        return defaultReviews.map(review => ({ ...review }));
+
+    }
+
+    let reviews = loadReviews();
+
+    function saveReviews() {
+
+        try {
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(reviews)
+            );
+
+            return true;
+
+        } catch (error) {
+
+            console.warn('리뷰 저장에 실패했습니다.');
+            return false;
+
+        }
+
+    }
+
+
+    /* =================================
+       07. REVIEW RENDER
+    ================================= */
+
+    const reviewList = document.getElementById('reviewList');
+    const reviewSearch = document.getElementById('reviewSearch');
+    const reviewSort = document.getElementById('reviewSort');
+    const reviewFilters = document.getElementById('reviewFilters');
+
+    let currentFilter = '전체';
+
+    function formatDate(value) {
+
+        const date = new Date(value);
+
+        return [
+            date.getFullYear(),
+            String(date.getMonth() + 1).padStart(2, '0'),
+            String(date.getDate()).padStart(2, '0')
+        ].join('.');
+
+    }
+
+    function renderReviews() {
+
+        const average = reviews.length
+            ? reviews.reduce((sum, review) =>
+                sum + review.rating, 0) / reviews.length
+            : 0;
+
+        document.getElementById('averageScore').textContent =
+            average.toFixed(1);
+
+        document.getElementById('summaryStars').textContent =
+            '★'.repeat(Math.round(average)) +
+            '☆'.repeat(5 - Math.round(average));
+
+        document.getElementById('reviewCount').textContent =
+            `리뷰 ${reviews.length}개`;
+
+        const keyword = reviewSearch.value.trim().toLowerCase();
+
+        const filtered = reviews.filter(review => {
+
+            const menuMatch =
+                currentFilter === '전체' ||
+                review.menu === currentFilter;
+
+            const keywordMatch = (
+                review.name + ' ' +
+                review.menu + ' ' +
+                review.text
+            ).toLowerCase().includes(keyword);
+
+            return menuMatch && keywordMatch;
+
+        });
+
+        filtered.sort((a, b) => {
+
+            if (reviewSort.value === 'rating') {
+                return b.rating - a.rating ||
+                    new Date(b.date) - new Date(a.date);
+            }
+
+            if (reviewSort.value === 'likes') {
+                return b.likes - a.likes ||
+                    new Date(b.date) - new Date(a.date);
+            }
+
+            return new Date(b.date) - new Date(a.date);
+
+        });
+
+        document.getElementById('filteredReviewCount').textContent =
+            `전체 ${filtered.length}건`;
+
+        reviewList.replaceChildren();
+
+        if (filtered.length === 0) {
+
+            reviewList.innerHTML = emptyState(
+                '조건에 맞는 리뷰가 없습니다.',
+                'message-circle'
+            );
+
+            refreshIcons();
+            return;
+
+        }
+
+        filtered.forEach((review, index) => {
+
+            const card = document.createElement('article');
+
+            card.className = 'review-card';
+
+            card.style.setProperty('--item-index', index);
+
+            card.innerHTML = `
+
+                <div class="review-header">
+
+                    <div class="review-profile">
+
+                        <div class="profile-icon">
+                            <i data-lucide="user-round"></i>
+                        </div>
+
+                        <div>
+                            <strong class="review-name"></strong>
+                            <p class="review-date"></p>
+                        </div>
+
+                    </div>
+
+                    <div class="review-stars"></div>
+
+                </div>
+
+                <div class="review-menu"></div>
+
+                <p class="review-text"></p>
+
+                <div class="review-bottom">
+
+                    <button type="button" class="like-button">
+
+                        <i data-lucide="heart"></i>
+
+                        <span>도움이 돼요</span>
+
+                        <strong class="like-count"></strong>
+
+                    </button>
+
+                    <span class="review-type"></span>
+
+                </div>
+
+            `;
+
+            card.querySelector('.review-name').textContent =
+                review.name;
+
+            card.querySelector('.review-date').textContent =
+                formatDate(review.date);
+
+            card.querySelector('.review-stars').textContent =
+                '★'.repeat(review.rating) +
+                '☆'.repeat(5 - review.rating);
+
+            card.querySelector('.review-stars').setAttribute(
+                'aria-label',
+                `별점 ${review.rating}점`
+            );
+
+            card.querySelector('.review-menu').textContent =
+                `${review.menu} 떡볶이`;
+
+            card.querySelector('.review-text').textContent =
+                review.text;
+
+            card.querySelector('.review-type').textContent =
+                review.sample ? '예시 리뷰' : '내가 작성한 리뷰';
+
+            const likeButton = card.querySelector('.like-button');
+            const likeCount = card.querySelector('.like-count');
+
+            function updateLikeButton() {
+
+                likeButton.classList.toggle('liked', !!review.liked);
+
+                likeButton.setAttribute(
+                    'aria-pressed',
+                    String(!!review.liked)
+                );
+
+                likeCount.textContent = review.likes;
+
+            }
+
+            updateLikeButton();
+
+            likeButton.addEventListener('click', () => {
+
+                review.liked = !review.liked;
+
+                review.likes = Math.max(
+                    0,
+                    review.likes + (review.liked ? 1 : -1)
+                );
+
+                updateLikeButton();
+
+                const saved = saveReviews();
+
+                if (!saved) {
+                    showToast('저장할 수 없어 현재 화면에만 반영됩니다.');
+                }
+
+                if (reviewSort.value === 'likes') {
+                    renderReviews();
+                }
+
+            });
+
+            reviewList.appendChild(card);
+
+        });
+
+        refreshIcons();
+
+    }
+
+    reviewFilters.querySelectorAll('.filter-button')
+        .forEach(button => {
+
+            button.addEventListener('click', () => {
+
+                currentFilter = button.dataset.filter;
+
+                setActiveFilter(reviewFilters, currentFilter);
+
+                renderReviews();
+
+            });
+
+        });
+
+    reviewSearch.addEventListener('input', renderReviews);
+    reviewSort.addEventListener('change', renderReviews);
+
+
+    /* =================================
+       08. REVIEW MODAL
+    ================================= */
+
+    const reviewDialog = document.getElementById('reviewDialog');
+    const reviewForm = document.getElementById('reviewForm');
+
+    const reviewName = document.getElementById('reviewName');
+    const reviewProduct = document.getElementById('reviewProduct');
+    const reviewText = document.getElementById('reviewText');
+
+    const ratingButtons = document.querySelectorAll(
+        '#ratingButtons button'
+    );
+
+    const formError = document.getElementById('formError');
+
+    let selectedRating = 5;
+
+    const ratingMessages = {
+        1: '아쉬웠어요.',
+        2: '조금 아쉬웠어요.',
+        3: '괜찮았어요!',
+        4: '맛있어요!',
+        5: '정말 맛있어요!'
+    };
+
+    function updateRating() {
+
+        ratingButtons.forEach(button => {
+
+            const value = Number(button.dataset.rating);
+
+            button.classList.toggle(
+                'selected',
+                value <= selectedRating
+            );
+
+            button.setAttribute(
+                'aria-pressed',
+                String(value === selectedRating)
+            );
+
+        });
+
+        document.getElementById('ratingMessage').textContent =
+            ratingMessages[selectedRating];
+
+    }
+
+    ratingButtons.forEach(button => {
+
+        button.addEventListener('click', () => {
+
+            selectedRating = Number(button.dataset.rating);
+
+            updateRating();
+
+        });
+
+    });
+
+    document.getElementById('writeReview')
+        .addEventListener('click', () => {
+
+            reviewForm.reset();
+
+            selectedRating = 5;
+
+            updateRating();
+
+            formError.textContent = '';
+
+            document.getElementById('characterCount').textContent = '0';
+
+            reviewDialog.showModal();
+
+            document.body.classList.add('is-dialog-open');
+
+        });
+
+    document.getElementById('closeReview')
+        .addEventListener('click', () => {
+            reviewDialog.close();
+        });
+
+    reviewDialog.addEventListener('close', () => {
+
+        document.body.classList.remove('is-dialog-open');
+
+    });
+
+    reviewDialog.addEventListener('click', event => {
+
+        if (event.target === reviewDialog) {
+            reviewDialog.close();
+        }
+
+    });
+
+    reviewText.addEventListener('input', () => {
+
+        document.getElementById('characterCount').textContent =
+            reviewText.value.length;
+
+    });
+
+    reviewForm.addEventListener('submit', event => {
+
+        event.preventDefault();
+
+        const name = reviewName.value.trim();
+        const menu = reviewProduct.value;
+        const text = reviewText.value.trim();
+
+        if (!name) {
+
+            formError.textContent = '닉네임을 입력해 주세요.';
+            reviewName.focus();
+            return;
+
+        }
+
+        if (!menuNames.includes(menu)) {
+
+            formError.textContent = '메뉴를 선택해 주세요.';
+            reviewProduct.focus();
+            return;
+
+        }
+
+        if (text.length < 5) {
+
+            formError.textContent =
+                '리뷰를 5글자 이상 작성해 주세요.';
+
+            reviewText.focus();
+            return;
+
+        }
+
+        const newReview = {
+
+            id: window.crypto && crypto.randomUUID
+                ? crypto.randomUUID()
+                : String(Date.now()),
+
+            name: name,
+            menu: menu,
+            rating: selectedRating,
+            text: text,
+            date: new Date().toISOString(),
+            likes: 0,
+            liked: false,
+            sample: false
+
+        };
+
+        reviews.unshift(newReview);
+
+        const saved = saveReviews();
+
+        currentFilter = '전체';
+
+        reviewSearch.value = '';
+        reviewSort.value = 'latest';
+
+        setActiveFilter(reviewFilters, '전체');
+
+        renderReviews();
+
+        reviewDialog.close();
+
+        showToast(
+            saved
+                ? '리뷰가 등록되었습니다!'
+                : '리뷰가 추가되었지만 브라우저 저장에 실패했습니다.'
+        );
+
+        reviewList.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+
+    });
+
+
+    /* =================================
+       09. TOAST MESSAGE
+    ================================= */
+
+    const toast = document.getElementById('toast');
+
+    let toastTimer;
+
+    function showToast(message) {
+
+        clearTimeout(toastTimer);
+
+        toast.textContent = message;
+
+        toast.classList.add('visible');
+
+        toastTimer = setTimeout(() => {
+
+            toast.classList.remove('visible');
+
+        }, 2800);
+
+    }
+
+
+    /* =================================
+       10. SCROLL TO TOP
+    ================================= */
+
+    const topButton = document.getElementById('topButton');
+
+    function updateTopButton() {
+
+        topButton.classList.toggle(
+            'visible',
+            window.scrollY > 400
+        );
+
+    }
+
+    window.addEventListener(
+        'scroll',
+        updateTopButton,
+        { passive: true }
+    );
+
+    topButton.addEventListener('click', () => {
+
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+
+    });
+
+
+    /* =================================
+       11. INITIALIZE
+    ================================= */
+
+    renderNotices();
+    renderEvents('ongoing');
+    renderReviews();
+    updateRating();
+    updateTopButton();
+
+    const initialTab = new URLSearchParams(
+        window.location.search
+    ).get('tab');
+
+    if (initialTab && panels[initialTab]) {
+        changeTab(initialTab);
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1532 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>로그인 | 입덕볶이</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/login.css">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- =================================
+         HEADER
+    ================================== -->
+
+    <header class="header">
+
+        <a href="../../index.html"
+           class="header-button"
+           aria-label="메인 페이지로 이동">
+            <i data-lucide="chevron-left"></i>
+        </a>
+
+        <a href="../../index.html" class="header-logo">
+            <img src="../../img/logo.png" alt="입덕볶이">
+        </a>
+
+        <button type="button"
+                class="header-button"
+                id="menuOpen"
+                aria-label="메뉴 열기"
+                aria-expanded="false"
+                aria-controls="sideMenu">
+            <i data-lucide="menu"></i>
+        </button>
+
+    </header>
+
+
+    <!-- =================================
+         SIDE MENU
+    ================================== -->
+
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <aside class="side-menu"
+           id="sideMenu"
+           aria-label="전체 메뉴"
+           aria-hidden="true"
+           inert>
+
+        <div class="side-menu-header">
+
+            <a href="../../index.html">
+                <img src="../../img/logo.png" alt="입덕볶이">
+            </a>
+
+            <button type="button"
+                    class="header-button"
+                    id="menuClose"
+                    aria-label="메뉴 닫기">
+                <i data-lucide="x"></i>
+            </button>
+
+        </div>
+
+        <div class="side-welcome">
+
+            <span>WELCOME!</span>
+
+            <h2>
+                오늘도 맛있게,<br>
+                입덕볶이!
+            </h2>
+
+        </div>
+
+        <nav class="side-navigation">
+
+            <a href="../lists/lists.html">
+                <i data-lucide="utensils"></i>
+                <span>메뉴</span>
+                <i data-lucide="chevron-right"></i>
+            </a>
+
+            <a href="../about/about.html">
+                <i data-lucide="store"></i>
+                <span>소개</span>
+                <i data-lucide="chevron-right"></i>
+            </a>
+
+            <a href="../community/community.html">
+                <i data-lucide="messages-square"></i>
+                <span>커뮤니티</span>
+                <i data-lucide="chevron-right"></i>
+            </a>
+
+            <a href="./login.html"
+               class="current"
+               aria-current="page">
+                <i data-lucide="user-round"></i>
+                <span id="sideLoginText">로그인</span>
+                <i data-lucide="chevron-right"></i>
+            </a>
+
+        </nav>
+
+        <div class="side-bottom">
+            <p>매콤달콤한 일상의 즐거움</p>
+            <strong>입덕볶이</strong>
+        </div>
+
+    </aside>
+
+
+    <!-- =================================
+         MAIN
+    ================================== -->
+
+    <main id="mainContent">
+
+
+        <!-- LOGIN SCREEN -->
+
+        <div id="loginScreen">
+
+            <section class="login-intro">
+
+                <img src="../../img/logo.png"
+                     alt="입덕볶이"
+                     class="brand-logo">
+
+                <span class="eyebrow">WELCOME BACK</span>
+
+                <h1>
+                    오늘도 맛있게,<br>
+                    입덕할 준비 되셨나요?
+                </h1>
+
+                <p>
+                    로그인하고 입덕볶이의<br>
+                    특별한 혜택을 만나보세요.
+                </p>
+
+            </section>
+
+
+            <section class="login-content">
+
+                <form class="login-card"
+                      id="loginForm"
+                      novalidate>
+
+                    <!-- ID -->
+
+                    <div class="form-group">
+
+                        <label for="loginId">아이디</label>
+
+                        <div class="input-box">
+
+                            <i data-lucide="user-round"></i>
+
+                            <input type="text"
+                                   id="loginId"
+                                   placeholder="아이디를 입력해 주세요"
+                                   autocomplete="username"
+                                   maxlength="30"
+                                   required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="loginPassword">비밀번호</label>
+
+                        <div class="input-box">
+
+                            <i data-lucide="lock-keyhole"></i>
+
+                            <input type="password"
+                                   id="loginPassword"
+                                   placeholder="비밀번호를 입력해 주세요"
+                                   autocomplete="current-password"
+                                   maxlength="100"
+                                   required>
+
+                            <button type="button"
+                                    class="password-toggle"
+                                    id="passwordToggle"
+                                    aria-label="비밀번호 표시"
+                                    aria-pressed="false">
+                                <i data-lucide="eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- KEEP LOGIN -->
+
+                    <div class="login-options">
+
+                        <label class="checkbox-label">
+
+                            <input type="checkbox" id="keepLogin">
+
+                            <span>로그인 상태 유지</span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- ERROR MESSAGE -->
+
+                    <p class="form-error"
+                       id="loginError"
+                       role="alert"></p>
+
+
+                    <!-- LOGIN BUTTON -->
+
+                    <button type="submit" class="primary-button">
+
+                        로그인
+
+                        <i data-lucide="arrow-right"></i>
+
+                    </button>
+
+
+                    <!-- ACCOUNT LINKS -->
+
+                    <div class="account-links">
+
+                        <button type="button"
+                                data-dialog="find-id">
+                            아이디 찾기
+                        </button>
+
+                        <span class="link-divider"></span>
+
+                        <button type="button"
+                                data-dialog="find-password">
+                            비밀번호 찾기
+                        </button>
+
+                        <span class="link-divider"></span>
+
+                        <button type="button"
+                                class="join-link"
+                                data-dialog="join">
+                            회원가입
+                        </button>
+
+                    </div>
+
+                </form>
+
+
+                <!-- SOCIAL LOGIN -->
+
+                <div class="section-divider">
+                    <span>간편하게 로그인하기</span>
+                </div>
+
+                <div class="social-buttons">
+
+                    <button type="button"
+                            class="social-button kakao-button"
+                            data-social="카카오">
+
+                        <i data-lucide="message-circle"></i>
+
+                        카카오로 시작하기
+
+                    </button>
+
+                    <button type="button"
+                            class="social-button naver-button"
+                            data-social="네이버">
+
+                        <span class="naver-icon">N</span>
+
+                        네이버로 시작하기
+
+                    </button>
+
+                </div>
+
+
+                <!-- GUEST ORDER -->
+
+                <a href="../lists/lists.html"
+                   class="guest-button">
+
+                    비회원으로 주문하기
+
+                    <i data-lucide="arrow-right"></i>
+
+                </a>
+
+
+                <!-- DEMO ACCOUNT -->
+
+                <div class="demo-guide">
+
+                    <i data-lucide="info"></i>
+
+                    <div>
+
+                        <strong>포트폴리오 체험용 계정</strong>
+
+                        <p>아이디 : demo / 비밀번호 : 1234</p>
+
+                        <button type="button" id="fillDemo">
+                            테스트 계정 자동 입력
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- =================================
+             LOGIN SUCCESS SCREEN
+        ================================== -->
+
+        <section class="success-screen"
+                 id="successScreen"
+                 hidden>
+
+            <div class="success-icon">
+                <i data-lucide="check"></i>
+            </div>
+
+            <span class="eyebrow">WELCOME TO IPDEOK</span>
+
+            <h1>
+                환영합니다!<br>
+                <span id="userName">입덕러</span>님
+            </h1>
+
+            <p class="success-description">
+                입덕볶이와 함께<br>
+                오늘도 맛있는 하루 보내세요.
+            </p>
+
+
+            <!-- MEMBERSHIP CARD -->
+
+            <div class="membership-card">
+
+                <div class="membership-top">
+
+                    <div>
+
+                        <span>IPDEOK MEMBERSHIP</span>
+
+                        <h2>입덕러 멤버십</h2>
+
+                    </div>
+
+                    <i data-lucide="crown"></i>
+
+                </div>
+
+                <div class="membership-bottom">
+
+                    <span>나의 멤버십 등급</span>
+
+                    <strong>WELCOME</strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- MEMBER BENEFITS -->
+
+            <div class="benefit-card">
+
+                <div class="benefit-item">
+
+                    <div class="benefit-icon">
+                        <i data-lucide="ticket"></i>
+                    </div>
+
+                    <span>보유 쿠폰</span>
+
+                    <strong>0<small>장</small></strong>
+
+                </div>
+
+                <div class="benefit-divider"></div>
+
+                <div class="benefit-item">
+
+                    <div class="benefit-icon">
+                        <i data-lucide="coins"></i>
+                    </div>
+
+                    <span>적립 포인트</span>
+
+                    <strong>0<small>P</small></strong>
+
+                </div>
+
+            </div>
+
+            <p class="membership-guide">
+                멤버십 및 혜택은 포트폴리오용 예시입니다.
+            </p>
+
+            <a href="../lists/lists.html"
+               class="primary-button">
+
+                메뉴 보러가기
+
+                <i data-lucide="arrow-right"></i>
+
+            </a>
+
+            <a href="../../index.html"
+               class="guest-button">
+
+                메인 페이지로 이동
+
+                <i data-lucide="house"></i>
+
+            </a>
+
+            <button type="button"
+                    class="logout-button"
+                    id="logoutButton">
+
+                <i data-lucide="log-out"></i>
+
+                로그아웃
+
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- =================================
+         ACCOUNT DIALOG
+    ================================== -->
+
+    <dialog class="account-dialog"
+            id="accountDialog"
+            aria-labelledby="dialogTitle">
+
+        <div class="dialog-header">
+
+            <div>
+
+                <span class="eyebrow">IPDEOK BOKKI</span>
+
+                <h2 id="dialogTitle"></h2>
+
+            </div>
+
+            <button type="button"
+                    class="header-button"
+                    id="dialogClose"
+                    aria-label="팝업 닫기">
+                <i data-lucide="x"></i>
+            </button>
+
+        </div>
+
+        <div id="dialogContent"></div>
+
+    </dialog>
+
+
+    <!-- =================================
+         FOOTER
+    ================================== -->
+
+    <footer class="footer" id="footer">
+
+        <a href="../../index.html">
+            <img src="../../img/logo.png" alt="입덕볶이">
+        </a>
+
+        <p>매콤달콤한 일상의 즐거움</p>
+
+        <nav class="footer-navigation">
+
+            <a href="../lists/lists.html">메뉴</a>
+            <a href="../about/about.html">소개</a>
+            <a href="../community/community.html">커뮤니티</a>
+            <a href="./login.html">로그인</a>
+
+        </nav>
+
+        <div class="footer-divider"></div>
+
+        <small>© 2026 입덕볶이. All rights reserved.</small>
+
+    </footer>
+
+
+    <!-- TOAST -->
+
+    <div class="toast"
+         id="toast"
+         role="status"
+         aria-live="polite"></div>
+
+</div>
+
+
+<!-- =================================
+     JAVASCRIPT
+================================== -->
+
+<script>
+
+    /* =================================
+       01. LUCIDE ICONS
+    ================================= */
+
+    function refreshIcons() {
+
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+
+    }
+
+    refreshIcons();
+
+
+    /* =================================
+       02. SIDE MENU
+    ================================= */
+
+    const menuOpen = document.getElementById('menuOpen');
+    const menuClose = document.getElementById('menuClose');
+    const sideMenu = document.getElementById('sideMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    const backgroundElements = [
+        document.querySelector('.header'),
+        document.getElementById('mainContent'),
+        document.getElementById('footer')
+    ];
+
+    function openMenu() {
+
+        sideMenu.inert = false;
+
+        sideMenu.classList.add('active');
+        menuOverlay.classList.add('active');
+
+        document.body.classList.add('is-menu-open');
+
+        menuOpen.setAttribute('aria-expanded', 'true');
+        sideMenu.setAttribute('aria-hidden', 'false');
+
+        menuClose.focus();
+
+        backgroundElements.forEach(element => {
+            element.inert = true;
+        });
+
+    }
+
+    function closeMenu() {
+
+        backgroundElements.forEach(element => {
+            element.inert = false;
+        });
+
+        menuOpen.setAttribute('aria-expanded', 'false');
+
+        menuOpen.focus();
+
+        sideMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+
+        document.body.classList.remove('is-menu-open');
+
+        sideMenu.setAttribute('aria-hidden', 'true');
+
+        sideMenu.inert = true;
+
+    }
+
+    menuOpen.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+
+    sideMenu.querySelectorAll('a').forEach(link => {
+
+        link.addEventListener('click', closeMenu);
+
+    });
+
+    document.addEventListener('keydown', event => {
+
+        if (!sideMenu.classList.contains('active')) return;
+
+        if (event.key === 'Escape') {
+            closeMenu();
+        }
+
+        if (event.key === 'Tab') {
+
+            const focusable = sideMenu.querySelectorAll(
+                'a[href], button'
+            );
+
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+
+            if (event.shiftKey && document.activeElement === first) {
+
+                event.preventDefault();
+                last.focus();
+
+            }
+
+            if (!event.shiftKey && document.activeElement === last) {
+
+                event.preventDefault();
+                first.focus();
+
+            }
+
+        }
+
+    });
+
+
+    /* =================================
+       03. LOGIN ELEMENTS
+    ================================= */
+
+    const loginForm = document.getElementById('loginForm');
+
+    const loginId = document.getElementById('loginId');
+
+    const loginPassword =
+        document.getElementById('loginPassword');
+
+    const passwordToggle =
+        document.getElementById('passwordToggle');
+
+    const keepLogin = document.getElementById('keepLogin');
+
+    const loginError = document.getElementById('loginError');
+
+    const loginScreen = document.getElementById('loginScreen');
+
+    const successScreen =
+        document.getElementById('successScreen');
+
+
+    /* =================================
+       04. PASSWORD TOGGLE
+    ================================= */
+
+    function setPasswordVisible(visible) {
+
+        loginPassword.type = visible ? 'text' : 'password';
+
+        passwordToggle.innerHTML = visible
+            ? '<i data-lucide="eye-off"></i>'
+            : '<i data-lucide="eye"></i>';
+
+        passwordToggle.setAttribute(
+            'aria-label',
+            visible ? '비밀번호 숨기기' : '비밀번호 표시'
+        );
+
+        passwordToggle.setAttribute(
+            'aria-pressed',
+            String(visible)
+        );
+
+        refreshIcons();
+
+    }
+
+    passwordToggle.addEventListener('click', () => {
+
+        setPasswordVisible(loginPassword.type === 'password');
+
+    });
+
+
+    /* =================================
+       05. LOGIN STORAGE
+
+       실제 개인정보나 비밀번호를 저장하지 않고
+       체험용 로그인 상태만 저장합니다.
+    ================================= */
+
+    const LOGIN_KEY = 'ipdeok-demo-login-v1';
+
+    function saveLoginState(remember) {
+
+        try {
+
+            localStorage.removeItem(LOGIN_KEY);
+            sessionStorage.removeItem(LOGIN_KEY);
+
+            const storage = remember
+                ? localStorage
+                : sessionStorage;
+
+            storage.setItem(LOGIN_KEY, 'demo');
+
+            return true;
+
+        } catch (error) {
+
+            console.warn('로그인 상태 저장 실패');
+
+            return false;
+
+        }
+
+    }
+
+    function checkLoginState() {
+
+        try {
+
+            return (
+                localStorage.getItem(LOGIN_KEY) === 'demo' ||
+                sessionStorage.getItem(LOGIN_KEY) === 'demo'
+            );
+
+        } catch (error) {
+
+            return false;
+
+        }
+
+    }
+
+    function clearLoginState() {
+
+        try {
+
+            localStorage.removeItem(LOGIN_KEY);
+            sessionStorage.removeItem(LOGIN_KEY);
+
+            return true;
+
+        } catch (error) {
+
+            console.warn('로그인 상태 삭제 실패');
+
+            return false;
+
+        }
+
+    }
+
+
+    /* =================================
+       06. LOGIN SCREEN CONTROL
+    ================================= */
+
+    function showSuccess(scroll = true) {
+
+        loginScreen.hidden = true;
+        successScreen.hidden = false;
+
+        document.getElementById('userName').textContent =
+            '입덕러';
+
+        document.getElementById('sideLoginText').textContent =
+            '마이페이지';
+
+        loginPassword.value = '';
+
+        setPasswordVisible(false);
+
+        if (scroll) {
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+        }
+
+    }
+
+    function showLogin() {
+
+        loginScreen.hidden = false;
+        successScreen.hidden = true;
+
+        document.getElementById('sideLoginText').textContent =
+            '로그인';
+
+        loginForm.reset();
+
+        clearError();
+
+        setPasswordVisible(false);
+
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+
+    }
+
+
+    /* =================================
+       07. LOGIN VALIDATION
+    ================================= */
+
+    function clearError() {
+
+        loginError.textContent = '';
+
+        loginForm.querySelectorAll('.input-box')
+            .forEach(box => {
+
+                box.classList.remove('invalid');
+
+            });
+
+        loginId.removeAttribute('aria-invalid');
+        loginPassword.removeAttribute('aria-invalid');
+
+    }
+
+    function showError(message, input) {
+
+        clearError();
+
+        loginError.textContent = message;
+
+        if (input) {
+
+            input.closest('.input-box')
+                .classList.add('invalid');
+
+            input.setAttribute('aria-invalid', 'true');
+
+            input.focus();
+
+        }
+
+        loginForm.classList.remove('shake');
+
+        void loginForm.offsetWidth;
+
+        loginForm.classList.add('shake');
+
+    }
+
+    loginId.addEventListener('input', clearError);
+
+    loginPassword.addEventListener('input', clearError);
+
+    loginForm.addEventListener('submit', event => {
+
+        event.preventDefault();
+
+        const id = loginId.value.trim();
+
+        const password = loginPassword.value;
+
+        clearError();
+
+        if (!id) {
+
+            showError('아이디를 입력해 주세요.', loginId);
+
+            return;
+
+        }
+
+        if (!password) {
+
+            showError(
+                '비밀번호를 입력해 주세요.',
+                loginPassword
+            );
+
+            return;
+
+        }
+
+        if (id !== 'demo' || password !== '1234') {
+
+            showError(
+                '아이디 또는 비밀번호가 올바르지 않습니다. 테스트 계정을 확인해 주세요.',
+                loginPassword
+            );
+
+            return;
+
+        }
+
+        const saved = saveLoginState(keepLogin.checked);
+
+        showSuccess();
+
+        showToast(
+            saved
+                ? '체험용 로그인이 완료되었습니다!'
+                : '로그인 체험 완료 · 상태 저장은 사용할 수 없습니다.'
+        );
+
+    });
+
+
+    /* =================================
+       08. DEMO AUTO FILL
+    ================================= */
+
+    document.getElementById('fillDemo')
+        .addEventListener('click', () => {
+
+            loginId.value = 'demo';
+
+            loginPassword.value = '1234';
+
+            clearError();
+
+            showToast('테스트 계정이 입력되었습니다.');
+
+        });
+
+
+    /* =================================
+       09. LOGOUT
+    ================================= */
+
+    document.getElementById('logoutButton')
+        .addEventListener('click', () => {
+
+            const cleared = clearLoginState();
+
+            showLogin();
+
+            showToast(
+                cleared
+                    ? '로그아웃되었습니다.'
+                    : '현재 화면에서 로그아웃했습니다. 저장 상태를 삭제하지 못했습니다.'
+            );
+
+        });
+
+
+    /* =================================
+       10. SOCIAL LOGIN
+    ================================= */
+
+    document.querySelectorAll('[data-social]')
+        .forEach(button => {
+
+            button.addEventListener('click', () => {
+
+                const social = button.dataset.social;
+
+                showToast(
+                    `${social} 로그인은 실제 인증 API 연동이 필요합니다.`
+                );
+
+            });
+
+        });
+
+
+    /* =================================
+       11. ACCOUNT DIALOG
+    ================================= */
+
+    const accountDialog =
+        document.getElementById('accountDialog');
+
+    const dialogTitle =
+        document.getElementById('dialogTitle');
+
+    const dialogContent =
+        document.getElementById('dialogContent');
+
+    function openDialog(type) {
+
+        if (type === 'join') {
+
+            renderJoinForm();
+
+        } else if (type === 'find-id') {
+
+            renderFindIdForm();
+
+        } else if (type === 'find-password') {
+
+            renderFindPasswordForm();
+
+        } else {
+
+            return;
+
+        }
+
+        refreshIcons();
+
+        accountDialog.showModal();
+
+        document.body.classList.add('is-dialog-open');
+
+    }
+
+    function closeDialog() {
+
+        if (accountDialog.open) {
+
+            accountDialog.close();
+
+        }
+
+    }
+
+    document.querySelectorAll('[data-dialog]')
+        .forEach(button => {
+
+            button.addEventListener('click', () => {
+
+                openDialog(button.dataset.dialog);
+
+            });
+
+        });
+
+    document.getElementById('dialogClose')
+        .addEventListener('click', closeDialog);
+
+    accountDialog.addEventListener('close', () => {
+
+        document.body.classList.remove('is-dialog-open');
+
+        dialogContent.replaceChildren();
+
+    });
+
+    accountDialog.addEventListener('click', event => {
+
+        if (event.target !== accountDialog) return;
+
+        const rect = accountDialog.getBoundingClientRect();
+
+        const outside =
+            event.clientX < rect.left ||
+            event.clientX > rect.right ||
+            event.clientY < rect.top ||
+            event.clientY > rect.bottom;
+
+        if (outside) {
+
+            closeDialog();
+
+        }
+
+    });
+
+
+    /* =================================
+       12. JOIN FORM
+    ================================= */
+
+    function renderJoinForm() {
+
+        dialogTitle.textContent = '새로운 입덕의 시작!';
+
+        dialogContent.innerHTML = `
+
+            <p class="dialog-description">
+                입덕볶이의 새로운 입덕러가 되어보세요.
+            </p>
+
+            <div class="dialog-notice">
+                <i data-lucide="info"></i>
+                <p>
+                    회원가입 체험 화면입니다.
+                    실제 개인정보나 사용 중인 비밀번호는
+                    입력하지 마세요.
+                </p>
+            </div>
+
+            <form id="joinForm" class="dialog-form">
+
+                <div class="form-group">
+
+                    <label for="joinName">닉네임</label>
+
+                    <input type="text"
+                           id="joinName"
+                           placeholder="닉네임을 입력해 주세요"
+                           maxlength="12"
+                           required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="joinId">아이디</label>
+
+                    <input type="text"
+                           id="joinId"
+                           placeholder="영문 또는 숫자 4~20자"
+                           minlength="4"
+                           maxlength="20"
+                           pattern="[A-Za-z0-9]{4,20}"
+                           autocomplete="off"
+                           required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="joinPassword">비밀번호</label>
+
+                    <input type="password"
+                           id="joinPassword"
+                           placeholder="8자 이상 입력해 주세요"
+                           minlength="8"
+                           maxlength="100"
+                           autocomplete="new-password"
+                           required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="joinPasswordConfirm">
+                        비밀번호 확인
+                    </label>
+
+                    <input type="password"
+                           id="joinPasswordConfirm"
+                           placeholder="비밀번호를 다시 입력해 주세요"
+                           autocomplete="new-password"
+                           required>
+
+                </div>
+
+                <div class="agreement-box">
+
+                    <label class="checkbox-label">
+
+                        <input type="checkbox"
+                               id="agreeTerms"
+                               required>
+
+                        <span>
+                            체험용 회원가입 안내를 확인했습니다.
+                        </span>
+
+                    </label>
+
+                </div>
+
+                <p class="form-error"
+                   id="joinError"
+                   role="alert"></p>
+
+                <button type="submit" class="primary-button">
+
+                    회원가입 체험하기
+
+                    <i data-lucide="arrow-right"></i>
+
+                </button>
+
+            </form>
+
+        `;
+
+        document.getElementById('joinForm')
+            .addEventListener('submit', event => {
+
+                event.preventDefault();
+
+                const name =
+                    document.getElementById('joinName').value.trim();
+
+                const id =
+                    document.getElementById('joinId').value.trim();
+
+                const password =
+                    document.getElementById('joinPassword').value;
+
+                const confirm =
+                    document.getElementById(
+                        'joinPasswordConfirm'
+                    ).value;
+
+                const error =
+                    document.getElementById('joinError');
+
+                if (!name) {
+
+                    error.textContent =
+                        '닉네임을 입력해 주세요.';
+
+                    return;
+
+                }
+
+                if (!/^[A-Za-z0-9]{4,20}$/.test(id)) {
+
+                    error.textContent =
+                        '아이디는 영문 또는 숫자 4~20자로 입력해 주세요.';
+
+                    return;
+
+                }
+
+                if (password.length < 8) {
+
+                    error.textContent =
+                        '비밀번호는 8자 이상 입력해 주세요.';
+
+                    return;
+
+                }
+
+                if (password !== confirm) {
+
+                    error.textContent =
+                        '비밀번호가 일치하지 않습니다.';
+
+                    return;
+
+                }
+
+                closeDialog();
+
+                showToast(
+                    '회원가입 체험 완료! 실제 계정은 생성되지 않습니다.'
+                );
+
+            });
+
+    }
+
+
+    /* =================================
+       13. FIND ID FORM
+    ================================= */
+
+    function renderFindIdForm() {
+
+        dialogTitle.textContent = '아이디 찾기';
+
+        dialogContent.innerHTML = `
+
+            <p class="dialog-description">
+                아이디 찾기 과정을 체험해 보세요.
+            </p>
+
+            <div class="dialog-notice">
+
+                <i data-lucide="info"></i>
+
+                <p>
+                    실제 계정 조회는 지원하지 않습니다.
+                    테스트용 정보만 입력해 주세요.
+                </p>
+
+            </div>
+
+            <form id="findIdForm" class="dialog-form">
+
+                <div class="form-group">
+
+                    <label for="findName">닉네임</label>
+
+                    <input type="text"
+                           id="findName"
+                           placeholder="테스트 닉네임 입력"
+                           required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="findEmail">이메일</label>
+
+                    <input type="email"
+                           id="findEmail"
+                           placeholder="demo@example.com"
+                           required>
+
+                </div>
+
+                <button type="submit" class="primary-button">
+
+                    아이디 확인하기
+
+                    <i data-lucide="arrow-right"></i>
+
+                </button>
+
+            </form>
+
+        `;
+
+        document.getElementById('findIdForm')
+            .addEventListener('submit', event => {
+
+                event.preventDefault();
+
+                dialogContent.innerHTML = `
+
+                    <div class="account-result">
+
+                        <div class="result-icon">
+                            <i data-lucide="check"></i>
+                        </div>
+
+                        <h3>아이디 찾기 체험 완료</h3>
+
+                        <p>포트폴리오용 테스트 아이디입니다.</p>
+
+                        <strong class="found-id">demo</strong>
+
+                        <button type="button"
+                                class="primary-button"
+                                id="returnLogin">
+                            로그인 화면으로 돌아가기
+                        </button>
+
+                    </div>
+
+                `;
+
+                refreshIcons();
+
+                document.getElementById('returnLogin')
+                    .addEventListener('click', () => {
+
+                        closeDialog();
+
+                        loginId.value = 'demo';
+
+                        loginPassword.focus();
+
+                    });
+
+            });
+
+    }
+
+
+    /* =================================
+       14. FIND PASSWORD FORM
+    ================================= */
+
+    function renderFindPasswordForm() {
+
+        dialogTitle.textContent = '비밀번호 찾기';
+
+        dialogContent.innerHTML = `
+
+            <p class="dialog-description">
+                비밀번호 찾기 과정을 체험해 보세요.
+            </p>
+
+            <div class="dialog-notice">
+
+                <i data-lucide="info"></i>
+
+                <p>
+                    실제 이메일 발송 및 본인 인증은
+                    연동되어 있지 않습니다.
+                </p>
+
+            </div>
+
+            <form id="findPasswordForm" class="dialog-form">
+
+                <div class="form-group">
+
+                    <label for="findPasswordId">아이디</label>
+
+                    <input type="text"
+                           id="findPasswordId"
+                           placeholder="테스트 아이디 입력"
+                           required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="findPasswordEmail">이메일</label>
+
+                    <input type="email"
+                           id="findPasswordEmail"
+                           placeholder="demo@example.com"
+                           required>
+
+                </div>
+
+                <button type="submit" class="primary-button">
+
+                    비밀번호 찾기 체험
+
+                    <i data-lucide="arrow-right"></i>
+
+                </button>
+
+            </form>
+
+        `;
+
+        document.getElementById('findPasswordForm')
+            .addEventListener('submit', event => {
+
+                event.preventDefault();
+
+                dialogContent.innerHTML = `
+
+                    <div class="account-result">
+
+                        <div class="result-icon">
+                            <i data-lucide="mail"></i>
+                        </div>
+
+                        <h3>비밀번호 찾기 체험 완료</h3>
+
+                        <p>
+                            실제 서비스에서는 본인 인증 후
+                            비밀번호를 재설정할 수 있습니다.
+                        </p>
+
+                        <p>체험용 비밀번호는 1234입니다.</p>
+
+                        <button type="button"
+                                class="primary-button"
+                                id="returnLogin">
+                            로그인 화면으로 돌아가기
+                        </button>
+
+                    </div>
+
+                `;
+
+                refreshIcons();
+
+                document.getElementById('returnLogin')
+                    .addEventListener('click', closeDialog);
+
+            });
+
+    }
+
+
+    /* =================================
+       15. TOAST MESSAGE
+    ================================= */
+
+    const toast = document.getElementById('toast');
+
+    let toastTimer;
+
+    function showToast(message) {
+
+        clearTimeout(toastTimer);
+
+        toast.textContent = message;
+
+        toast.classList.add('visible');
+
+        toastTimer = setTimeout(() => {
+
+            toast.classList.remove('visible');
+
+        }, 3000);
+
+    }
+
+
+    /* =================================
+       16. INITIALIZE
+    ================================= */
+
+    if (checkLoginState()) {
+
+        showSuccess(false);
+
+    }
+
+</script>
+
+</body>
+</html>

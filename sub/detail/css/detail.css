@@ -1,0 +1,1935 @@
+
+/* ========================================
+   01. GLOBAL
+======================================== */
+
+:root {
+
+    --max-width: 500px;
+    --side-padding: 20px;
+
+    --primary: #e63323;
+    --primary-dark: #bd2619;
+    --secondary: #ffb347;
+
+    --background: #fff8ef;
+    --white: #ffffff;
+    --text: #302019;
+    --gray: #81756d;
+    --border: #ebddd0;
+
+    --light-orange: #ffe8d2;
+    --light-red: #fff1ed;
+    --section-divider: #f1e7db;
+
+    --radius: 16px;
+
+    --shadow:
+        0 5px 20px rgba(80, 40, 20, 0.08);
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+
+    color: var(--text);
+    background: #f1ebe5;
+
+    -webkit-tap-highlight-color: transparent;
+
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+
+    border: none;
+    background: none;
+
+    color: inherit;
+    cursor: pointer;
+
+}
+
+a {
+
+    color: inherit;
+    text-decoration: none;
+
+}
+
+img {
+
+    display: block;
+    max-width: 100%;
+
+}
+
+button,
+a,
+label {
+
+    touch-action: manipulation;
+
+}
+
+button:focus-visible,
+a:focus-visible {
+
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
+
+}
+
+button:disabled {
+
+    cursor: not-allowed;
+
+}
+
+[hidden] {
+
+    display: none !important;
+
+}
+
+.container {
+
+    position: relative;
+
+    width: 100%;
+    max-width: var(--max-width);
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    margin: 0 auto;
+
+    padding-bottom: calc(125px + env(safe-area-inset-bottom));
+
+    background: var(--background);
+
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+
+}
+
+
+/* ========================================
+   02. HEADER
+======================================== */
+
+.header {
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 60px;
+
+    padding: 0 var(--side-padding);
+
+    background: var(--background);
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+.logo {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+
+}
+
+.logo img {
+
+    width: 105px;
+    height: 48px;
+
+    object-fit: contain;
+
+}
+
+.icon-button {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 12px;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+.icon-button svg {
+
+    width: 25px;
+    height: 25px;
+
+    stroke-width: 1.8;
+
+}
+
+.icon-button:active {
+
+    background: var(--light-orange);
+
+    transform: scale(0.9);
+
+}
+
+
+/* ========================================
+   03. SIDE MENU
+======================================== */
+
+body.menu-open {
+
+    overflow: hidden;
+
+}
+
+.menu-overlay {
+
+    position: fixed;
+
+    top: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 100%;
+    max-width: var(--max-width);
+
+    height: 100vh;
+    height: 100dvh;
+
+    overflow: hidden;
+
+    z-index: 1000;
+
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: visibility 0s 0.35s;
+
+}
+
+.menu-overlay.active {
+
+    visibility: visible;
+    pointer-events: auto;
+
+    transition-delay: 0s;
+
+}
+
+.menu-dim {
+
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    opacity: 0;
+
+    transition: opacity 0.35s ease;
+
+}
+
+.menu-overlay.active .menu-dim {
+
+    opacity: 1;
+
+}
+
+.side-menu {
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 66.6667%;
+    height: 100%;
+
+    padding: 0 16px;
+
+    background: var(--background);
+
+    overflow-y: auto;
+
+    transform: translateX(100%);
+
+    transition: transform 0.35s
+        cubic-bezier(0.22, 1, 0.36, 1);
+
+}
+
+.menu-overlay.active .side-menu {
+
+    transform: translateX(0);
+
+}
+
+.side-menu-header {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 70px;
+
+}
+
+.side-menu-header img {
+
+    width: 90px;
+    height: 45px;
+
+    object-fit: contain;
+
+}
+
+.side-menu-welcome {
+
+    margin: 12px 0 24px;
+
+    padding: 24px 16px;
+
+    border-radius: var(--radius);
+
+    background: var(--light-orange);
+
+}
+
+.side-menu-welcome span {
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    color: var(--primary);
+
+}
+
+.side-menu-welcome h2 {
+
+    margin-top: 10px;
+
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.5;
+
+}
+
+.side-menu-nav {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+.side-menu-nav a {
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    min-height: 60px;
+
+    padding: 14px 10px;
+
+    border-radius: 12px;
+
+    font-size: 17px;
+    font-weight: 500;
+
+    transition: 0.2s ease;
+
+}
+
+.side-menu-nav a span {
+
+    flex: 1;
+
+}
+
+.side-menu-nav a svg {
+
+    width: 21px;
+    height: 21px;
+
+    flex-shrink: 0;
+
+}
+
+.side-menu-nav a svg:last-child {
+
+    width: 16px;
+
+    color: var(--gray);
+
+}
+
+.side-menu-nav a.current {
+
+    background: var(--light-orange);
+
+    color: var(--primary);
+
+    font-weight: 700;
+
+}
+
+.side-menu-nav a:active {
+
+    transform: scale(0.97);
+
+    background: var(--primary);
+
+    color: var(--white);
+
+}
+
+.side-menu-footer {
+
+    margin-top: auto;
+
+    padding: 50px 0 25px;
+
+    text-align: center;
+
+}
+
+.side-menu-footer p {
+
+    font-size: 11px;
+
+    color: var(--gray);
+
+}
+
+.side-menu-footer strong {
+
+    display: block;
+
+    margin-top: 6px;
+
+    color: var(--primary);
+
+}
+
+
+/* ========================================
+   04. ORDER PROGRESS
+======================================== */
+
+.order-progress {
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    gap: 3px;
+
+    padding: 16px 12px;
+
+    background: var(--white);
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+.step {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    flex: 1;
+
+    min-width: 0;
+    max-width: 64px;
+
+    gap: 7px;
+
+}
+
+.step-number {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    background: #eeeeee;
+
+    color: #999999;
+
+    font-size: 14px;
+    font-weight: 500;
+
+}
+
+.step-number svg {
+
+    width: 17px;
+    height: 17px;
+
+}
+
+.step span {
+
+    font-size: 10px;
+    font-weight: 400;
+
+    color: #999999;
+
+    white-space: nowrap;
+
+}
+
+.step-arrow {
+
+    width: 15px;
+    height: 15px;
+
+    margin-top: 8px;
+
+    color: #d6d0ca;
+
+    flex-shrink: 0;
+
+}
+
+.step.completed .step-number {
+
+    background: var(--light-orange);
+
+    color: var(--primary);
+
+}
+
+.step.completed span {
+
+    color: var(--primary);
+
+}
+
+.step.active .step-number {
+
+    background: var(--primary);
+
+    color: var(--white);
+
+    box-shadow:
+        0 3px 10px rgba(230, 51, 35, 0.22);
+
+    animation: stepPop 0.4s ease-out;
+
+}
+
+.step.active span {
+
+    color: var(--primary);
+
+    font-weight: 700;
+
+}
+
+@keyframes stepPop {
+
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+}
+
+
+/* ========================================
+   05. PRODUCT IMAGE
+======================================== */
+
+.product-hero {
+
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 4 / 3;
+
+    background: var(--light-orange);
+
+    overflow: hidden;
+
+}
+
+.product-hero img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    animation: imageReveal 0.7s ease-out;
+
+}
+
+.product-badge {
+
+    position: absolute;
+
+    top: 18px;
+    left: 20px;
+
+    padding: 8px 14px;
+
+    border-radius: 30px;
+
+    background: var(--primary);
+
+    color: var(--white);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 4px 12px rgba(230, 51, 35, 0.2);
+
+    animation: fadeUp 0.6s ease-out;
+
+}
+
+@keyframes imageReveal {
+
+    from {
+        opacity: 0;
+        transform: scale(1.04);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ========================================
+   06. PRODUCT INFORMATION
+======================================== */
+
+.product-info {
+
+    padding: 28px var(--side-padding) 32px;
+
+    background: var(--white);
+
+    border-bottom: 10px solid var(--section-divider);
+
+    animation: fadeUp 0.5s ease-out;
+
+}
+
+.section-label {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: var(--primary);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+}
+
+.product-info h1 {
+
+    font-size: 30px;
+    font-weight: 700;
+
+    line-height: 1.4;
+    letter-spacing: -1.2px;
+
+    word-break: keep-all;
+
+}
+
+.product-description {
+
+    margin-top: 12px;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    line-height: 1.8;
+
+    color: var(--gray);
+
+    word-break: keep-all;
+
+}
+
+.product-price {
+
+    display: flex;
+    align-items: baseline;
+
+    gap: 3px;
+
+    margin-top: 22px;
+
+}
+
+.product-price strong {
+
+    font-size: 30px;
+    font-weight: 800;
+
+    letter-spacing: -1px;
+
+}
+
+.product-price span {
+
+    font-size: 18px;
+    font-weight: 500;
+
+}
+
+
+/* ========================================
+   07. OPTION SECTION
+======================================== */
+
+.option-section {
+
+    padding: 28px var(--side-padding);
+
+    background: var(--white);
+
+    border-bottom: 10px solid var(--section-divider);
+
+}
+
+.option-heading {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+}
+
+.option-heading h2,
+.quantity-heading h2,
+.summary-section h2 {
+
+    font-size: 21px;
+    font-weight: 700;
+
+    letter-spacing: -0.7px;
+
+}
+
+.required-badge,
+.optional-badge {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 5px 10px;
+
+    border-radius: 6px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+}
+
+.required-badge {
+
+    background: var(--light-red);
+
+    color: var(--primary);
+
+}
+
+.optional-badge {
+
+    background: #f4f2ef;
+
+    color: var(--gray);
+
+}
+
+.option-description {
+
+    margin-top: 8px;
+    margin-bottom: 22px;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    color: var(--gray);
+
+}
+
+.option-list {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+}
+
+
+/* ========================================
+   08. OPTION ROW
+======================================== */
+
+.option-row {
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    width: 100%;
+    min-height: 62px;
+
+    padding: 14px;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    background: var(--white);
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+.option-row.selected {
+
+    border-color: var(--primary);
+
+    background: var(--light-red);
+
+}
+
+.option-row:active {
+
+    transform: scale(0.985);
+
+}
+
+.option-row:focus-within {
+
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+
+}
+
+.option-row input {
+
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    opacity: 0;
+
+}
+
+.option-name {
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    flex: 1;
+
+    min-width: 0;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    word-break: keep-all;
+
+}
+
+.option-price {
+
+    flex-shrink: 0;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    color: var(--gray);
+
+    white-space: nowrap;
+
+}
+
+.option-row.selected .option-price {
+
+    color: var(--primary);
+
+}
+
+.recommend-label {
+
+    padding: 3px 6px;
+
+    border-radius: 4px;
+
+    background: var(--light-orange);
+
+    color: #a54b14;
+
+    font-size: 10px;
+    font-weight: 700;
+
+}
+
+
+/* ========================================
+   09. RADIO BUTTON
+======================================== */
+
+.radio-mark {
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 22px;
+    height: 22px;
+
+    border: 1.5px solid #c9c1ba;
+    border-radius: 50%;
+
+    background: var(--white);
+
+    transition: 0.2s ease;
+
+}
+
+.radio-mark::after {
+
+    content: "";
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    transform: scale(0);
+
+    transition: transform 0.2s
+        cubic-bezier(0.34, 1.56, 0.64, 1);
+
+}
+
+.option-row input:checked + .radio-mark {
+
+    border-color: var(--primary);
+
+}
+
+.option-row input:checked + .radio-mark::after {
+
+    transform: scale(1);
+
+}
+
+
+/* ========================================
+   10. CHECKBOX
+======================================== */
+
+.checkbox-mark {
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 22px;
+    height: 22px;
+
+    border: 1.5px solid #c9c1ba;
+    border-radius: 6px;
+
+    background: var(--white);
+
+    transition: 0.2s ease;
+
+}
+
+.checkbox-mark::after {
+
+    content: "";
+
+    width: 5px;
+    height: 10px;
+
+    margin-top: -3px;
+
+    border-right: 2px solid var(--white);
+    border-bottom: 2px solid var(--white);
+
+    transform: rotate(45deg) scale(0);
+
+    transition: transform 0.2s ease;
+
+}
+
+.option-row input:checked + .checkbox-mark {
+
+    border-color: var(--primary);
+
+    background: var(--primary);
+
+}
+
+.option-row input:checked + .checkbox-mark::after {
+
+    transform: rotate(45deg) scale(1);
+
+}
+
+
+/* ========================================
+   11. QUANTITY
+======================================== */
+
+.quantity-section {
+
+    padding: 28px var(--side-padding);
+
+    background: var(--white);
+
+    border-bottom: 10px solid var(--section-divider);
+
+}
+
+.quantity-heading {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+}
+
+.quantity-control {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 46px;
+
+    border: 1px solid var(--border);
+    border-radius: 30px;
+
+    background: var(--background);
+
+}
+
+.quantity-control button {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+
+    border-radius: 50%;
+
+    transition: 0.2s ease;
+
+}
+
+.quantity-control button svg {
+
+    width: 20px;
+    height: 20px;
+
+}
+
+.quantity-control button:disabled {
+
+    color: #c9c1ba;
+
+}
+
+.quantity-control button:not(:disabled):active {
+
+    transform: scale(0.85);
+
+    background: var(--light-orange);
+
+}
+
+.quantity-control strong {
+
+    display: inline-block;
+
+    min-width: 36px;
+
+    text-align: center;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    font-variant-numeric: tabular-nums;
+
+}
+
+.quantity-description {
+
+    margin-top: 15px;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    color: var(--gray);
+
+}
+
+
+/* ========================================
+   12. ORDER SUMMARY
+======================================== */
+
+.summary-section {
+
+    padding: 28px var(--side-padding) 32px;
+
+    background: var(--white);
+
+}
+
+.summary-section h2 {
+
+    margin-bottom: 25px;
+
+}
+
+.summary-row {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 16px;
+
+}
+
+.summary-row span {
+
+    font-size: 14px;
+
+    color: var(--gray);
+
+}
+
+.summary-row strong {
+
+    font-size: 15px;
+    font-weight: 500;
+
+    font-variant-numeric: tabular-nums;
+
+}
+
+.selected-options {
+
+    margin-top: 20px;
+
+    padding: 16px;
+
+    border-radius: 10px;
+
+    background: var(--background);
+
+}
+
+.selected-options span {
+
+    font-size: 12px;
+    font-weight: 600;
+
+    color: var(--primary);
+
+}
+
+.selected-options p {
+
+    margin-top: 7px;
+
+    font-size: 13px;
+    line-height: 1.7;
+
+    color: var(--gray);
+
+}
+
+.summary-total {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-top: 24px;
+
+    padding-top: 24px;
+
+    border-top: 1px solid var(--border);
+
+}
+
+.summary-total span {
+
+    font-size: 17px;
+    font-weight: 700;
+
+}
+
+.summary-total strong {
+
+    font-size: 26px;
+    font-weight: 800;
+
+    color: var(--primary);
+
+    letter-spacing: -1px;
+
+    font-variant-numeric: tabular-nums;
+
+    white-space: nowrap;
+
+}
+
+.summary-notice {
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 7px;
+
+    margin-top: 20px;
+
+    font-size: 11px;
+    line-height: 1.7;
+
+    color: var(--gray);
+
+}
+
+.summary-notice svg {
+
+    flex-shrink: 0;
+
+    width: 15px;
+    height: 15px;
+
+    margin-top: 2px;
+
+}
+
+
+/* ========================================
+   13. FIXED ORDER BUTTON
+======================================== */
+
+.order-bottom {
+
+    position: fixed;
+
+    bottom: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 200;
+
+    width: 100%;
+    max-width: var(--max-width);
+
+    padding: 14px var(--side-padding)
+        calc(16px + env(safe-area-inset-bottom));
+
+    background: var(--white);
+
+    border-top: 1px solid var(--border);
+
+    box-shadow:
+        0 -5px 25px rgba(80, 40, 20, 0.07);
+
+}
+
+.bottom-price {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 12px;
+
+}
+
+.bottom-price span {
+
+    font-size: 13px;
+    font-weight: 500;
+
+    color: var(--gray);
+
+}
+
+.bottom-price strong {
+
+    font-size: 20px;
+    font-weight: 800;
+
+    color: var(--primary);
+
+    font-variant-numeric: tabular-nums;
+
+}
+
+.order-button {
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    width: 100%;
+    min-height: 58px;
+
+    padding: 12px 38px;
+
+    border-radius: 14px;
+
+    background: var(--primary);
+
+    color: var(--white);
+
+    font-size: 17px;
+    font-weight: 700;
+
+    box-shadow:
+        0 5px 15px rgba(230, 51, 35, 0.2);
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease;
+
+}
+
+.order-button svg {
+
+    width: 22px;
+    height: 22px;
+
+    flex-shrink: 0;
+
+}
+
+.order-button .order-arrow {
+
+    position: absolute;
+
+    right: 15px;
+
+    width: 19px;
+    height: 19px;
+
+}
+
+.order-button:not(:disabled):active {
+
+    transform: scale(0.97);
+
+    background: var(--primary-dark);
+
+}
+
+.order-button.loading {
+
+    opacity: 0.8;
+
+    font-size: 14px;
+
+}
+
+.order-button.loading > svg:first-child {
+
+    animation: bagPulse 0.6s ease-in-out infinite alternate;
+
+}
+
+@keyframes bagPulse {
+
+    from {
+        transform: scale(0.85);
+    }
+
+    to {
+        transform: scale(1.1);
+    }
+
+}
+
+
+/* ========================================
+   14. TOAST MESSAGE
+======================================== */
+
+.toast {
+
+    position: fixed;
+
+    left: 50%;
+
+    bottom: calc(145px + env(safe-area-inset-bottom));
+
+    z-index: 300;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    width: max-content;
+    max-width: min(90%, 440px);
+
+    padding: 14px 22px;
+
+    border-radius: 50px;
+
+    background: rgba(48, 32, 25, 0.94);
+
+    color: var(--white);
+
+    font-size: 13px;
+    font-weight: 500;
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transform: translate(-50%, 15px);
+
+    transition: 0.25s ease;
+
+}
+
+.toast.visible {
+
+    opacity: 1;
+    visibility: visible;
+
+    transform: translate(-50%, 0);
+
+}
+
+.toast svg {
+
+    width: 18px;
+    height: 18px;
+
+    flex-shrink: 0;
+
+    color: var(--secondary);
+
+}
+
+
+/* ========================================
+   15. FOOTER
+======================================== */
+
+.footer {
+
+    padding: 36px var(--side-padding);
+
+    border-top: 1px solid var(--border);
+
+    background: #f5e9dc;
+
+    text-align: center;
+
+}
+
+.footer img {
+
+    width: 100px;
+
+    margin: 0 auto 15px;
+
+}
+
+.footer p {
+
+    font-size: 13px;
+    font-weight: 500;
+
+    color: var(--gray);
+
+}
+
+.footer span {
+
+    display: block;
+
+    margin-top: 12px;
+
+    font-size: 11px;
+
+    color: var(--gray);
+
+}
+
+
+/* ========================================
+   16. PC HOVER
+======================================== */
+
+@media (hover: hover) {
+
+    .option-row:not(.selected):hover {
+
+        background: var(--background);
+
+        border-color: var(--secondary);
+
+    }
+
+    .icon-button:hover {
+
+        background: var(--light-orange);
+
+    }
+
+    .side-menu-nav a:hover {
+
+        background: var(--light-orange);
+
+        color: var(--primary);
+
+    }
+
+    .quantity-control button:not(:disabled):hover {
+
+        background: var(--light-orange);
+
+    }
+
+    .order-button:not(:disabled):hover {
+
+        background: var(--primary-dark);
+
+    }
+
+}
+
+
+/* ========================================
+   17. SMALL MOBILE
+======================================== */
+
+@media (max-width: 380px) {
+
+    .product-info h1 {
+
+        font-size: 26px;
+
+    }
+
+    .product-price strong {
+
+        font-size: 27px;
+
+    }
+
+    .option-heading h2,
+    .quantity-heading h2,
+    .summary-section h2 {
+
+        font-size: 19px;
+
+    }
+
+    .option-row {
+
+        gap: 9px;
+
+        padding: 12px;
+
+    }
+
+    .option-name {
+
+        font-size: 14px;
+
+    }
+
+    .option-price {
+
+        font-size: 13px;
+
+    }
+
+    .summary-total strong {
+
+        font-size: 23px;
+
+    }
+
+    .summary-total span {
+
+        font-size: 15px;
+
+    }
+
+    .step-arrow {
+
+        width: 12px;
+
+    }
+
+    .step span {
+
+        font-size: 9px;
+
+    }
+
+    .side-menu-nav a {
+
+        font-size: 15px;
+
+    }
+
+    .order-button {
+
+        font-size: 15px;
+
+    }
+
+}
+
+
+/* ========================================
+   18. REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+
+        scroll-behavior: auto;
+
+    }
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+
+    }
+
+}
+
+/* ========================================
+   ORDER PROGRESS - 4 STEP UPDATE
+======================================== */
+
+.order-progress {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    width: 100%;
+
+    gap: 6px;
+    padding: 16px 20px;
+
+    background: #ffffff;
+    border-bottom: 1px solid #ebddd0;
+}
+
+
+/* 단계별 영역 */
+
+.order-progress .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+
+    gap: 8px;
+}
+
+
+/* 기본 단계 원형 */
+
+.order-progress .step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #eeeeee;
+    color: #999999;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    box-shadow: none;
+
+    transition: background-color 0.25s ease,
+                color 0.25s ease;
+}
+
+
+/* 기본 단계 텍스트 */
+
+.order-progress .step > span {
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.5;
+
+    color: #999999;
+
+    text-align: center;
+    white-space: nowrap;
+}
+
+
+/* 단계 사이 화살표 */
+
+.order-progress .step-arrow {
+    flex-shrink: 0;
+
+    width: 14px;
+    height: 14px;
+
+    margin-top: 10px;
+
+    color: #d5cdc5;
+
+    stroke-width: 1.8;
+}
+
+
+/* 완료된 단계 */
+
+.order-progress .step.completed .step-number {
+    background: #ffe8d2;
+    color: #e63323;
+}
+
+.order-progress .step.completed > span {
+    color: #e63323;
+}
+
+
+/* 현재 진행 중인 단계 */
+
+.order-progress .step.active .step-number {
+    background: #e63323;
+    color: #ffffff;
+
+    box-shadow: 0 3px 10px rgba(230, 51, 35, 0.2);
+
+    animation: progressStepPop 0.4s ease-out;
+}
+
+.order-progress .step.active > span {
+    color: #e63323;
+    font-weight: 700;
+}
+
+
+/* 체크 아이콘 */
+
+.order-progress .step-number svg {
+    width: 18px;
+    height: 18px;
+
+    stroke-width: 2.2;
+}
+
+
+/* 현재 단계 등장 애니메이션 */
+
+@keyframes progressStepPop {
+    from {
+        opacity: 0;
+        transform: scale(0.75);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* 작은 모바일 화면 */
+
+@media (max-width: 380px) {
+
+    .order-progress {
+        padding: 16px 14px;
+        gap: 4px;
+    }
+
+    .order-progress .step-number {
+        width: 32px;
+        height: 32px;
+    }
+
+    .order-progress .step > span {
+        font-size: 10px;
+    }
+
+    .order-progress .step-arrow {
+        width: 12px;
+        height: 12px;
+    }
+
+}
+
+
+/* 애니메이션 최소화 설정 */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .order-progress .step.active .step-number {
+        animation: none;
+    }
+
+    .order-progress .step-number {
+        transition: none;
+    }
+
+}

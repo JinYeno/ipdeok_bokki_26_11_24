@@ -1,0 +1,911 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="한 입에 반하고, 두 입에 입덕하다. 입덕볶이의 브랜드 이야기를 만나보세요.">
+
+    <title>브랜드 소개 | 입덕볶이</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/about.css">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="header">
+
+        <a href="../../index.html"
+           class="header-button"
+           aria-label="메인 페이지로 이동">
+            <i data-lucide="chevron-left"></i>
+        </a>
+
+        <a href="../../index.html" class="header-logo">
+            <img src="../../img/logo.png" alt="입덕볶이">
+        </a>
+
+        <button type="button"
+                class="header-button"
+                id="menuOpen"
+                aria-label="메뉴 열기"
+                aria-expanded="false"
+                aria-controls="sideMenu">
+            <i data-lucide="menu"></i>
+        </button>
+
+    </header>
+
+
+    <!-- =========================
+         SIDE MENU
+    ========================== -->
+
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <aside class="side-menu"
+           id="sideMenu"
+           aria-label="전체 메뉴"
+           aria-hidden="true"
+           inert>
+
+        <div class="side-menu-header">
+
+            <a href="../../index.html">
+                <img src="../../img/logo.png" alt="입덕볶이">
+            </a>
+
+            <button type="button"
+                    id="menuClose"
+                    class="header-button"
+                    aria-label="메뉴 닫기">
+                <i data-lucide="x"></i>
+            </button>
+
+        </div>
+
+        <div class="side-menu-message">
+            <span>WELCOME TO IPDEOK!</span>
+
+            <h2>
+                오늘도 맛있게,<br>
+                입덕할 준비 됐나요?
+            </h2>
+        </div>
+
+        <nav class="side-navigation">
+
+            <a href="../lists/lists.html">
+                <i data-lucide="utensils"></i>
+                <span>메뉴</span>
+                <i data-lucide="chevron-right"></i>
+            </a>
+
+            <a href="./about.html"
+               class="current"
+               aria-current="page">
+                <i data-lucide="heart"></i>
+                <span>소개</span>
+                <i data-lucide="chevron-right"></i>
+            </a>
+
+            <a href="../community/community.html">
+                <i data-lucide="message-circle"></i>
+                <span>커뮤니티</span>
+                <i data-lucide="chevron-right"></i>
+            </a>
+
+            <a href="../login/login.html">
+                <i data-lucide="user-round"></i>
+                <span>로그인</span>
+                <i data-lucide="chevron-right"></i>
+            </a>
+
+        </nav>
+
+        <a href="../lists/lists.html" class="side-order-button">
+            지금 주문하기
+            <i data-lucide="arrow-right"></i>
+        </a>
+
+        <p class="side-copyright">
+            © 2026 IPDEOK BOKKI.
+        </p>
+
+    </aside>
+
+
+    <main>
+
+        <!-- =========================
+             HERO SECTION
+        ========================== -->
+
+        <section class="about-hero">
+
+            <div class="hero-decoration decoration-one"></div>
+            <div class="hero-decoration decoration-two"></div>
+
+            <div class="hero-content">
+
+                <span class="hero-eyebrow">
+                    WELCOME TO IPDEOK
+                </span>
+
+                <h1 class="hero-title">
+
+                    <span class="title-line">
+                        <span>한 입에 반하고,</span>
+                    </span>
+
+                    <span class="title-line accent">
+                        <span>두 입에 입덕하다.</span>
+                    </span>
+
+                </h1>
+
+                <p class="hero-description">
+                    평범한 하루를 특별하게 만드는<br>
+                    매콤달콤한 즐거움, 입덕볶이.
+                </p>
+
+            </div>
+
+            <div class="hero-image-wrap">
+
+                <img src="../../img/hero.png"
+                     alt="입덕볶이 대표 떡볶이"
+                     id="heroImage"
+                     class="hero-image">
+
+            </div>
+
+            <a href="#ourStory" class="scroll-guide">
+
+                <span>SCROLL TO EXPLORE</span>
+
+                <i data-lucide="arrow-down"></i>
+
+            </a>
+
+        </section>
+
+
+        <!-- =========================
+             MARQUEE
+        ========================== -->
+
+        <div class="marquee"
+             aria-label="매콤하게, 달콤하게, 입덕하게">
+
+            <div class="marquee-track" aria-hidden="true">
+
+                <div class="marquee-group">
+                    <span>매콤하게!</span>
+                    <span class="marquee-star">✦</span>
+                    <span>달콤하게!</span>
+                    <span class="marquee-star">✦</span>
+                    <span>입덕하게!</span>
+                    <span class="marquee-star">✦</span>
+                    <span>IPDEOK BOKKI</span>
+                    <span class="marquee-star">✦</span>
+                </div>
+
+                <div class="marquee-group">
+                    <span>매콤하게!</span>
+                    <span class="marquee-star">✦</span>
+                    <span>달콤하게!</span>
+                    <span class="marquee-star">✦</span>
+                    <span>입덕하게!</span>
+                    <span class="marquee-star">✦</span>
+                    <span>IPDEOK BOKKI</span>
+                    <span class="marquee-star">✦</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             OUR STORY
+        ========================== -->
+
+        <section class="story-section section-padding"
+                 id="ourStory">
+
+            <div class="section-heading reveal">
+
+                <span class="section-label">
+                    01 / OUR STORY
+                </span>
+
+                <h2>
+                    떡볶이를 좋아하는<br>
+                    모든 사람들을 위해.
+                </h2>
+
+                <div class="heading-line"></div>
+
+                <p>
+                    기분 좋은 날에도, 지친 하루의 끝에도
+                    생각나는 음식. 입덕볶이는 누구나
+                    좋아하는 떡볶이에서 시작했습니다.
+                </p>
+
+            </div>
+
+            <div class="story-image reveal">
+
+                <img src="../../img/menu-01.png"
+                     alt="입덕볶이 오리지널 떡볶이"
+                     loading="lazy">
+
+                <span class="image-badge">
+                    OUR ORIGINAL
+                </span>
+
+            </div>
+
+            <div class="story-description reveal">
+
+                <p>
+                    익숙한 맛부터 새로운 맛까지,
+                    각자의 취향을 발견하고 즐길 수 있는
+                    떡볶이를 제안합니다.
+                </p>
+
+                <p>
+                    누군가에게는 하루의 작은 보상으로,
+                    누군가에게는 소중한 사람과 함께하는
+                    즐거운 순간으로 기억되기를 바랍니다.
+                </p>
+
+            </div>
+
+            <div class="story-quote reveal">
+
+                <i data-lucide="quote"></i>
+
+                <strong>
+                    맛있는 순간,<br>
+                    입덕하는 순간.
+                </strong>
+
+                <span>IPDEOK BOKKI</span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             BRAND VALUE
+        ========================== -->
+
+        <section class="value-section section-padding">
+
+            <div class="section-heading reveal">
+
+                <span class="section-label">
+                    02 / BRAND VALUE
+                </span>
+
+                <h2>
+                    입덕할 수밖에 없는<br>
+                    세 가지 이유.
+                </h2>
+
+                <p>
+                    입덕볶이가 전하고 싶은 세 가지 가치.
+                </p>
+
+            </div>
+
+            <div class="value-list">
+
+                <!-- Value 01 -->
+
+                <article class="value-card reveal">
+
+                    <div class="value-card-top">
+
+                        <div class="value-icon">
+                            <i data-lucide="flame"></i>
+                        </div>
+
+                        <span class="value-number">01</span>
+
+                    </div>
+
+                    <span class="value-label">
+                        ADDICTIVE TASTE
+                    </span>
+
+                    <h3>자꾸 생각나는 맛</h3>
+
+                    <p>
+                        매콤달콤한 소스와 쫄깃한 떡의 조화.
+                        한 입 먹으면 또 한 입이 생각나는
+                        즐거움을 전합니다.
+                    </p>
+
+                </article>
+
+
+                <!-- Value 02 -->
+
+                <article class="value-card reveal delay-1">
+
+                    <div class="value-card-top">
+
+                        <div class="value-icon">
+                            <i data-lucide="utensils"></i>
+                        </div>
+
+                        <span class="value-number">02</span>
+
+                    </div>
+
+                    <span class="value-label">
+                        YOUR OWN TASTE
+                    </span>
+
+                    <h3>취향대로 즐기는 맛</h3>
+
+                    <p>
+                        오리지널부터 로제, 마라,
+                        마라로제까지. 오늘의 기분과 취향에
+                        맞는 메뉴를 선택해 보세요.
+                    </p>
+
+                </article>
+
+
+                <!-- Value 03 -->
+
+                <article class="value-card reveal delay-2">
+
+                    <div class="value-card-top">
+
+                        <div class="value-icon">
+                            <i data-lucide="heart"></i>
+                        </div>
+
+                        <span class="value-number">03</span>
+
+                    </div>
+
+                    <span class="value-label">
+                        HAPPY MOMENT
+                    </span>
+
+                    <h3>일상 속 작은 행복</h3>
+
+                    <p>
+                        혼자서도, 함께여도 즐거운 떡볶이 한 끼.
+                        평범한 일상에 맛있는 행복을 더합니다.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SIGNATURE MENU
+        ========================== -->
+
+        <section class="signature-section section-padding">
+
+            <div class="section-heading reveal">
+
+                <span class="section-label">
+                    03 / SIGNATURE MENU
+                </span>
+
+                <h2>당신의 입덕 메뉴는?</h2>
+
+                <p>
+                    네 가지 매력, 네 가지 취향.<br>
+                    당신만의 최애 메뉴를 발견해 보세요.
+                </p>
+
+            </div>
+
+            <div class="signature-grid">
+
+                <!-- Original -->
+
+                <a href="../detail/detail.html?menu=original"
+                   class="signature-card reveal">
+
+                    <div class="signature-image">
+
+                        <img src="../../img/menu-01.png"
+                             alt="오리지널 떡볶이"
+                             loading="lazy">
+
+                        <span class="signature-badge">BEST</span>
+
+                    </div>
+
+                    <div class="signature-info">
+
+                        <span class="menu-english">ORIGINAL</span>
+
+                        <h3>오리지널 떡볶이</h3>
+
+                        <p>클래식한 매콤달콤함</p>
+
+                        <div class="signature-bottom">
+                            <strong>14,000원</strong>
+
+                            <span class="menu-arrow">
+                                <i data-lucide="arrow-up-right"></i>
+                            </span>
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+                <!-- Rose -->
+
+                <a href="../detail/detail.html?menu=rose"
+                   class="signature-card reveal delay-1">
+
+                    <div class="signature-image">
+
+                        <img src="../../img/menu-02.png"
+                             alt="로제 떡볶이"
+                             loading="lazy">
+
+                    </div>
+
+                    <div class="signature-info">
+
+                        <span class="menu-english">ROSE</span>
+
+                        <h3>로제 떡볶이</h3>
+
+                        <p>부드럽고 고소한 매력</p>
+
+                        <div class="signature-bottom">
+                            <strong>14,000원</strong>
+
+                            <span class="menu-arrow">
+                                <i data-lucide="arrow-up-right"></i>
+                            </span>
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+                <!-- Mala -->
+
+                <a href="../detail/detail.html?menu=mala"
+                   class="signature-card reveal">
+
+                    <div class="signature-image">
+
+                        <img src="../../img/menu-03.png"
+                             alt="마라 떡볶이"
+                             loading="lazy">
+
+                    </div>
+
+                    <div class="signature-info">
+
+                        <span class="menu-english">MALA</span>
+
+                        <h3>마라 떡볶이</h3>
+
+                        <p>얼얼하고 강렬한 맛</p>
+
+                        <div class="signature-bottom">
+                            <strong>14,000원</strong>
+
+                            <span class="menu-arrow">
+                                <i data-lucide="arrow-up-right"></i>
+                            </span>
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+                <!-- Mala Rose -->
+
+                <a href="../detail/detail.html?menu=mala-rose"
+                   class="signature-card reveal delay-1">
+
+                    <div class="signature-image">
+
+                        <img src="../../img/menu-04.png"
+                             alt="마라로제 떡볶이"
+                             loading="lazy">
+
+                    </div>
+
+                    <div class="signature-info">
+
+                        <span class="menu-english">MALA ROSE</span>
+
+                        <h3>마라로제 떡볶이</h3>
+
+                        <p>얼얼함과 부드러움의 조화</p>
+
+                        <div class="signature-bottom">
+                            <strong>14,000원</strong>
+
+                            <span class="menu-arrow">
+                                <i data-lucide="arrow-up-right"></i>
+                            </span>
+                        </div>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+            <a href="../lists/lists.html"
+               class="outline-button reveal">
+
+                전체 메뉴 보러가기
+
+                <i data-lucide="arrow-right"></i>
+
+            </a>
+
+        </section>
+
+
+        <!-- =========================
+             CALL TO ACTION
+        ========================== -->
+
+        <section class="cta-section">
+
+            <div class="cta-decoration cta-circle-one"></div>
+            <div class="cta-decoration cta-circle-two"></div>
+
+            <div class="cta-content reveal">
+
+                <div class="cta-icon">
+                    <i data-lucide="heart"></i>
+                </div>
+
+                <span class="cta-label">
+                    READY TO FALL IN LOVE?
+                </span>
+
+                <h2>
+                    오늘,<br>
+                    입덕할 준비 됐나요?
+                </h2>
+
+                <p>
+                    당신의 하루에 매콤달콤한<br>
+                    즐거움을 더해보세요.
+                </p>
+
+                <a href="../lists/lists.html"
+                   class="cta-button">
+
+                    지금 주문하기
+
+                    <i data-lucide="arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <a href="../../index.html" class="footer-logo">
+            <img src="../../img/logo.png" alt="입덕볶이">
+        </a>
+
+        <p class="footer-slogan">
+            매콤달콤한 일상의 즐거움
+        </p>
+
+        <nav class="footer-navigation">
+
+            <a href="../lists/lists.html">메뉴</a>
+            <a href="./about.html">소개</a>
+            <a href="../community/community.html">커뮤니티</a>
+            <a href="../login/login.html">로그인</a>
+
+        </nav>
+
+        <div class="footer-divider"></div>
+
+        <p class="footer-copyright">
+            © 2026 입덕볶이. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         SCROLL TO TOP
+    ========================== -->
+
+    <button type="button"
+            class="top-button"
+            id="topButton"
+            aria-label="페이지 최상단으로 이동">
+
+        <i data-lucide="arrow-up"></i>
+
+    </button>
+
+</div>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script>
+
+    /* =========================
+       LUCIDE ICONS
+    ========================== */
+
+    if (window.lucide) {
+        lucide.createIcons();
+    }
+
+
+    /* =========================
+       SIDE MENU
+    ========================== */
+
+    const menuOpen = document.getElementById('menuOpen');
+    const menuClose = document.getElementById('menuClose');
+    const sideMenu = document.getElementById('sideMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function openMenu() {
+
+        sideMenu.inert = false;
+
+        sideMenu.classList.add('active');
+        menuOverlay.classList.add('active');
+
+        document.body.classList.add('menu-open');
+
+        menuOpen.setAttribute('aria-expanded', 'true');
+        sideMenu.setAttribute('aria-hidden', 'false');
+
+        menuClose.focus();
+
+    }
+
+    function closeMenu() {
+
+        menuOpen.focus();
+
+        sideMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+
+        document.body.classList.remove('menu-open');
+
+        menuOpen.setAttribute('aria-expanded', 'false');
+        sideMenu.setAttribute('aria-hidden', 'true');
+
+        sideMenu.inert = true;
+
+    }
+
+    menuOpen.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+
+    document.addEventListener('keydown', function (event) {
+
+        if (!sideMenu.classList.contains('active')) {
+            return;
+        }
+
+        if (event.key === 'Escape') {
+            closeMenu();
+        }
+
+        if (event.key === 'Tab') {
+
+            const focusable = sideMenu.querySelectorAll(
+                'a[href], button:not([disabled])'
+            );
+
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            }
+
+            if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
+
+        }
+
+    });
+
+    sideMenu.querySelectorAll('a').forEach(function (link) {
+
+        link.addEventListener('click', closeMenu);
+
+    });
+
+
+    /* =========================
+       REDUCED MOTION
+    ========================== */
+
+    const reducedMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+    );
+
+
+    /* =========================
+       SCROLL REVEAL
+    ========================== */
+
+    const revealElements = document.querySelectorAll('.reveal');
+
+    if ('IntersectionObserver' in window && !reducedMotion.matches) {
+
+        const revealObserver = new IntersectionObserver(
+
+            function (entries, observer) {
+
+                entries.forEach(function (entry) {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add('visible');
+
+                        observer.unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+
+            {
+                threshold: 0.12
+            }
+
+        );
+
+        revealElements.forEach(function (element) {
+
+            element.classList.add('reveal-ready');
+
+            revealObserver.observe(element);
+
+        });
+
+    }
+
+
+    /* =========================
+       HERO PARALLAX
+       SCROLL TO TOP
+    ========================== */
+
+    const heroImage = document.getElementById('heroImage');
+    const heroSection = document.querySelector('.about-hero');
+    const topButton = document.getElementById('topButton');
+
+    let ticking = false;
+
+    function updateScroll() {
+
+        const scrollY = window.scrollY;
+
+        if (scrollY > 400) {
+
+            topButton.classList.add('visible');
+
+        } else {
+
+            topButton.classList.remove('visible');
+
+        }
+
+        if (
+            !reducedMotion.matches &&
+            scrollY < heroSection.offsetHeight
+        ) {
+
+            const move = Math.min(scrollY * 0.12, 45);
+
+            heroImage.style.transform =
+                `translateY(${move}px) scale(1.04)`;
+
+        } else if (reducedMotion.matches) {
+
+            heroImage.style.transform = '';
+
+        }
+
+        ticking = false;
+
+    }
+
+    window.addEventListener('scroll', function () {
+
+        if (!ticking) {
+
+            window.requestAnimationFrame(updateScroll);
+
+            ticking = true;
+
+        }
+
+    }, { passive: true });
+
+    updateScroll();
+
+    topButton.addEventListener('click', function () {
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: reducedMotion.matches
+                ? 'instant'
+                : 'smooth'
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>

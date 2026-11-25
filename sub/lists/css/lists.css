@@ -1,0 +1,1659 @@
+
+/* ========================================
+   01. GLOBAL
+======================================== */
+
+:root {
+
+    --max-width: 500px;
+    --side-padding: 20px;
+
+    --primary: #e63323;
+    --primary-dark: #bd2619;
+    --secondary: #ffb347;
+
+    --background: #fff8ef;
+    --white: #ffffff;
+    --text: #302019;
+    --gray: #81756d;
+    --border: #ebddd0;
+    --light-orange: #ffe8d2;
+
+    --radius: 16px;
+
+    --shadow:
+        0 5px 20px rgba(80, 40, 20, 0.08);
+
+}
+
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+body {
+
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+
+    color: var(--text);
+    background: #f1ebe5;
+
+    -webkit-tap-highlight-color: transparent;
+
+}
+
+button,
+input {
+
+    font: inherit;
+
+}
+
+button {
+
+    border: none;
+    background: none;
+    color: inherit;
+
+    cursor: pointer;
+
+}
+
+a {
+
+    color: inherit;
+    text-decoration: none;
+
+}
+
+img {
+
+    display: block;
+    max-width: 100%;
+
+}
+
+button,
+a {
+
+    touch-action: manipulation;
+
+}
+
+button:focus-visible,
+a:focus-visible {
+
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
+
+}
+
+[hidden] {
+
+    display: none !important;
+
+}
+
+.container {
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: var(--max-width);
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    margin: 0 auto;
+
+    background: var(--background);
+
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+
+}
+
+main {
+
+    flex: 1;
+
+}
+
+
+/* ========================================
+   02. HEADER
+======================================== */
+
+.header {
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 60px;
+
+    padding: 0 var(--side-padding);
+
+    background: var(--background);
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+.logo {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+
+}
+
+.logo img {
+
+    width: 105px;
+    height: 48px;
+
+    object-fit: contain;
+
+}
+
+.back-button,
+.icon-button {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 12px;
+
+    transition: 0.2s ease;
+
+}
+
+.back-button svg,
+.icon-button svg {
+
+    width: 25px;
+    height: 25px;
+
+    stroke-width: 1.8;
+
+}
+
+.back-button:active,
+.icon-button:active {
+
+    background: var(--light-orange);
+
+    transform: scale(0.9);
+
+}
+
+
+/* ========================================
+   03. SIDE MENU
+======================================== */
+
+body.menu-open {
+
+    overflow: hidden;
+
+}
+
+.menu-overlay {
+
+    position: fixed;
+
+    top: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 100%;
+    max-width: var(--max-width);
+
+    height: 100vh;
+    height: 100dvh;
+
+    overflow: hidden;
+
+    z-index: 1000;
+
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: visibility 0s 0.35s;
+
+}
+
+.menu-overlay.active {
+
+    visibility: visible;
+    pointer-events: auto;
+
+    transition-delay: 0s;
+
+}
+
+.menu-dim {
+
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    opacity: 0;
+
+    transition: opacity 0.35s ease;
+
+}
+
+.menu-overlay.active .menu-dim {
+
+    opacity: 1;
+
+}
+
+.side-menu {
+
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 66.6667%;
+    height: 100%;
+
+    padding: 0 16px;
+
+    background: var(--background);
+
+    overflow-y: auto;
+
+    transform: translateX(100%);
+
+    transition: transform 0.35s
+        cubic-bezier(0.22, 1, 0.36, 1);
+
+}
+
+.menu-overlay.active .side-menu {
+
+    transform: translateX(0);
+
+}
+
+.side-menu-header {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 70px;
+
+}
+
+.side-menu-header img {
+
+    width: 90px;
+    height: 45px;
+
+    object-fit: contain;
+
+}
+
+.side-menu-welcome {
+
+    margin: 12px 0 24px;
+    padding: 24px 16px;
+
+    border-radius: var(--radius);
+
+    background: var(--light-orange);
+
+}
+
+.side-menu-welcome span {
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+
+    color: var(--primary);
+
+}
+
+.side-menu-welcome h2 {
+
+    margin-top: 10px;
+
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.5;
+
+}
+
+.side-menu-nav {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+.side-menu-nav a {
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    min-height: 60px;
+
+    padding: 14px 10px;
+
+    border-radius: 12px;
+
+    font-size: 17px;
+    font-weight: 500;
+
+    transition: 0.2s ease;
+
+}
+
+.side-menu-nav a span {
+
+    flex: 1;
+
+}
+
+.side-menu-nav a svg {
+
+    width: 21px;
+    height: 21px;
+
+    flex-shrink: 0;
+
+}
+
+.side-menu-nav a svg:last-child {
+
+    width: 16px;
+
+    color: var(--gray);
+
+}
+
+.side-menu-nav a.current {
+
+    background: var(--light-orange);
+
+    color: var(--primary);
+
+    font-weight: 700;
+
+}
+
+.side-menu-nav a:active {
+
+    background: var(--primary);
+    color: var(--white);
+
+    transform: scale(0.97);
+
+}
+
+.side-menu-footer {
+
+    margin-top: auto;
+
+    padding: 50px 0 25px;
+
+    text-align: center;
+
+}
+
+.side-menu-footer p {
+
+    font-size: 11px;
+
+    color: var(--gray);
+
+}
+
+.side-menu-footer strong {
+
+    display: block;
+
+    margin-top: 6px;
+
+    color: var(--primary);
+
+}
+
+
+/* ========================================
+   04. ORDER PROGRESS
+======================================== */
+
+.order-progress {
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    gap: 3px;
+
+    padding: 16px 12px;
+
+    background: var(--white);
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+.step {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    flex: 1;
+    min-width: 0;
+    max-width: 64px;
+
+    gap: 7px;
+
+}
+
+.step-number {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    background: #eeeeee;
+
+    color: #999999;
+
+    font-size: 14px;
+    font-weight: 500;
+
+}
+
+.step span {
+
+    font-size: 10px;
+    font-weight: 400;
+
+    color: #999999;
+
+    white-space: nowrap;
+
+}
+
+.step-arrow {
+
+    width: 15px;
+    height: 15px;
+
+    margin-top: 8px;
+
+    color: #d6d0ca;
+
+    flex-shrink: 0;
+
+}
+
+.step.active .step-number {
+
+    background: var(--primary);
+
+    color: var(--white);
+
+    box-shadow:
+        0 3px 10px rgba(230, 51, 35, 0.22);
+
+    animation: stepPop 0.4s ease-out;
+
+}
+
+.step.active span {
+
+    color: var(--primary);
+
+    font-weight: 700;
+
+}
+
+@keyframes stepPop {
+
+    from {
+
+        transform: scale(0.7);
+        opacity: 0;
+
+    }
+
+    to {
+
+        transform: scale(1);
+        opacity: 1;
+
+    }
+
+}
+
+
+/* ========================================
+   05. PAGE HEADING
+======================================== */
+
+.page-heading {
+
+    padding: 36px var(--side-padding) 26px;
+
+    animation: headingFade 0.5s ease-out;
+
+}
+
+.section-label {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    color: var(--primary);
+
+}
+
+.page-heading h1 {
+
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.4;
+
+    letter-spacing: -1.2px;
+
+    color: var(--text);
+
+}
+
+.page-heading p {
+
+    margin-top: 12px;
+
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+
+    color: var(--gray);
+
+}
+
+@keyframes headingFade {
+
+    from {
+
+        opacity: 0;
+        transform: translateY(12px);
+
+    }
+
+    to {
+
+        opacity: 1;
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* ========================================
+   06. SEARCH
+======================================== */
+
+.search-section {
+
+    padding: 0 var(--side-padding);
+
+}
+
+.search-box {
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    width: 100%;
+    height: 56px;
+
+    padding: 0 16px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+
+}
+
+.search-box > svg {
+
+    width: 21px;
+    height: 21px;
+
+    color: var(--gray);
+
+    flex-shrink: 0;
+
+}
+
+.search-box:focus-within {
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(230, 51, 35, 0.08);
+
+}
+
+.search-box:focus-within > svg {
+
+    color: var(--primary);
+
+}
+
+.search-box input {
+
+    flex: 1;
+
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    font-size: 16px;
+
+    color: var(--text);
+
+}
+
+.search-box input::placeholder {
+
+    font-size: 14px;
+
+    color: #9a8f87;
+
+}
+
+.search-box input::-webkit-search-cancel-button {
+
+    -webkit-appearance: none;
+
+}
+
+.search-clear {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 36px;
+
+    flex-shrink: 0;
+
+    color: var(--gray);
+
+}
+
+.search-clear svg {
+
+    width: 20px;
+    height: 20px;
+
+}
+
+
+/* ========================================
+   07. CATEGORY
+======================================== */
+
+.category-section {
+
+    position: sticky;
+    top: 60px;
+
+    z-index: 80;
+
+    padding: 18px var(--side-padding);
+
+    background: var(--background);
+
+}
+
+.category-list {
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    overflow-x: auto;
+
+    scrollbar-width: none;
+
+}
+
+.category-list::-webkit-scrollbar {
+
+    display: none;
+
+}
+
+.category-button {
+
+    flex-shrink: 0;
+
+    min-width: 58px;
+    height: 38px;
+
+    padding: 0 16px;
+
+    border: 1px solid var(--border);
+    border-radius: 50px;
+
+    background: var(--white);
+
+    font-size: 14px;
+    font-weight: 500;
+
+    color: var(--gray);
+
+    white-space: nowrap;
+
+    transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.2s ease;
+
+}
+
+.category-button.active {
+
+    background: var(--primary);
+
+    border-color: var(--primary);
+
+    color: var(--white);
+
+    box-shadow:
+        0 3px 10px rgba(230, 51, 35, 0.15);
+
+}
+
+.category-button:active {
+
+    transform: scale(0.94);
+
+}
+
+
+/* ========================================
+   08. MENU SECTION
+======================================== */
+
+.menu-section {
+
+    padding: 6px var(--side-padding) 60px;
+
+}
+
+.list-heading {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 16px;
+
+}
+
+.list-heading h2 {
+
+    font-size: 16px;
+    font-weight: 700;
+
+}
+
+.list-heading h2 span {
+
+    margin-left: 4px;
+
+    color: var(--primary);
+
+}
+
+.list-heading p {
+
+    font-size: 12px;
+    font-weight: 400;
+
+    color: var(--gray);
+
+}
+
+.menu-list {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+
+}
+
+
+/* ========================================
+   09. MENU CARD
+======================================== */
+
+.menu-card {
+
+    display: flex;
+    align-items: stretch;
+
+    gap: 16px;
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    background: var(--white);
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+
+}
+
+.menu-image {
+
+    flex: 0 0 43%;
+
+    align-self: center;
+
+    min-width: 0;
+
+    aspect-ratio: 1 / 1;
+
+    border-radius: 12px;
+
+    background: var(--light-orange);
+
+    overflow: hidden;
+
+}
+
+.menu-image img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    transition: transform 0.4s ease;
+
+}
+
+.menu-info {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 4px 0;
+
+}
+
+.menu-top {
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+
+.menu-badge {
+
+    display: inline-block;
+
+    margin-bottom: 7px;
+
+    padding: 3px 8px;
+
+    border-radius: 5px;
+
+    font-size: 10px;
+    font-weight: 800;
+
+}
+
+.menu-badge.best {
+
+    background: var(--primary);
+
+    color: var(--white);
+
+}
+
+.menu-badge.popular {
+
+    background: var(--light-orange);
+
+    color: #a54b14;
+
+}
+
+.menu-info h3 {
+
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.4;
+
+    letter-spacing: -0.7px;
+
+    word-break: keep-all;
+
+}
+
+.menu-description {
+
+    margin-top: 7px;
+
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.6;
+
+    color: var(--gray);
+
+    word-break: keep-all;
+
+}
+
+.menu-bottom {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 5px;
+
+    margin-top: 16px;
+
+}
+
+.menu-price {
+
+    font-size: 21px;
+    font-weight: 800;
+
+    letter-spacing: -0.7px;
+
+    white-space: nowrap;
+
+}
+
+.menu-price span {
+
+    font-size: 14px;
+    font-weight: 500;
+
+}
+
+.select-icon {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: var(--light-orange);
+
+    color: var(--primary);
+
+    transition: 0.25s ease;
+
+}
+
+.select-icon svg {
+
+    width: 20px;
+    height: 20px;
+
+}
+
+.menu-card:active {
+
+    transform: scale(0.97);
+
+    border-color: var(--primary);
+
+    box-shadow: none;
+
+}
+
+.menu-card:active .select-icon {
+
+    background: var(--primary);
+
+    color: var(--white);
+
+}
+
+
+/* ========================================
+   10. EMPTY STATE
+======================================== */
+
+.empty-state {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-height: 300px;
+
+    padding: 45px 10px;
+
+    text-align: center;
+
+    animation: headingFade 0.3s ease-out;
+
+}
+
+.empty-icon {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 80px;
+    height: 80px;
+
+    margin-bottom: 22px;
+
+    border-radius: 50%;
+
+    background: var(--light-orange);
+
+    color: var(--primary);
+
+}
+
+.empty-icon svg {
+
+    width: 36px;
+    height: 36px;
+
+    stroke-width: 1.5;
+
+}
+
+.empty-state h3 {
+
+    font-size: 18px;
+    font-weight: 600;
+
+}
+
+.empty-state p {
+
+    margin-top: 10px;
+
+    font-size: 13px;
+
+    color: var(--gray);
+
+}
+
+.reset-button {
+
+    min-height: 44px;
+
+    margin-top: 24px;
+
+    padding: 0 22px;
+
+    border-radius: 10px;
+
+    background: var(--primary);
+
+    color: var(--white);
+
+    font-size: 14px;
+    font-weight: 500;
+
+    transition: transform 0.2s ease;
+
+}
+
+.reset-button:active {
+
+    transform: scale(0.95);
+
+}
+
+
+/* ========================================
+   11. FOOTER
+======================================== */
+
+.footer {
+
+    padding: 36px var(--side-padding);
+
+    border-top: 1px solid var(--border);
+
+    background: #f5e9dc;
+
+    text-align: center;
+
+}
+
+.footer img {
+
+    width: 100px;
+
+    margin: 0 auto 15px;
+
+}
+
+.footer p {
+
+    font-size: 13px;
+    font-weight: 500;
+
+    color: var(--gray);
+
+}
+
+.footer span {
+
+    display: block;
+
+    margin-top: 12px;
+
+    font-size: 11px;
+
+    color: var(--gray);
+
+}
+
+
+/* ========================================
+   12. TOP BUTTON
+======================================== */
+
+.top-button {
+
+    position: fixed;
+
+    right: max(
+        20px,
+        calc((100vw - 500px) / 2 + 20px)
+    );
+
+    bottom: 24px;
+
+    z-index: 90;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+
+    border: 1px solid var(--border);
+    border-radius: 50%;
+
+    background: var(--white);
+
+    box-shadow: var(--shadow);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(15px);
+
+    transition: 0.25s ease;
+
+}
+
+.top-button.visible {
+
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+
+}
+
+.top-button svg {
+
+    width: 22px;
+    height: 22px;
+
+}
+
+
+/* ========================================
+   13. PC HOVER
+======================================== */
+
+@media (hover: hover) {
+
+    .menu-card:hover {
+
+        border-color: var(--primary);
+
+        transform: translateY(-3px);
+
+        box-shadow:
+            0 10px 25px rgba(80, 40, 20, 0.12);
+
+    }
+
+    .menu-card:hover .menu-image img {
+
+        transform: scale(1.04);
+
+    }
+
+    .menu-card:hover .select-icon {
+
+        background: var(--primary);
+
+        color: var(--white);
+
+        transform: translateX(2px);
+
+    }
+
+    .category-button:not(.active):hover {
+
+        border-color: var(--primary);
+
+        color: var(--primary);
+
+    }
+
+    .side-menu-nav a:hover {
+
+        background: var(--light-orange);
+
+        color: var(--primary);
+
+    }
+
+    .reset-button:hover {
+
+        background: var(--primary-dark);
+
+    }
+
+}
+
+
+/* ========================================
+   14. SMALL MOBILE
+======================================== */
+
+@media (max-width: 380px) {
+
+    .page-heading h1 {
+
+        font-size: 27px;
+
+    }
+
+    .category-button {
+
+        padding: 0 12px;
+
+        font-size: 13px;
+
+    }
+
+    .menu-card {
+
+        gap: 12px;
+
+        padding: 10px;
+
+    }
+
+    .menu-info h3 {
+
+        font-size: 16px;
+
+    }
+
+    .menu-description {
+
+        font-size: 12px;
+
+    }
+
+    .menu-price {
+
+        font-size: 18px;
+
+    }
+
+    .menu-price span {
+
+        font-size: 12px;
+
+    }
+
+    .select-icon {
+
+        width: 28px;
+        height: 28px;
+
+    }
+
+    .step-arrow {
+
+        width: 12px;
+
+    }
+
+    .step span {
+
+        font-size: 9px;
+
+    }
+
+    .side-menu-nav a {
+
+        font-size: 15px;
+
+    }
+
+}
+
+
+/* ========================================
+   15. REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+
+        scroll-behavior: auto;
+
+    }
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: 0.01ms !important;
+
+        transition-duration: 0.01ms !important;
+
+    }
+
+}
+
+/* ========================================
+   ORDER PROGRESS - 4 STEP UPDATE
+======================================== */
+
+.order-progress {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    width: 100%;
+
+    gap: 6px;
+    padding: 16px 20px;
+
+    background: #ffffff;
+    border-bottom: 1px solid #ebddd0;
+}
+
+
+/* 단계별 영역 */
+
+.order-progress .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+
+    gap: 8px;
+}
+
+
+/* 기본 단계 원형 */
+
+.order-progress .step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #eeeeee;
+    color: #999999;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    box-shadow: none;
+
+    transition: background-color 0.25s ease,
+                color 0.25s ease;
+}
+
+
+/* 기본 단계 텍스트 */
+
+.order-progress .step > span {
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.5;
+
+    color: #999999;
+
+    text-align: center;
+    white-space: nowrap;
+}
+
+
+/* 단계 사이 화살표 */
+
+.order-progress .step-arrow {
+    flex-shrink: 0;
+
+    width: 14px;
+    height: 14px;
+
+    margin-top: 10px;
+
+    color: #d5cdc5;
+
+    stroke-width: 1.8;
+}
+
+
+/* 완료된 단계 */
+
+.order-progress .step.completed .step-number {
+    background: #ffe8d2;
+    color: #e63323;
+}
+
+.order-progress .step.completed > span {
+    color: #e63323;
+}
+
+
+/* 현재 진행 중인 단계 */
+
+.order-progress .step.active .step-number {
+    background: #e63323;
+    color: #ffffff;
+
+    box-shadow: 0 3px 10px rgba(230, 51, 35, 0.2);
+
+    animation: progressStepPop 0.4s ease-out;
+}
+
+.order-progress .step.active > span {
+    color: #e63323;
+    font-weight: 700;
+}
+
+
+/* 체크 아이콘 */
+
+.order-progress .step-number svg {
+    width: 18px;
+    height: 18px;
+
+    stroke-width: 2.2;
+}
+
+
+/* 현재 단계 등장 애니메이션 */
+
+@keyframes progressStepPop {
+    from {
+        opacity: 0;
+        transform: scale(0.75);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* 작은 모바일 화면 */
+
+@media (max-width: 380px) {
+
+    .order-progress {
+        padding: 16px 14px;
+        gap: 4px;
+    }
+
+    .order-progress .step-number {
+        width: 32px;
+        height: 32px;
+    }
+
+    .order-progress .step > span {
+        font-size: 10px;
+    }
+
+    .order-progress .step-arrow {
+        width: 12px;
+        height: 12px;
+    }
+
+}
+
+
+/* 애니메이션 최소화 설정 */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .order-progress .step.active .step-number {
+        animation: none;
+    }
+
+    .order-progress .step-number {
+        transition: none;
+    }
+
+}
