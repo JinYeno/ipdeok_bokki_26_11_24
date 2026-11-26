@@ -18,6 +18,10 @@
     <!-- CSS -->
     <link rel="stylesheet" href="./css/detail.css">
 
+    <!-- 공통 로그인 UI -->
+<link rel="stylesheet" href="../../css/auth-ui.css">
+
+
     <!-- Lucide Icon -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -216,105 +220,245 @@
             </section>
 
 
-            <!-- =========================
-                 SPICY LEVEL
-            ========================== -->
 
-            <section class="option-section">
+<!-- =========================
+     SPICY LEVEL
+========================== -->
 
-                <div class="option-heading">
+<section class="option-section spicy-section">
 
-                    <h2>맵기 선택</h2>
+    <div class="option-heading">
 
-                    <span class="required-badge">
-                        필수
-                    </span>
+        <h2>맵기 선택</h2>
 
-                </div>
+        <span class="required-badge">필수</span>
 
-                <p class="option-description">
-                    취향에 맞는 맵기를 선택해 주세요.
-                </p>
+    </div>
 
-                <div class="option-list">
+    <p class="option-description">
+        취향에 맞는 맵기를 선택해 주세요.
+    </p>
 
-                    <label class="option-row">
 
-                        <input type="radio"
-                               name="spicy"
-                               value="순한맛">
+    <!-- 맵기 게이지 카드 -->
 
-                        <span class="radio-mark"></span>
+    <div class="spicy-gauge-card" id="spicyGaugeCard">
 
-                        <span class="option-name">
-                            순한맛
-                        </span>
+        <span class="spicy-eyebrow">
+            IPDEOK SPICY GUIDE
+        </span>
 
-                        <span class="option-price">
-                            +0원
-                        </span>
+        <h3>나에게 맞는 맵기를 찾아보세요!</h3>
 
-                    </label>
+        <p class="spicy-intro">
+            입덕볶이가 처음이라면 맵기별 특징을 확인해 보세요.
+        </p>
 
-                    <label class="option-row">
+        <div class="spicy-default" id="spicyDefault">
+            이 메뉴의 기본 맵기 · 보통맛
+        </div>
 
-                        <input type="radio"
-                               name="spicy"
-                               value="보통맛"
-                               checked>
 
-                        <span class="radio-mark"></span>
+        <!-- 반원형 게이지 -->
 
-                        <span class="option-name">
-                            보통맛
-                            <small class="recommend-label">추천</small>
-                        </span>
+        <div class="spicy-meter">
 
-                        <span class="option-price">
-                            +0원
-                        </span>
+            <svg viewBox="0 0 320 180"
+                 class="spicy-meter-svg"
+                 aria-hidden="true">
 
-                    </label>
+                <!-- 순한맛 -->
 
-                    <label class="option-row">
+                <path class="spicy-arc"
+                      d="M 48 140 A 112 112 0 0 1 77 65"
+                      stroke="#659b43" />
 
-                        <input type="radio"
-                               name="spicy"
-                               value="매운맛">
+                <!-- 보통맛 -->
 
-                        <span class="radio-mark"></span>
+                <path class="spicy-arc"
+                      d="M 85 57 A 112 112 0 0 1 154 28"
+                      stroke="#e69a27" />
 
-                        <span class="option-name">
-                            매운맛
-                        </span>
+                <!-- 매운맛 -->
 
-                        <span class="option-price">
-                            +0원
-                        </span>
+                <path class="spicy-arc"
+                      d="M 166 28 A 112 112 0 0 1 235 57"
+                      stroke="#e63323" />
 
-                    </label>
+                <!-- 아주 매운맛 -->
 
-                    <label class="option-row">
+                <path class="spicy-arc"
+                      d="M 243 65 A 112 112 0 0 1 272 140"
+                      stroke="#a51c24" />
 
-                        <input type="radio"
-                               name="spicy"
-                               value="아주 매운맛">
 
-                        <span class="radio-mark"></span>
+                <!-- 게이지 바늘 -->
 
-                        <span class="option-name">
-                            아주 매운맛
-                        </span>
+                <g id="spicyNeedle">
 
-                        <span class="option-price">
-                            +0원
-                        </span>
+                    <path d="M 155 140 L 160 43 L 165 140 Z"
+                          fill="#302019" />
 
-                    </label>
+                </g>
 
-                </div>
+                <circle cx="160"
+                        cy="140"
+                        r="9"
+                        fill="#302019" />
 
-            </section>
+                <text x="40"
+                      y="170"
+                      text-anchor="middle">
+                    순한맛
+                </text>
+
+                <text x="278"
+                      y="170"
+                      text-anchor="middle">
+                    아주 매운맛
+                </text>
+
+            </svg>
+
+        </div>
+
+
+        <!-- 고추 아이콘 -->
+
+        <div class="gauge-peppers"
+             id="gaugePeppers"
+             aria-hidden="true">
+
+            <span>🌶️</span>
+            <span>🌶️</span>
+            <span>🌶️</span>
+            <span>🌶️</span>
+
+        </div>
+
+
+        <!-- 현재 선택한 맵기 -->
+
+        <div class="spicy-result"
+             aria-live="polite">
+
+            <strong id="spicyCurrentName">
+                보통맛
+            </strong>
+
+            <span id="spicyCurrentLevel">
+                LEVEL 2 / 4
+            </span>
+
+            <p id="spicyCurrentDescription">
+                달콤함과 매콤함이 어우러지는 맛
+            </p>
+
+            <small id="spicyCurrentRecommend">
+                적당한 매콤함을 즐기는 분께 추천
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <!-- 맵기 선택 버튼 -->
+
+    <div class="option-list spicy-option-list"
+         role="radiogroup"
+         aria-label="맵기 선택">
+
+        <label class="option-row spicy-choice"
+               style="--level-color: #659b43;">
+
+            <input type="radio"
+                   name="spicy"
+                   value="순한맛">
+
+            <span class="spicy-choice-level">
+                LEVEL 01
+            </span>
+
+            <span class="radio-mark"></span>
+
+            <span class="option-name">순한맛</span>
+
+            <span class="option-price">+0원</span>
+
+        </label>
+
+
+        <label class="option-row spicy-choice"
+               style="--level-color: #e69a27;">
+
+            <input type="radio"
+                   name="spicy"
+                   value="보통맛"
+                   checked>
+
+            <span class="spicy-choice-level">
+                LEVEL 02
+            </span>
+
+            <span class="radio-mark"></span>
+
+            <span class="option-name">보통맛</span>
+
+            <span class="option-price">+0원</span>
+
+        </label>
+
+
+        <label class="option-row spicy-choice"
+               style="--level-color: #e63323;">
+
+            <input type="radio"
+                   name="spicy"
+                   value="매운맛">
+
+            <span class="spicy-choice-level">
+                LEVEL 03
+            </span>
+
+            <span class="radio-mark"></span>
+
+            <span class="option-name">매운맛</span>
+
+            <span class="option-price">+0원</span>
+
+        </label>
+
+
+        <label class="option-row spicy-choice"
+               style="--level-color: #a51c24;">
+
+            <input type="radio"
+                   name="spicy"
+                   value="아주 매운맛">
+
+            <span class="spicy-choice-level">
+                LEVEL 04
+            </span>
+
+            <span class="radio-mark"></span>
+
+            <span class="option-name">아주 매운맛</span>
+
+            <span class="option-price">+0원</span>
+
+        </label>
+
+    </div>
+
+
+    <p class="spicy-notice">
+        ※ 맵기는 예시 기준이며 개인마다 체감하는
+        정도가 다를 수 있습니다.
+    </p>
+
+</section>
+
 
 
             <!-- =========================
@@ -892,6 +1036,223 @@
         });
 
 
+// =========================
+// V2.0 맵기 게이지 기능
+// =========================
+
+const spicyData = [
+
+    {
+        name: "순한맛",
+        color: "#659b43",
+        angle: -67.5,
+        description: "부드럽고 달콤한 맛 중심",
+        recommend: "매운맛이 부담스러운 분께 추천"
+    },
+
+    {
+        name: "보통맛",
+        color: "#e69a27",
+        angle: -22.5,
+        description: "달콤함과 매콤함이 어우러지는 맛",
+        recommend: "적당한 매콤함을 즐기는 분께 추천"
+    },
+
+    {
+        name: "매운맛",
+        color: "#e63323",
+        angle: 22.5,
+        description: "입안에서 느껴지는 화끈한 매운맛",
+        recommend: "평소 매운 음식을 즐기는 분께 추천"
+    },
+
+    {
+        name: "아주 매운맛",
+        color: "#a51c24",
+        angle: 67.5,
+        description: "강렬하고 자극적인 매운맛",
+        recommend: "강한 매운맛에 익숙한 분께 추천"
+    }
+
+];
+
+
+// 메뉴별 기본 맵기
+
+const defaultSpicyLevels = {
+
+    original: 2,
+
+    rose: 1,
+
+    mala: 3,
+
+    "mala-rose": 2
+
+};
+
+
+// 맵기 관련 요소
+
+const spicyInputs = document.querySelectorAll(
+    'input[name="spicy"]'
+);
+
+const spicyGaugeCard =
+    document.getElementById("spicyGaugeCard");
+
+const spicyNeedle =
+    document.getElementById("spicyNeedle");
+
+const spicyArcs =
+    document.querySelectorAll(".spicy-arc");
+
+const gaugePeppers =
+    document.querySelectorAll("#gaugePeppers span");
+
+
+// 게이지 화면 업데이트
+
+function updateSpicyGauge() {
+
+    const selectedSpicy = document.querySelector(
+        'input[name="spicy"]:checked'
+    );
+
+    if (!selectedSpicy) return;
+
+    const index = spicyData.findIndex(
+        function (item) {
+
+            return item.name === selectedSpicy.value;
+
+        }
+    );
+
+    if (index === -1) return;
+
+    const current = spicyData[index];
+
+
+    // 게이지 바늘 회전
+
+    spicyNeedle.style.transform =
+        `rotate(${current.angle}deg)`;
+
+
+    // 선택한 단계 색상 변경
+
+    spicyGaugeCard.style.setProperty(
+        "--current-spicy-color",
+        current.color
+    );
+
+
+    // 게이지 활성화
+
+    spicyArcs.forEach(function (arc, i) {
+
+        arc.classList.toggle(
+            "active",
+            i <= index
+        );
+
+    });
+
+
+    // 고추 아이콘 활성화
+
+    gaugePeppers.forEach(function (pepper, i) {
+
+        pepper.classList.toggle(
+            "active",
+            i <= index
+        );
+
+    });
+
+
+    // 맵기 이름
+
+    document.getElementById(
+        "spicyCurrentName"
+    ).textContent = current.name;
+
+
+    // 맵기 단계
+
+    document.getElementById(
+        "spicyCurrentLevel"
+    ).textContent = `LEVEL ${index + 1} / 4`;
+
+
+    // 맵기 설명
+
+    document.getElementById(
+        "spicyCurrentDescription"
+    ).textContent = current.description;
+
+
+    // 추천 대상
+
+    document.getElementById(
+        "spicyCurrentRecommend"
+    ).textContent = current.recommend;
+
+}
+
+
+// 메뉴별 기본 맵기 적용
+
+const initialSpicyLevel =
+    defaultSpicyLevels[product.id] || 2;
+
+const initialSpicy =
+    spicyData[initialSpicyLevel - 1];
+
+spicyInputs.forEach(function (input) {
+
+    input.checked =
+        input.value === initialSpicy.name;
+
+});
+
+
+// 기본 맵기 안내 문구
+
+document.getElementById(
+    "spicyDefault"
+).textContent =
+    "이 메뉴의 기본 맵기 · " +
+    initialSpicy.name +
+    " (" + initialSpicyLevel + "/4)";
+
+
+// 맵기 변경 이벤트
+
+spicyInputs.forEach(function (input) {
+
+    input.addEventListener(
+        "change",
+        updateSpicyGauge
+    );
+
+});
+
+
+// 최초 게이지 실행
+
+updateSpicyGauge();
+
+
+// 뒤로 가기 시 게이지 동기화
+
+window.addEventListener(
+    "pageshow",
+    updateSpicyGauge
+);
+
+
         // =========================
         // 04. 주문 관련 변수
         // =========================
@@ -1079,8 +1440,8 @@
 
             bottomAmount.textContent = newTotal;
 
-            orderButtonText.textContent =
-                newTotal + " 주문하기";
+           orderButtonText.textContent =
+    order.spicy + " · " + newTotal + " 주문하기";
 
 
             // 선택된 옵션 표시

@@ -1657,3 +1657,280 @@ body.menu-open {
     }
 
 }
+
+/* ========================================
+   V2.0 - SPICY GUIDE
+======================================== */
+
+.spicy-guide {
+    margin: 0 20px 22px;
+    padding: 20px 16px;
+
+    border: 1px solid #f2c8ad;
+    border-radius: 16px;
+
+    background: linear-gradient(
+        135deg,
+        #ffe8d2,
+        #fff1e2
+    );
+
+    animation: headingFade 0.5s ease-out;
+}
+
+
+/* 맵기 가이드 제목 */
+
+.spicy-guide-heading {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.spicy-guide-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+    color: #e63323;
+}
+
+.spicy-guide-icon svg {
+    width: 25px;
+    height: 25px;
+}
+
+.spicy-guide-heading span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #e63323;
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.spicy-guide-heading h2 {
+    color: #302019;
+
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -0.7px;
+
+    word-break: keep-all;
+}
+
+
+/* 가이드 설명 */
+
+.spicy-guide-description {
+    margin-top: 14px;
+
+    color: #81756d;
+
+    font-size: 12px;
+    line-height: 1.8;
+
+    word-break: keep-all;
+}
+
+
+/* 맵기 단계 */
+
+.spicy-guide-scale {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 6px;
+
+    margin-top: 20px;
+}
+
+.spicy-guide-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-width: 0;
+
+    gap: 5px;
+}
+
+.spicy-guide-bar {
+    width: 100%;
+    height: 7px;
+
+    margin-bottom: 4px;
+
+    border-radius: 20px;
+}
+
+.spicy-guide-step.mild .spicy-guide-bar {
+    background: #659b43;
+}
+
+.spicy-guide-step.normal .spicy-guide-bar {
+    background: #e69a27;
+}
+
+.spicy-guide-step.hot .spicy-guide-bar {
+    background: #e63323;
+}
+
+.spicy-guide-step.extra-hot .spicy-guide-bar {
+    background: #a51c24;
+}
+
+.spicy-guide-step strong {
+    color: #302019;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.spicy-guide-step span {
+    color: #81756d;
+
+    font-size: 10px;
+
+    text-align: center;
+}
+
+.spicy-guide-notice {
+    margin-top: 16px;
+
+    color: #81756d;
+
+    font-size: 10px;
+    line-height: 1.7;
+
+    word-break: keep-all;
+}
+
+
+/* ========================================
+   MENU CARD SPICY LEVEL
+======================================== */
+
+.menu-spicy {
+    width: 100%;
+
+    margin-top: 12px;
+}
+
+.spicy-peppers {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 2px;
+}
+
+.spicy-pepper {
+    display: inline-block;
+
+    font-size: 15px;
+    line-height: 1.3;
+
+    filter: grayscale(1);
+    opacity: 0.2;
+}
+
+.spicy-pepper.filled {
+    filter: none;
+    opacity: 1;
+}
+
+.spicy-peppers strong {
+    margin-left: 5px;
+
+    color: #302019;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.menu-spicy-label {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #302019;
+
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.5;
+
+    word-break: keep-all;
+}
+
+.menu-spicy-label::before {
+    display: inline-block;
+
+    width: 7px;
+    height: 7px;
+
+    margin-right: 5px;
+
+    border-radius: 50%;
+
+    background: var(--spicy-color);
+
+    content: "";
+}
+
+
+/* 메뉴 카드 간격 조정 */
+
+.menu-bottom {
+    margin-top: 12px;
+}
+
+
+/* 작은 모바일 화면 대응 */
+
+@media (max-width: 380px) {
+
+    .spicy-guide {
+        padding: 16px 12px;
+    }
+
+    .spicy-guide-heading h2 {
+        font-size: 15px;
+    }
+
+    .spicy-guide-heading span {
+        font-size: 8px;
+    }
+
+    .spicy-guide-step span {
+        font-size: 9px;
+    }
+
+    .spicy-pepper {
+        font-size: 12px;
+    }
+
+    .spicy-peppers strong {
+        font-size: 10px;
+        margin-left: 3px;
+    }
+
+    .menu-spicy-label {
+        font-size: 10px;
+    }
+
+}

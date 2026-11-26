@@ -22,6 +22,10 @@
 
     <link rel="stylesheet" href="./css/payment.css">
 
+    <!-- 공통 로그인 UI -->
+
+<link rel="stylesheet" href="../../css/auth-ui.css">
+
     <!-- LUCIDE ICON -->
 
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -246,6 +250,90 @@
             <form id="checkoutForm"
                   class="checkout-content"
                   novalidate>
+                  
+
+<!-- =========================
+     MEMBER / GUEST CHECKOUT
+========================== -->
+
+<section class="checkout-auth-card">
+
+    <!-- 비회원 주문 안내 -->
+
+    <div id="guestCheckout" hidden>
+
+        <span class="checkout-auth-eyebrow">
+            GUEST ORDER
+        </span>
+
+        <h2>비회원으로 주문하고 있어요.</h2>
+
+        <p>
+            로그인하고 입덕볶이의 회원 혜택을 만나보세요!
+        </p>
+
+        <a href="../login/login.html"
+           class="checkout-login-button">
+
+            <i data-lucide="user-round"></i>
+
+            로그인 / 회원가입
+
+            <i data-lucide="chevron-right"></i>
+
+        </a>
+
+        <small>
+            로그인하지 않아도 주문할 수 있어요.
+        </small>
+
+    </div>
+
+
+    <!-- 회원 주문 안내 -->
+
+    <div id="memberCheckout" hidden>
+
+        <span class="checkout-auth-eyebrow">
+            WELCOME MEMBER
+        </span>
+
+        <h2>
+            <span id="checkoutUserName">입덕러</span>님의 주문이에요!
+        </h2>
+
+        <p>
+            오늘도 맛있는 입덕볶이와 함께하세요.
+        </p>
+
+        <div class="checkout-benefits">
+
+            <div class="checkout-benefit">
+
+                <i data-lucide="ticket"></i>
+
+                <span>시연용 쿠폰</span>
+
+                <strong id="checkoutCouponCount">2장</strong>
+
+            </div>
+
+            <div class="checkout-benefit">
+
+                <i data-lucide="coins"></i>
+
+                <span>보유 포인트</span>
+
+                <strong id="checkoutPointCount">0P</strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
 
 
                 <!-- =========================
@@ -304,6 +392,61 @@
                                 </div>
 
                             </div>
+
+
+<!-- 선택한 맵기 확인 -->
+
+<div class="checkout-spicy" id="checkoutSpicy">
+
+    <div class="checkout-spicy-heading">
+
+        <span>선택한 맵기</span>
+
+        <strong id="checkoutSpicyLevel">
+            LEVEL 2 / 4
+        </strong>
+
+    </div>
+
+    <div class="checkout-spicy-result">
+
+        <strong id="checkoutSpicyName">
+            보통맛
+        </strong>
+
+        <div class="checkout-peppers"
+             id="checkoutPeppers"
+             aria-hidden="true">
+
+            <span>🌶️</span>
+            <span>🌶️</span>
+            <span>🌶️</span>
+            <span>🌶️</span>
+
+        </div>
+
+    </div>
+
+    <div class="checkout-spicy-bar"
+         id="checkoutSpicyBar"
+         aria-hidden="true">
+
+        <span style="--spicy-color: #659b43;"></span>
+
+        <span style="--spicy-color: #e69a27;"></span>
+
+        <span style="--spicy-color: #e63323;"></span>
+
+        <span style="--spicy-color: #a51c24;"></span>
+
+    </div>
+
+    <p id="checkoutSpicyDescription">
+        달콤함과 매콤함이 어우러지는 맛
+    </p>
+
+</div>
+
 
                             <div class="product-total">
 
@@ -434,7 +577,9 @@
                      COUPON
                 ========================== -->
 
-                <section class="checkout-card reveal">
+                <section class="checkout-card reveal"
+         id="memberCouponSection"
+         hidden>
 
                     <details open>
 
@@ -1173,8 +1318,7 @@
             $("productName").textContent = order.name;
 
             $("productQuantity").textContent =
-                (order.spicy || "보통맛") +
-                " · " + order.quantity + "개";
+    "수량 : " + order.quantity + "개";
 
             const toppings = Array.isArray(order.toppings)
                 ? order.toppings
@@ -1246,11 +1390,16 @@
 
         function getDiscount() {
 
-            if (!selectedCoupon || !order) {
+    if (
+        !window.IpdeokAuth ||
+        !window.IpdeokAuth.isLoggedIn() ||
+        !selectedCoupon ||
+        !order
+    ) {
 
-                return 0;
+        return 0;
 
-            }
+    }
 
             return Math.min(
                 coupons[selectedCoupon].discount,
@@ -1838,6 +1987,209 @@
         loadOrder();
 
         updatePayment();
+
+
+// =========================
+// V2.0 회원 / 비회원 결제 UI
+// =========================
+
+function renderCheckoutAuth() {
+
+    const auth = window.IpdeokAuth;
+
+    const loggedIn = Boolean(
+        auth && auth.isLoggedIn()
+    );
+
+    const user = loggedIn
+        ? auth.getUser()
+        : null;
+
+
+    // 회원 / 비회원 화면 구분
+
+    $("guestCheckout").hidden = loggedIn;
+
+    $("memberCheckout").hidden = !loggedIn;
+
+    $("memberCouponSection").hidden = !loggedIn;
+
+
+    // 회원 정보 표시
+
+    if (loggedIn && user) {
+
+        $("checkoutUserName").textContent =
+            user.name;
+
+        $("checkoutCouponCount").textContent =
+            Object.keys(coupons).length + "장";
+
+        $("checkoutPointCount").textContent =
+            (user.points || 0).toLocaleString("ko-KR") + "P";
+
+    }
+
+
+    // 비회원은 회원 쿠폰 적용 해제
+
+    document.querySelectorAll(".coupon-card")
+        .forEach(function(button) {
+
+            button.disabled = !loggedIn;
+
+        });
+
+    if (!loggedIn) {
+
+        selectedCoupon = null;
+
+    }
+
+    updatePayment();
+
+}
+
+
+// =========================
+// V2.0 결제 페이지 맵기 안내
+// =========================
+
+const checkoutSpicyData = [
+
+    {
+        name: "순한맛",
+        color: "#659b43",
+        description: "부드럽고 달콤한 맛 중심"
+    },
+
+    {
+        name: "보통맛",
+        color: "#e69a27",
+        description: "달콤함과 매콤함이 어우러지는 맛"
+    },
+
+    {
+        name: "매운맛",
+        color: "#e63323",
+        description: "입안에서 느껴지는 화끈한 매운맛"
+    },
+
+    {
+        name: "아주 매운맛",
+        color: "#a51c24",
+        description: "강렬하고 자극적인 매운맛"
+    }
+
+];
+
+
+function renderCheckoutSpicy() {
+
+    if (!order) return;
+
+    const index = checkoutSpicyData.findIndex(
+        function(item) {
+
+            return item.name === order.spicy;
+
+        }
+    );
+
+    if (index === -1) {
+
+        $("checkoutSpicy").hidden = true;
+
+        return;
+
+    }
+
+    $("checkoutSpicy").hidden = false;
+
+    const current = checkoutSpicyData[index];
+
+
+    // 맵기 이름
+
+    $("checkoutSpicyName").textContent =
+        current.name;
+
+
+    // 맵기 단계
+
+    $("checkoutSpicyLevel").textContent =
+        `LEVEL ${index + 1} / 4`;
+
+
+    // 맵기 설명
+
+    $("checkoutSpicyDescription").textContent =
+        current.description;
+
+
+    // 맵기 색상
+
+    $("checkoutSpicy").style.setProperty(
+        "--current-spicy-color",
+        current.color
+    );
+
+
+    // 고추 아이콘 활성화
+
+    document.querySelectorAll(
+        "#checkoutPeppers span"
+    ).forEach(function(pepper, i) {
+
+        pepper.classList.toggle(
+            "active",
+            i <= index
+        );
+
+    });
+
+
+    // 가로형 게이지 활성화
+
+    document.querySelectorAll(
+        "#checkoutSpicyBar span"
+    ).forEach(function(bar, i) {
+
+        bar.classList.toggle(
+            "active",
+            i <= index
+        );
+
+    });
+
+}
+
+
+// =========================
+// V2.0 최초 실행
+// =========================
+
+renderCheckoutAuth();
+
+renderCheckoutSpicy();
+
+
+// 뒤로 가기 및 로그인 상태 동기화
+
+window.addEventListener("pageshow", function() {
+
+    renderCheckoutAuth();
+
+    renderCheckoutSpicy();
+
+});
+
+window.addEventListener("storage", function() {
+
+    renderCheckoutAuth();
+
+});
+
 
     </script>
 

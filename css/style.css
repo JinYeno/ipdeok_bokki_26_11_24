@@ -1610,3 +1610,425 @@ body.is-menu-open {
     }
 
 }
+
+/* ========================================
+   V2.0 - MEMBER & GUEST UI
+======================================== */
+
+/* 회원 및 비회원 환영 영역 */
+
+.auth-welcome {
+    padding: 20px;
+}
+
+.auth-welcome-card {
+    position: relative;
+
+    padding: 24px 20px;
+
+    border: 1px solid #ebddd0;
+    border-radius: 20px;
+
+    background: linear-gradient(
+        135deg,
+        #ffe8d2,
+        #fff1e2
+    );
+
+    box-shadow: 0 4px 16px rgba(48, 32, 25, 0.06);
+
+    animation: authFadeUp 0.5s ease both;
+}
+
+
+/* 영문 타이틀 */
+
+.auth-eyebrow {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #e63323;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+
+/* 환영 문구 */
+
+.auth-welcome-card h2 {
+    color: #302019;
+
+    font-size: clamp(19px, 5vw, 25px);
+    font-weight: 800;
+    line-height: 1.5;
+
+    letter-spacing: -1px;
+    word-break: keep-all;
+}
+
+.auth-welcome-card p {
+    margin-top: 8px;
+
+    color: #81756d;
+
+    font-size: 13px;
+    line-height: 1.8;
+
+    word-break: keep-all;
+}
+
+
+/* 로그인 및 마이페이지 버튼 */
+
+.auth-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    min-height: 48px;
+
+    margin-top: 20px;
+    padding: 12px 16px;
+
+    border-radius: 12px;
+
+    background: #e63323;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        background-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.auth-action svg {
+    width: 18px;
+    height: 18px;
+
+    flex-shrink: 0;
+}
+
+.auth-action:hover {
+    background: #c92517;
+}
+
+.auth-action:active {
+    transform: scale(0.97);
+}
+
+
+/* 회원 혜택 카드 */
+
+.auth-benefits {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+.auth-benefit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 18px 10px;
+
+    border: 1px solid #ebddd0;
+    border-radius: 14px;
+
+    background: #ffffff;
+}
+
+.auth-benefit svg {
+    width: 24px;
+    height: 24px;
+
+    color: #e63323;
+
+    stroke-width: 1.7;
+}
+
+.auth-benefit span {
+    color: #81756d;
+
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.auth-benefit strong {
+    color: #e63323;
+
+    font-size: 23px;
+    font-weight: 800;
+}
+
+
+/* 로그인 상태 디자인 */
+
+body.is-member .auth-welcome-card {
+    border-color: #f2c8ad;
+
+    background: linear-gradient(
+        135deg,
+        #ffe8d2,
+        #ffdcc0
+    );
+}
+
+
+/* 햄버거 메뉴 회원 정보 */
+
+.auth-side-grade {
+    margin-top: 12px;
+
+    color: #81756d;
+
+    font-size: 12px;
+    line-height: 1.7;
+
+    word-break: keep-all;
+}
+
+
+/* 햄버거 메뉴 로그아웃 버튼 */
+
+.side-menu-nav .auth-logout {
+    margin-top: 12px;
+
+    border-top: 1px solid #ebddd0;
+    border-radius: 0;
+
+    color: #81756d;
+
+    font-size: 14px;
+}
+
+
+/* 비활성화된 화면 숨기기 */
+
+#guestWelcome[hidden],
+#memberWelcome[hidden],
+.auth-logout[hidden] {
+    display: none !important;
+}
+
+
+/* 등장 애니메이션 */
+
+@keyframes authFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* 작은 모바일 화면 대응 */
+
+@media (max-width: 360px) {
+
+    .auth-welcome-card {
+        padding: 20px 16px;
+    }
+
+    .auth-benefits {
+        gap: 8px;
+    }
+
+    .auth-benefit strong {
+        font-size: 20px;
+    }
+
+}
+
+
+/* 접근성 설정 */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .auth-welcome-card {
+        animation: none;
+    }
+
+    .auth-action {
+        transition: none;
+    }
+
+}
+
+/* ========================================
+   V2.0 - SIDE MENU MEMBER UI
+======================================== */
+
+
+/* 기존 햄버거 메뉴 환영 문구 숨기기 */
+
+.side-menu .side-menu-welcome {
+    display: none;
+}
+
+
+/* 햄버거 메뉴 스크롤 */
+
+.side-menu {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+
+/* 회원 및 비회원 영역 */
+
+.side-menu .auth-welcome {
+    padding: 0;
+    margin: 16px 0 24px;
+
+    flex-shrink: 0;
+}
+
+
+/* 환영 카드 */
+
+.side-menu .auth-welcome-card {
+    padding: 20px 14px;
+
+    border-radius: 16px;
+
+    box-shadow: none;
+}
+
+
+/* 영문 타이틀 */
+
+.side-menu .auth-eyebrow {
+    margin-bottom: 8px;
+
+    font-size: 9px;
+    letter-spacing: 1.5px;
+}
+
+
+/* 환영 문구 */
+
+.side-menu .auth-welcome-card h2 {
+    font-size: 19px;
+    line-height: 1.5;
+
+    letter-spacing: -0.8px;
+    word-break: keep-all;
+}
+
+.side-menu .auth-welcome-card p {
+    margin-top: 8px;
+
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+
+/* 로그인 및 마이페이지 버튼 */
+
+.side-menu .auth-action {
+    gap: 6px;
+
+    min-height: 42px;
+
+    margin-top: 16px;
+    padding: 10px 8px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.side-menu .auth-action svg {
+    width: 15px;
+    height: 15px;
+}
+
+
+/* 회원 혜택 영역 */
+
+.side-menu .auth-benefits {
+    gap: 8px;
+
+    margin-top: 16px;
+}
+
+
+/* 쿠폰 및 포인트 카드 */
+
+.side-menu .auth-benefit {
+    min-width: 0;
+
+    gap: 6px;
+    padding: 14px 4px;
+
+    border-radius: 10px;
+}
+
+.side-menu .auth-benefit svg {
+    width: 20px;
+    height: 20px;
+}
+
+.side-menu .auth-benefit span {
+    font-size: 10px;
+}
+
+.side-menu .auth-benefit strong {
+    font-size: 19px;
+}
+
+
+/* 햄버거 메뉴 로그아웃 */
+
+.side-menu-nav .auth-logout {
+    margin-top: 8px;
+
+    border-top: 1px solid #ebddd0;
+
+    color: #81756d;
+}
+
+
+/* 작은 모바일 화면 대응 */
+
+@media (max-width: 360px) {
+
+    .side-menu .auth-welcome-card {
+        padding: 16px 10px;
+    }
+
+    .side-menu .auth-welcome-card h2 {
+        font-size: 17px;
+    }
+
+    .side-menu .auth-benefit strong {
+        font-size: 17px;
+    }
+
+    .side-menu .auth-action {
+        font-size: 11px;
+    }
+
+}

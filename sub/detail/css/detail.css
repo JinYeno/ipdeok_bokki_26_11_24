@@ -1933,3 +1933,550 @@ body.menu-open {
     }
 
 }
+
+/* ========================================
+   V2.0 - SPICY GAUGE
+======================================== */
+
+.spicy-gauge-card {
+
+    --current-spicy-color: #e69a27;
+
+    margin-bottom: 20px;
+    padding: 24px 18px;
+
+    border: 1px solid #ebddd0;
+    border-radius: 20px;
+
+    background: linear-gradient(
+        180deg,
+        #fff8ef,
+        #ffffff
+    );
+
+    box-shadow:
+        0 5px 20px rgba(80, 40, 20, 0.05);
+
+}
+
+
+/* 영문 타이틀 */
+
+.spicy-eyebrow {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #e63323;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+
+}
+
+
+/* 가이드 제목 */
+
+.spicy-gauge-card h3 {
+
+    color: #302019;
+
+    font-size: 19px;
+    font-weight: 800;
+
+    line-height: 1.5;
+    letter-spacing: -0.7px;
+
+    word-break: keep-all;
+
+}
+
+.spicy-intro {
+
+    margin-top: 8px;
+
+    color: #81756d;
+
+    font-size: 12px;
+    line-height: 1.8;
+
+    word-break: keep-all;
+
+}
+
+
+/* 메뉴별 기본 맵기 */
+
+.spicy-default {
+
+    margin-top: 16px;
+    padding: 10px 12px;
+
+    border-radius: 8px;
+
+    background: #ffe8d2;
+    color: #8c451c;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-align: center;
+
+}
+
+
+/* ========================================
+   반원형 맵기 게이지
+======================================== */
+
+.spicy-meter {
+
+    width: 100%;
+    max-width: 340px;
+
+    margin: 24px auto 8px;
+
+}
+
+.spicy-meter-svg {
+
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    overflow: visible;
+
+}
+
+.spicy-arc {
+
+    fill: none;
+
+    stroke-width: 20;
+    stroke-linecap: round;
+
+    opacity: 0.2;
+
+    transition: opacity 0.35s ease;
+
+}
+
+.spicy-arc.active {
+
+    opacity: 1;
+
+}
+
+
+/* 게이지 바늘 애니메이션 */
+
+#spicyNeedle {
+
+    transform-box: view-box;
+    transform-origin: 160px 140px;
+
+    transform: rotate(-22.5deg);
+
+    transition: transform 0.6s
+        cubic-bezier(0.22, 1, 0.36, 1);
+
+}
+
+.spicy-meter-svg text {
+
+    fill: #81756d;
+
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 11px;
+
+}
+
+
+/* ========================================
+   고추 아이콘
+======================================== */
+
+.gauge-peppers {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 8px;
+
+}
+
+.gauge-peppers span {
+
+    display: inline-block;
+
+    font-size: 27px;
+
+    filter: grayscale(1);
+    opacity: 0.2;
+
+    transform: scale(0.9);
+
+    transition: 0.3s ease;
+
+}
+
+.gauge-peppers span.active {
+
+    filter: none;
+    opacity: 1;
+
+    transform: scale(1);
+
+}
+
+
+/* ========================================
+   선택한 맵기 정보
+======================================== */
+
+.spicy-result {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 14px;
+
+    text-align: center;
+
+}
+
+#spicyCurrentName {
+
+    color: var(--current-spicy-color);
+
+    font-size: 28px;
+    font-weight: 800;
+
+    letter-spacing: -1px;
+
+    transition: color 0.3s ease;
+
+}
+
+#spicyCurrentLevel {
+
+    margin-top: 5px;
+
+    color: #81756d;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+}
+
+#spicyCurrentDescription {
+
+    width: 100%;
+
+    margin-top: 20px;
+    padding-top: 20px;
+
+    border-top: 1px solid #ebddd0;
+
+    color: #302019;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    line-height: 1.7;
+    word-break: keep-all;
+
+}
+
+#spicyCurrentRecommend {
+
+    margin-top: 7px;
+
+    color: #81756d;
+
+    font-size: 12px;
+    line-height: 1.7;
+
+    word-break: keep-all;
+
+}
+
+
+/* ========================================
+   맵기 선택 카드
+======================================== */
+
+.spicy-option-list {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+
+}
+
+.spicy-choice {
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    min-width: 0;
+    min-height: 112px;
+
+    gap: 8px;
+    padding: 16px 14px;
+
+    border: 1px solid #ebddd0;
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.2s ease;
+
+}
+
+
+/* 단계 번호 */
+
+.spicy-choice-level {
+
+    color: #81756d;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* 라디오 버튼 위치 */
+
+.spicy-choice .radio-mark {
+
+    position: absolute;
+
+    top: 14px;
+    right: 12px;
+
+    width: 18px;
+    height: 18px;
+
+}
+
+.spicy-choice .radio-mark::after {
+
+    width: 8px;
+    height: 8px;
+
+}
+
+
+/* 맵기 이름 */
+
+.spicy-choice .option-name {
+
+    flex: none;
+
+    color: #302019;
+
+    font-size: 16px;
+    font-weight: 700;
+
+}
+
+.spicy-choice .option-price {
+
+    color: #81756d;
+
+    font-size: 12px;
+
+}
+
+
+/* 선택한 카드 디자인 */
+
+.spicy-choice.selected {
+
+    border-color: var(--level-color);
+
+    background: var(--level-color);
+
+}
+
+.spicy-choice.selected .option-name,
+.spicy-choice.selected .option-price,
+.spicy-choice.selected .spicy-choice-level {
+
+    color: #ffffff;
+
+}
+
+.spicy-choice input:checked ~ .radio-mark {
+
+    border-color: #ffffff;
+
+    background: #ffffff;
+
+}
+
+.spicy-choice input:checked ~ .radio-mark::after {
+
+    background: var(--level-color);
+
+    transform: scale(1);
+
+}
+
+
+/* 순한맛과 보통맛의 글자 대비 보완 */
+
+.spicy-choice.selected:has(input[value="순한맛"]),
+.spicy-choice.selected:has(input[value="보통맛"]) {
+
+    color: #302019;
+
+}
+
+.spicy-choice.selected:has(input[value="순한맛"]) .option-name,
+.spicy-choice.selected:has(input[value="순한맛"]) .option-price,
+.spicy-choice.selected:has(input[value="순한맛"]) .spicy-choice-level,
+.spicy-choice.selected:has(input[value="보통맛"]) .option-name,
+.spicy-choice.selected:has(input[value="보통맛"]) .option-price,
+.spicy-choice.selected:has(input[value="보통맛"]) .spicy-choice-level {
+
+    color: #21160f;
+
+}
+
+
+/* 맵기 안내 문구 */
+
+.spicy-notice {
+
+    margin-top: 16px;
+
+    color: #81756d;
+
+    font-size: 11px;
+    line-height: 1.7;
+
+    word-break: keep-all;
+
+}
+
+
+/* 주문 버튼 글자 크기 조정 */
+
+.order-button {
+
+    font-size: 15px;
+
+}
+
+#orderButtonText {
+
+    min-width: 0;
+
+    text-align: center;
+    line-height: 1.5;
+
+}
+
+
+/* ========================================
+   작은 모바일 화면 대응
+======================================== */
+
+@media (max-width: 380px) {
+
+    .spicy-gauge-card {
+
+        padding: 20px 12px;
+
+    }
+
+    .spicy-gauge-card h3 {
+
+        font-size: 17px;
+
+    }
+
+    .spicy-choice {
+
+        min-height: 100px;
+
+        padding: 14px 10px;
+
+    }
+
+    .spicy-choice .option-name {
+
+        font-size: 14px;
+
+    }
+
+    .spicy-choice-level {
+
+        font-size: 9px;
+
+    }
+
+    .spicy-choice .radio-mark {
+
+        right: 10px;
+
+    }
+
+    .gauge-peppers span {
+
+        font-size: 24px;
+
+    }
+
+    #spicyCurrentName {
+
+        font-size: 25px;
+
+    }
+
+    .order-button {
+
+        font-size: 13px;
+
+    }
+
+}
+
+
+/* 애니메이션 최소화 설정 */
+
+@media (prefers-reduced-motion: reduce) {
+
+    #spicyNeedle,
+    .spicy-arc,
+    .gauge-peppers span,
+    .spicy-choice {
+
+        transition: none;
+
+    }
+
+}

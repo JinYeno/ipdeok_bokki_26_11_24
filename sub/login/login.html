@@ -19,6 +19,8 @@
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- 공통 로그인 기능 -->
+<script src="../../js/auth.js"></script>
 </head>
 
 <body>
@@ -722,75 +724,28 @@
     });
 
 
-    /* =================================
-       05. LOGIN STORAGE
+   
+/* =================================
+   05. COMMON LOGIN STORAGE
+================================= */
 
-       실제 개인정보나 비밀번호를 저장하지 않고
-       체험용 로그인 상태만 저장합니다.
-    ================================= */
+function saveLoginState(remember) {
 
-    const LOGIN_KEY = 'ipdeok-demo-login-v1';
+    return window.IpdeokAuth.login(remember);
 
-    function saveLoginState(remember) {
+}
 
-        try {
+function checkLoginState() {
 
-            localStorage.removeItem(LOGIN_KEY);
-            sessionStorage.removeItem(LOGIN_KEY);
+    return window.IpdeokAuth.isLoggedIn();
 
-            const storage = remember
-                ? localStorage
-                : sessionStorage;
+}
 
-            storage.setItem(LOGIN_KEY, 'demo');
+function clearLoginState() {
 
-            return true;
+    return window.IpdeokAuth.logout();
 
-        } catch (error) {
-
-            console.warn('로그인 상태 저장 실패');
-
-            return false;
-
-        }
-
-    }
-
-    function checkLoginState() {
-
-        try {
-
-            return (
-                localStorage.getItem(LOGIN_KEY) === 'demo' ||
-                sessionStorage.getItem(LOGIN_KEY) === 'demo'
-            );
-
-        } catch (error) {
-
-            return false;
-
-        }
-
-    }
-
-    function clearLoginState() {
-
-        try {
-
-            localStorage.removeItem(LOGIN_KEY);
-            sessionStorage.removeItem(LOGIN_KEY);
-
-            return true;
-
-        } catch (error) {
-
-            console.warn('로그인 상태 삭제 실패');
-
-            return false;
-
-        }
-
-    }
+}
 
 
     /* =================================

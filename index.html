@@ -25,7 +25,8 @@
 
     <!-- Lucide Icon -->
     <script src="https://unpkg.com/lucide@latest"></script>
-
+<!-- 공통 로그인 기능 -->
+<script src="./js/auth.js"></script>
 </head>
 
 <body>
@@ -100,6 +101,95 @@
                     </h2>
 
                 </div>
+<!-- 회원 / 비회원 환영 영역 -->
+
+<section class="auth-welcome">
+
+    <div class="auth-welcome-card">
+
+        <!-- 비회원 화면 -->
+
+        <div id="guestWelcome">
+
+            <span class="auth-eyebrow">
+                WELCOME TO IPDEOK
+            </span>
+
+            <h2>오늘도 맛있게, 입덕볶이!</h2>
+
+            <p>
+                로그인하고 입덕볶이의
+                특별한 혜택을 만나보세요.
+            </p>
+
+            <a href="./sub/login/login.html"
+               class="auth-action">
+
+                <i data-lucide="user-round"></i>
+
+                로그인 / 회원가입
+
+                <i data-lucide="chevron-right"></i>
+
+            </a>
+
+        </div>
+
+        <!-- 로그인 회원 화면 -->
+
+        <div id="memberWelcome" hidden>
+
+            <span class="auth-eyebrow">
+                WELCOME BACK!
+            </span>
+
+            <h2>
+                <span id="welcomeUserName">입덕러</span>님,
+                반가워요!
+            </h2>
+
+            <p>오늘은 어떤 떡볶이에 입덕할까요?</p>
+
+            <div class="auth-benefits">
+
+                <div class="auth-benefit">
+
+                    <i data-lucide="ticket"></i>
+
+                    <span>보유 쿠폰</span>
+
+                    <strong id="memberCoupons">0장</strong>
+
+                </div>
+
+                <div class="auth-benefit">
+
+                    <i data-lucide="coins"></i>
+
+                    <span>적립 포인트</span>
+
+                    <strong id="memberPoints">0P</strong>
+
+                </div>
+
+            </div>
+
+            <a href="./sub/login/login.html"
+               class="auth-action">
+
+                <i data-lucide="user-round"></i>
+
+                마이페이지
+
+                <i data-lucide="chevron-right"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
 
                 <nav class="side-menu-nav">
 
@@ -140,6 +230,8 @@
 
 
         <main id="mainContent">
+
+
 
             <!-- =========================
                  HERO
@@ -1380,6 +1472,137 @@
             });
 
     </script>
+
+<script>
+
+/* ========================================
+   V2.0 - MEMBER UI
+======================================== */
+
+(function () {
+
+    const auth = window.IpdeokAuth;
+
+    if (!auth) return;
+
+    const guestWelcome =
+        document.getElementById('guestWelcome');
+
+    const memberWelcome =
+        document.getElementById('memberWelcome');
+
+    const sideWelcome =
+        document.querySelector('.side-menu-welcome');
+
+    const sideNav =
+        document.querySelector('.side-menu-nav');
+
+    const accountLink = sideNav.querySelector(
+        'a[href="./sub/login/login.html"]'
+    );
+
+    const logoutLink = document.createElement('a');
+
+    logoutLink.href = '#';
+    logoutLink.className = 'auth-logout';
+    logoutLink.hidden = true;
+
+    logoutLink.innerHTML = `
+        <i data-lucide="log-out"></i>
+        <span>로그아웃</span>
+        <i data-lucide="chevron-right"></i>
+    `;
+
+    sideNav.appendChild(logoutLink);
+
+    function renderAuthUI() {
+
+        const loggedIn = auth.isLoggedIn();
+        const user = auth.getUser();
+
+        guestWelcome.hidden = loggedIn;
+        memberWelcome.hidden = !loggedIn;
+        logoutLink.hidden = !loggedIn;
+
+        document.body.classList.toggle(
+            'is-member',
+            loggedIn
+        );
+
+        if (loggedIn && user) {
+
+            document.getElementById(
+                'welcomeUserName'
+            ).textContent = user.name;
+
+            document.getElementById(
+                'memberCoupons'
+            ).textContent = user.coupons + '장';
+
+            document.getElementById(
+                'memberPoints'
+            ).textContent = user.points + 'P';
+
+            sideWelcome.innerHTML = `
+                <span>WELCOME BACK!</span>
+                <h2>입덕러님,<br>반가워요!</h2>
+                <p class="auth-side-grade">
+                    WELCOME 멤버십
+                </p>
+            `;
+
+            accountLink.querySelector(
+                'span'
+            ).textContent = '마이페이지';
+
+        } else {
+
+            sideWelcome.innerHTML = `
+                <span>WELCOME!</span>
+                <h2>오늘도 맛있게,<br>입덕볶이!</h2>
+                <p class="auth-side-grade">
+                    로그인하고 혜택을 만나보세요.
+                </p>
+            `;
+
+            accountLink.querySelector(
+                'span'
+            ).textContent = '로그인';
+
+        }
+
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+
+    }
+
+    logoutLink.addEventListener('click', function (event) {
+
+        event.preventDefault();
+
+        if (!confirm('로그아웃하시겠어요?')) return;
+
+        if (auth.logout()) {
+
+            window.location.reload();
+
+        } else {
+
+            alert('로그아웃에 실패했습니다.');
+
+        }
+
+    });
+
+    window.addEventListener('pageshow', renderAuthUI);
+    window.addEventListener('storage', renderAuthUI);
+
+    renderAuthUI();
+
+})();
+
+</script>
 
 </body>
 

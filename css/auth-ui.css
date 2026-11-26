@@ -1,0 +1,201 @@
+
+/* ========================================
+   COMMON MEMBER & GUEST UI
+======================================== */
+
+.side-menu {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.common-auth-card {
+    flex-shrink: 0;
+
+    margin: 16px 0 24px;
+    padding: 20px 14px;
+
+    border: 1px solid #ebddd0;
+    border-radius: 16px;
+
+    background: linear-gradient(
+        135deg,
+        #ffe8d2,
+        #fff1e2
+    );
+}
+
+.common-auth-card.is-member {
+    border-color: #f2c8ad;
+
+    background: linear-gradient(
+        135deg,
+        #ffe8d2,
+        #ffdcc0
+    );
+}
+
+.common-auth-eyebrow {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #e63323;
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.common-auth-card h2 {
+    color: #302019;
+
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1.5;
+    letter-spacing: -0.8px;
+
+    word-break: keep-all;
+}
+
+.common-auth-card p {
+    margin-top: 8px;
+
+    color: #81756d;
+
+    font-size: 12px;
+    line-height: 1.7;
+
+    word-break: keep-all;
+}
+
+.common-auth-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    min-height: 42px;
+
+    margin-top: 16px;
+    padding: 10px 8px;
+
+    border-radius: 10px;
+
+    background: #e63323;
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.common-auth-action:active {
+    transform: scale(0.97);
+}
+
+.common-auth-action svg {
+    width: 15px;
+    height: 15px;
+
+    flex-shrink: 0;
+}
+
+.common-auth-benefits {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+
+    margin-top: 16px;
+}
+
+.common-auth-benefit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-width: 0;
+
+    gap: 6px;
+    padding: 14px 4px;
+
+    border: 1px solid #ebddd0;
+    border-radius: 10px;
+
+    background: #ffffff;
+}
+
+.common-auth-benefit svg {
+    width: 20px;
+    height: 20px;
+
+    color: #e63323;
+}
+
+.common-auth-benefit span {
+    color: #81756d;
+
+    font-size: 10px;
+}
+
+.common-auth-benefit strong {
+    color: #e63323;
+
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.side-menu .common-auth-logout {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    width: 100%;
+    min-height: 50px;
+
+    margin-top: 8px;
+    padding: 14px 10px;
+
+    border: none;
+    border-top: 1px solid #ebddd0;
+
+    background: transparent;
+    color: #81756d;
+
+    font-size: 14px;
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.common-auth-logout svg {
+    width: 20px;
+    height: 20px;
+}
+
+@media (max-width: 360px) {
+
+    .common-auth-card {
+        padding: 16px 10px;
+    }
+
+    .common-auth-card h2 {
+        font-size: 17px;
+    }
+
+    .common-auth-benefit strong {
+        font-size: 17px;
+    }
+
+    .common-auth-action {
+        font-size: 11px;
+    }
+
+}

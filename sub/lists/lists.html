@@ -27,6 +27,10 @@
 
     <link rel="stylesheet" href="./css/lists.css">
 
+    <!-- 공통 로그인 UI CSS -->
+
+<link rel="stylesheet" href="../../css/auth-ui.css">
+
     <!-- Lucide Icon -->
 
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -243,6 +247,92 @@
                 </p>
 
             </section>
+
+
+<!-- =========================
+     SPICY GUIDE
+========================== -->
+
+<section class="spicy-guide">
+
+    <div class="spicy-guide-heading">
+
+        <div class="spicy-guide-icon">
+
+            <i data-lucide="flame"></i>
+
+        </div>
+
+        <div>
+
+            <span>IPDEOK SPICY GUIDE</span>
+
+            <h2>입덕볶이가 처음이신가요?</h2>
+
+        </div>
+
+    </div>
+
+    <p class="spicy-guide-description">
+
+        메뉴별 기본 맵기를 확인하고
+        취향에 맞는 맛을 선택해 보세요.
+
+    </p>
+
+    <div class="spicy-guide-scale">
+
+        <div class="spicy-guide-step mild">
+
+            <div class="spicy-guide-bar"></div>
+
+            <strong>1단계</strong>
+
+            <span>순한맛</span>
+
+        </div>
+
+        <div class="spicy-guide-step normal">
+
+            <div class="spicy-guide-bar"></div>
+
+            <strong>2단계</strong>
+
+            <span>보통맛</span>
+
+        </div>
+
+        <div class="spicy-guide-step hot">
+
+            <div class="spicy-guide-bar"></div>
+
+            <strong>3단계</strong>
+
+            <span>매운맛</span>
+
+        </div>
+
+        <div class="spicy-guide-step extra-hot">
+
+            <div class="spicy-guide-bar"></div>
+
+            <strong>4단계</strong>
+
+            <span>아주 매운맛</span>
+
+        </div>
+
+    </div>
+
+    <p class="spicy-guide-notice">
+
+        * 맵기는 예시 기준이며 개인마다
+        체감하는 정도가 다를 수 있습니다.
+
+    </p>
+
+</section>
+
 
 
             <!-- =========================
@@ -1008,6 +1098,120 @@
             });
 
         });
+
+// =========================
+// 05. 메뉴별 기본 맵기 안내
+// =========================
+
+const spicyLevels = {
+
+    original: 2,
+
+    rose: 1,
+
+    mala: 3,
+
+    "mala-rose": 2
+
+};
+
+const spicyNames = [
+
+    "순한맛",
+
+    "보통맛",
+
+    "매운맛",
+
+    "아주 매운맛"
+
+];
+
+const spicyColors = [
+
+    "#659b43",
+
+    "#e69a27",
+
+    "#e63323",
+
+    "#a51c24"
+
+];
+
+menuCards.forEach(function (card) {
+
+    const menuURL = new URL(
+        card.href,
+        window.location.href
+    );
+
+    const menuType =
+        menuURL.searchParams.get("menu");
+
+    const level = spicyLevels[menuType];
+
+    if (!level) return;
+
+    const menuTop =
+        card.querySelector(".menu-top");
+
+    if (!menuTop) return;
+
+    const spicyInfo =
+        document.createElement("div");
+
+    spicyInfo.className = "menu-spicy";
+
+    spicyInfo.style.setProperty(
+        "--spicy-color",
+        spicyColors[level - 1]
+    );
+
+    spicyInfo.setAttribute(
+        "aria-label",
+        `기본 맵기 ${level}단계, ${spicyNames[level - 1]}`
+    );
+
+    let peppers = "";
+
+    for (let i = 1; i <= 4; i++) {
+
+        peppers += `
+
+            <span class="spicy-pepper
+                ${i <= level ? "filled" : ""}">
+
+                🌶️
+
+            </span>
+
+        `;
+
+    }
+
+    spicyInfo.innerHTML = `
+
+        <div class="spicy-peppers"
+             aria-hidden="true">
+
+            ${peppers}
+
+            <strong>${level}/4</strong>
+
+        </div>
+
+        <span class="menu-spicy-label">
+
+            기본 맵기 · ${spicyNames[level - 1]}
+
+        </span>
+
+    `;
+
+    menuTop.appendChild(spicyInfo);
+
+});
 
 
         // 초기 메뉴 상태 설정

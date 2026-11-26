@@ -2918,3 +2918,407 @@ select.text-input {
     }
 
 }
+
+/* ========================================
+   V2.0 MEMBER / GUEST CHECKOUT
+======================================== */
+
+.checkout-auth-card {
+
+    padding: 24px 20px;
+
+    border: 1px solid #f2c8ad;
+    border-radius: 18px;
+
+    background: linear-gradient(
+        135deg,
+        #ffe8d2,
+        #fff1e2
+    );
+
+    box-shadow: var(--shadow);
+
+}
+
+.checkout-auth-eyebrow {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: var(--primary);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+}
+
+.checkout-auth-card h2 {
+
+    color: var(--text);
+
+    font-size: 20px;
+    font-weight: 800;
+
+    line-height: 1.5;
+    letter-spacing: -0.7px;
+
+    word-break: keep-all;
+
+}
+
+.checkout-auth-card p {
+
+    margin-top: 8px;
+
+    color: var(--gray);
+
+    font-size: 13px;
+    line-height: 1.7;
+
+    word-break: keep-all;
+
+}
+
+
+/* 비회원 로그인 버튼 */
+
+.checkout-login-button {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    min-height: 48px;
+
+    margin-top: 20px;
+    padding: 12px;
+
+    border-radius: 12px;
+
+    background: var(--primary);
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition: 0.2s ease;
+
+}
+
+.checkout-login-button svg {
+
+    width: 18px;
+    height: 18px;
+
+    flex-shrink: 0;
+
+}
+
+.checkout-login-button:active {
+
+    background: var(--primary-dark);
+
+    transform: scale(0.98);
+
+}
+
+.checkout-auth-card small {
+
+    display: block;
+
+    margin-top: 12px;
+
+    color: var(--gray);
+
+    font-size: 11px;
+
+    text-align: center;
+
+}
+
+
+/* 회원 혜택 */
+
+.checkout-benefits {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin-top: 20px;
+
+}
+
+.checkout-benefit {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 18px 8px;
+
+    border: 1px solid #f3dfcf;
+    border-radius: 14px;
+
+    background: #ffffff;
+
+}
+
+.checkout-benefit svg {
+
+    width: 24px;
+    height: 24px;
+
+    color: var(--primary);
+
+}
+
+.checkout-benefit span {
+
+    color: var(--gray);
+
+    font-size: 11px;
+
+}
+
+.checkout-benefit strong {
+
+    color: var(--primary);
+
+    font-size: 24px;
+    font-weight: 800;
+
+}
+
+
+/* ========================================
+   V2.0 CHECKOUT SPICY GUIDE
+======================================== */
+
+.checkout-spicy {
+
+    --current-spicy-color: #e69a27;
+
+    margin-top: 20px;
+    padding: 18px 16px;
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    background: var(--background);
+
+}
+
+
+/* 맵기 안내 제목 */
+
+.checkout-spicy-heading {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 8px;
+
+}
+
+.checkout-spicy-heading > span {
+
+    color: var(--gray);
+
+    font-size: 12px;
+    font-weight: 600;
+
+}
+
+#checkoutSpicyLevel {
+
+    color: var(--current-spicy-color);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+
+}
+
+
+/* 선택한 맵기 이름 */
+
+.checkout-spicy-result {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 12px;
+
+}
+
+#checkoutSpicyName {
+
+    color: var(--current-spicy-color);
+
+    font-size: 22px;
+    font-weight: 800;
+
+    letter-spacing: -0.5px;
+
+}
+
+
+/* 고추 아이콘 */
+
+.checkout-peppers {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 4px;
+
+}
+
+.checkout-peppers span {
+
+    font-size: 23px;
+
+    filter: grayscale(1);
+
+    opacity: 0.2;
+
+}
+
+.checkout-peppers span.active {
+
+    filter: none;
+
+    opacity: 1;
+
+}
+
+
+/* 가로형 맵기 게이지 */
+
+.checkout-spicy-bar {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 5px;
+
+    margin-top: 14px;
+
+}
+
+.checkout-spicy-bar span {
+
+    height: 7px;
+
+    border-radius: 10px;
+
+    background: #e8e1da;
+
+    transition: background-color 0.3s ease;
+
+}
+
+.checkout-spicy-bar span.active {
+
+    background: var(--spicy-color);
+
+}
+
+
+/* 맵기 설명 */
+
+#checkoutSpicyDescription {
+
+    margin-top: 12px;
+
+    color: var(--gray);
+
+    font-size: 12px;
+
+    line-height: 1.7;
+
+    word-break: keep-all;
+
+}
+
+
+/* ========================================
+   SMALL MOBILE
+======================================== */
+
+@media (max-width: 380px) {
+
+    .checkout-auth-card {
+
+        padding: 20px 16px;
+
+    }
+
+    .checkout-auth-card h2 {
+
+        font-size: 18px;
+
+    }
+
+    .checkout-spicy {
+
+        padding: 16px 12px;
+
+    }
+
+    #checkoutSpicyName {
+
+        font-size: 19px;
+
+    }
+
+    .checkout-peppers span {
+
+        font-size: 19px;
+
+    }
+
+    .checkout-benefit strong {
+
+        font-size: 21px;
+
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .checkout-spicy-bar span,
+    .checkout-login-button {
+
+        transition: none;
+
+    }
+
+}
