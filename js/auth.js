@@ -31,6 +31,7 @@
                 : sessionStorage;
 
             storage.setItem(LOGIN_KEY, 'demo');
+            window.dispatchEvent(new Event("ipdeok-auth-change"));
 
             return true;
 
@@ -42,18 +43,20 @@
 
     function logout() {
 
-        try {
+    try {
 
-            localStorage.removeItem(LOGIN_KEY);
-            sessionStorage.removeItem(LOGIN_KEY);
+        localStorage.removeItem(LOGIN_KEY);
+        sessionStorage.removeItem(LOGIN_KEY);
 
-            return true;
+        window.dispatchEvent(new Event("ipdeok-auth-change"));
 
-        } catch (error) {
-            return false;
-        }
+        return true;
 
+    } catch (error) {
+        return false;
     }
+
+}
 
     function getUser() {
 
@@ -63,7 +66,7 @@
             id: 'demo',
             name: '입덕러',
             grade: 'WELCOME',
-            coupons: 0,
+            coupons: 2,
             points: 0
         };
 

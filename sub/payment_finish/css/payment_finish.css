@@ -2512,3 +2512,309 @@ body.menu-open {
     }
 
 }
+
+/* ========================================
+   V2.0 FINISH SPICY GUIDE
+======================================== */
+
+.finish-spicy {
+
+    --current-spicy-color: #e69a27;
+
+    margin: 16px;
+    padding: 18px 16px;
+
+    border: 1px solid #ebddd0;
+    border-radius: 14px;
+
+    background: #fff8ef;
+
+}
+
+.finish-spicy-heading,
+.finish-spicy-result {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 8px;
+
+}
+
+.finish-spicy-heading > span {
+
+    color: #81756d;
+
+    font-size: 12px;
+    font-weight: 600;
+
+}
+
+#finishSpicyLevel {
+
+    color: var(--current-spicy-color);
+
+    font-size: 11px;
+    font-weight: 800;
+
+}
+
+.finish-spicy-result {
+
+    flex-wrap: wrap;
+
+    margin-top: 12px;
+
+}
+
+#finishSpicyName {
+
+    color: var(--current-spicy-color);
+
+    font-size: 22px;
+    font-weight: 800;
+
+}
+
+
+/* 고추 아이콘 */
+
+.finish-peppers {
+
+    display: flex;
+
+    gap: 4px;
+
+}
+
+.finish-peppers span {
+
+    font-size: 21px;
+
+    filter: grayscale(1);
+    opacity: 0.2;
+
+}
+
+.finish-peppers span.active {
+
+    filter: none;
+    opacity: 1;
+
+}
+
+
+/* 맵기 게이지 */
+
+.finish-spicy-bar {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 5px;
+
+    margin-top: 14px;
+
+}
+
+.finish-spicy-bar span {
+
+    height: 7px;
+
+    border-radius: 10px;
+
+    background: #e8e1da;
+
+}
+
+.finish-spicy-bar span.active {
+
+    background: var(--level-color);
+
+}
+
+
+/* ========================================
+   V2.0 FINISH MEMBER CARD
+======================================== */
+
+.finish-auth-card {
+
+    margin: 20px 0;
+
+    padding: 24px 20px;
+
+    border: 1px solid #f2c8ad;
+    border-radius: 18px;
+
+    background: linear-gradient(
+        135deg,
+        #ffe8d2,
+        #fff1e2
+    );
+
+}
+
+.finish-auth-eyebrow {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #e63323;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+}
+
+.finish-auth-card h2 {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #302019;
+
+    font-size: 18px;
+    font-weight: 800;
+
+    word-break: keep-all;
+
+}
+
+.finish-auth-card h2 svg {
+
+    width: 22px;
+    height: 22px;
+
+    color: #e63323;
+
+    flex-shrink: 0;
+
+}
+
+.finish-auth-card p {
+
+    margin-top: 10px;
+
+    color: #81756d;
+
+    font-size: 13px;
+    line-height: 1.7;
+
+    word-break: keep-all;
+
+}
+
+
+/* 회원 및 비회원 안내 버튼 */
+
+.finish-auth-button {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    min-height: 48px;
+
+    margin-top: 18px;
+    padding: 12px;
+
+    border-radius: 12px;
+
+    background: #e63323;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition: 0.2s ease;
+
+}
+
+.finish-auth-button svg {
+
+    width: 18px;
+    height: 18px;
+
+}
+
+.finish-auth-button:active {
+
+    transform: scale(0.98);
+
+    background: #bd2619;
+
+}
+
+
+/* 숨김 상태 유지 */
+
+#finishSpicy[hidden],
+#finishAuthCard[hidden],
+#finishMember[hidden],
+#finishGuest[hidden] {
+
+    display: none !important;
+
+}
+
+
+/* ========================================
+   SMALL MOBILE
+======================================== */
+
+@media (max-width: 380px) {
+
+    .finish-spicy {
+
+        padding: 14px 12px;
+
+    }
+
+    #finishSpicyName {
+
+        font-size: 19px;
+
+    }
+
+    .finish-peppers span {
+
+        font-size: 17px;
+
+    }
+
+    .finish-auth-card {
+
+        padding: 20px 16px;
+
+    }
+
+    .finish-auth-card h2 {
+
+        font-size: 16px;
+
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .finish-auth-button {
+
+        transition: none;
+
+    }
+
+}

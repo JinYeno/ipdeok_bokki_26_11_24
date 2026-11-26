@@ -32,6 +32,12 @@
 
     <script src="https://unpkg.com/lucide@latest"></script>
 
+    <!-- 공통 로그인 기능 -->
+
+<script src="../../js/auth.js"></script>
+
+<script src="../../js/auth-ui.js" defer></script>
+
 </head>
 
 <body>
@@ -321,9 +327,9 @@
 
                         <h1>결제가 완료되었습니다!</h1>
 
-                        <p>
-                            맛있는 떡볶이를 준비하고 있어요.<br>
-                            조금만 기다려 주세요!
+                        <p id="finishMessage">
+    맛있는 떡볶이를 준비하고 있어요.<br>
+    조금만 기다려 주세요!
                         </p>
 
                     </div>
@@ -481,6 +487,48 @@
 
                             </div>
 
+<!-- V2.0 선택한 맵기 안내 -->
+
+<div class="finish-spicy" id="finishSpicy" hidden>
+
+    <div class="finish-spicy-heading">
+
+        <span>선택한 맵기</span>
+
+        <strong id="finishSpicyLevel"></strong>
+
+    </div>
+
+    <div class="finish-spicy-result">
+
+        <strong id="finishSpicyName"></strong>
+
+        <div class="finish-peppers"
+             id="finishPeppers"
+             aria-hidden="true">
+
+            <span>🌶️</span>
+            <span>🌶️</span>
+            <span>🌶️</span>
+            <span>🌶️</span>
+
+        </div>
+
+    </div>
+
+    <div class="finish-spicy-bar"
+         id="finishSpicyBar"
+         aria-hidden="true">
+
+        <span style="--level-color: #659b43;"></span>
+        <span style="--level-color: #e69a27;"></span>
+        <span style="--level-color: #e63323;"></span>
+        <span style="--level-color: #a51c24;"></span>
+
+    </div>
+
+</div>
+
                         </details>
 
 
@@ -609,6 +657,66 @@
                     <!-- =========================
                          ACTION BUTTONS
                     ========================== -->
+
+<!-- V2.0 회원 / 비회원 주문 완료 안내 -->
+
+<section class="finish-auth-card" id="finishAuthCard" hidden>
+
+    <div id="finishMember" hidden>
+
+        <span class="finish-auth-eyebrow">
+            MEMBER SERVICE
+        </span>
+
+        <h2>
+            <i data-lucide="clipboard-list"></i>
+            나의 주문 내역
+        </h2>
+
+        <p id="finishHistoryMessage">
+            마이페이지에서 주문 내역을 확인할 수 있어요.
+        </p>
+
+        <a href="../login/login.html#orderHistory"
+           class="finish-auth-button">
+
+            주문 내역 확인하기
+
+            <i data-lucide="chevron-right"></i>
+
+        </a>
+
+    </div>
+
+
+    <div id="finishGuest" hidden>
+
+        <span class="finish-auth-eyebrow">
+            JOIN IPDEOK
+        </span>
+
+        <h2>
+            <i data-lucide="user-round"></i>
+            입덕볶이의 회원이 되어보세요!
+        </h2>
+
+        <p>
+            다음 주문부터 회원 혜택과 주문 내역을
+            이용해 보세요.
+        </p>
+
+        <a href="../login/login.html"
+           class="finish-auth-button">
+
+            로그인 / 회원가입
+
+            <i data-lucide="chevron-right"></i>
+
+        </a>
+
+    </div>
+
+</section>
 
                     <section class="action-section reveal">
 
@@ -1379,11 +1487,121 @@
         );
 
 
+// =========================
+// V2.0 결제 완료 UI
+// =========================
+
+function renderFinishUI() {
+
+    if (!payment) return;
+
+    // 회원 / 비회원 확인
+
+    const auth = window.IpdeokAuth;
+
+    const isMember = Boolean(
+
+        payment.isMember &&
+        auth &&
+        auth.isLoggedIn()
+
+    );
+
+    $("finishAuthCard").hidden = false;
+
+    $("finishMember").hidden = !isMember;
+
+    $("finishGuest").hidden = isMember;
+
+
+    if (isMember) {
+
+        const user = auth.getUser();
+
+        $("finishMessage").textContent =
+            user.name + "님, 맛있는 주문 감사합니다!";
+
+        $("finishHistoryMessage").textContent =
+            payment.historySaved
+                ? "마이페이지에서 주문 내역을 확인할 수 있어요."
+                : "주문 내역을 저장하지 못했습니다.";
+
+    }
+
+
+    // 맵기 데이터
+
+    const levels = [
+
+        { name: "순한맛", color: "#659b43" },
+
+        { name: "보통맛", color: "#e69a27" },
+
+        { name: "매운맛", color: "#e63323" },
+
+        { name: "아주 매운맛", color: "#a51c24" }
+
+    ];
+
+    const index = levels.findIndex(function (item) {
+
+        return item.name === payment.spicy;
+
+    });
+
+    if (index === -1) return;
+
+    const level = levels[index];
+
+    $("finishSpicy").hidden = false;
+
+    $("finishSpicyName").textContent = level.name;
+
+    $("finishSpicyLevel").textContent =
+        `LEVEL ${index + 1} / 4`;
+
+    $("finishSpicy").style.setProperty(
+        "--current-spicy-color",
+        level.color
+    );
+
+
+    // 기존 맵기 텍스트 중복 제거
+
+    $("productQuantity").textContent =
+        "수량 : " + payment.quantity + "개";
+
+
+    // 고추 아이콘
+
+    document.querySelectorAll(
+        "#finishPeppers span"
+    ).forEach(function (pepper, i) {
+
+        pepper.classList.toggle("active", i <= index);
+
+    });
+
+
+    // 맵기 게이지
+
+    document.querySelectorAll(
+        "#finishSpicyBar span"
+    ).forEach(function (bar, i) {
+
+        bar.classList.toggle("active", i <= index);
+
+    });
+
+}
+
         // =========================
         // 11. 최초 실행
         // =========================
 
         if (loadPayment()) {
+
+            renderFinishUI();
 
             initReveal();
 

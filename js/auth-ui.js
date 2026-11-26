@@ -36,6 +36,8 @@
 
         const isMember = auth.isLoggedIn();
 
+        const user = auth.getUser();
+
 
         // 기존 환영 문구 찾기
 
@@ -76,7 +78,7 @@
                 </span>
 
                 <h2>
-                    입덕러님,<br>
+                    ${user.name}님,<br>
                     반가워요!
                 </h2>
 
@@ -90,9 +92,9 @@
 
                         <i data-lucide="ticket"></i>
 
-                        <span>보유 쿠폰</span>
+                        <span>시연용 쿠폰</span>
 
-                        <strong>0장</strong>
+<strong>${user.coupons}장</strong>
 
                     </div>
 
@@ -102,7 +104,7 @@
 
                         <span>적립 포인트</span>
 
-                        <strong>0P</strong>
+<strong>${user.points}P</strong>
 
                     </div>
 
@@ -209,9 +211,15 @@
                 "click",
                 function () {
 
-                    auth.logout();
+                   if (auth.logout()) {
 
-                    window.location.reload();
+    window.location.reload();
+
+} else {
+
+    alert("로그아웃에 실패했습니다. 다시 시도해 주세요.");
+
+}
 
                 }
             );
@@ -270,5 +278,10 @@
 
         }
     );
+// 현재 페이지에서 로그인 상태가 변경된 경우
 
+window.addEventListener(
+    "ipdeok-auth-change",
+    renderAuthUI
+);
 })();

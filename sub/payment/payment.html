@@ -30,6 +30,17 @@
 
     <script src="https://unpkg.com/lucide@latest"></script>
 
+    <!-- 공통 로그인 기능 -->
+
+<script src="../../js/auth.js"></script>
+
+<script src="../../js/auth-ui.js" defer></script>
+
+<!-- 공통 주문 내역 기능 -->
+
+<script src="../../js/orders.js"></script>
+
+
 </head>
 
 <body>
@@ -1795,9 +1806,16 @@
 
                     status: "completed",
 
-                    isDemo: true
+isDemo: true,
 
-                };
+isMember: Boolean(
+    window.IpdeokAuth &&
+    window.IpdeokAuth.isLoggedIn()
+),
+
+historySaved: false
+
+};
 
 
                 // 결제 완료 페이지에 전달할 정보 저장
@@ -1818,6 +1836,29 @@
                     return;
 
                 }
+
+// 회원 주문 내역 저장
+
+if (paymentData.isMember && window.IpdeokOrders) {
+
+    paymentData.historySaved =
+        window.IpdeokOrders.saveOrder(paymentData);
+
+    try {
+
+        sessionStorage.setItem(
+            "ipdeokPayment",
+            JSON.stringify(paymentData)
+        );
+
+    } catch (error) {
+
+        console.warn("주문 저장 상태 갱신 실패");
+
+    }
+
+}
+
 
 
                 // 결제수단 저장 여부

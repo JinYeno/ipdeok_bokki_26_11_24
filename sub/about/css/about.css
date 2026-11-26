@@ -1557,3 +1557,24 @@ button:focus-visible {
     }
 
 }
+/* ========================================
+   V2.0 COMMON AUTH UI
+======================================== */
+
+.side-menu:has(.common-auth-card)
+.side-menu-message {
+    display: none;
+}
+
+.side-menu .common-auth-card {
+    flex-shrink: 0;
+}
+
+.side-menu .side-navigation {
+    margin-top: 0;
+    flex-shrink: 0;
+}
+
+.side-menu {
+    overscroll-behavior: contain;
+}

@@ -19,6 +19,10 @@
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- 공통 로그인 기능 -->
+<script src="../../js/auth.js"></script>
+<script src="../../js/auth-ui.js" defer></script>
 </head>
 
 <body>
@@ -349,14 +353,68 @@
 
             <div id="reviewList" class="review-list"></div>
 
-            <button type="button"
-                    class="primary-button"
-                    id="writeReview">
+            
+<!-- V2.0 비회원 리뷰 안내 -->
 
-                <i data-lucide="square-pen"></i>
-                리뷰 작성하기
+<div class="review-auth-card"
+     id="guestReviewCard" hidden>
 
-            </button>
+    <div class="review-auth-icon">
+        <i data-lucide="lock-keyhole"></i>
+    </div>
+
+    <span class="review-auth-label">
+        JOIN IPDEOK
+    </span>
+
+    <h2>입덕볶이의 맛을 공유해 주세요!</h2>
+
+    <p>
+        로그인하면 고객 리뷰를 작성할 수 있어요.
+    </p>
+
+    <a href="../login/login.html"
+       class="review-auth-button">
+
+        <i data-lucide="user-round"></i>
+        로그인하고 리뷰 작성하기
+
+    </a>
+
+</div>
+
+
+<!-- V2.0 회원 리뷰 안내 -->
+
+<div class="review-auth-card"
+     id="memberReviewCard" hidden>
+
+    <div class="review-auth-icon">
+        <i data-lucide="message-square-heart"></i>
+    </div>
+
+    <span class="review-auth-label">
+        MEMBER REVIEW
+    </span>
+
+    <h2>입덕러님, 맛있게 드셨나요?</h2>
+
+    <p>
+        입덕볶이와 함께한 맛있는 경험을
+        공유해 주세요.
+    </p>
+
+    <button type="button"
+            class="primary-button"
+            id="writeReview">
+
+        <i data-lucide="square-pen"></i>
+        리뷰 작성하기
+
+    </button>
+
+</div>
+
 
         </section>
 
@@ -1405,11 +1463,21 @@
     });
 
     document.getElementById('writeReview')
-        .addEventListener('click', () => {
+    .addEventListener('click', () => {
 
-            reviewForm.reset();
+        if (!window.IpdeokAuth ||
+            !window.IpdeokAuth.isLoggedIn()) {
 
-            selectedRating = 5;
+            window.location.href =
+                '../login/login.html';
+
+            return;
+
+        }
+
+        reviewForm.reset();
+
+        selectedRating = 5;
 
             updateRating();
 
@@ -1451,9 +1519,22 @@
 
     reviewForm.addEventListener('submit', event => {
 
-        event.preventDefault();
+    event.preventDefault();
 
-        const name = reviewName.value.trim();
+    if (!window.IpdeokAuth ||
+        !window.IpdeokAuth.isLoggedIn()) {
+
+        reviewDialog.close();
+
+        renderReviewAuth();
+
+        showToast('로그인 후 리뷰를 작성해 주세요.');
+
+        return;
+
+    }
+
+    const name = reviewName.value.trim();
         const menu = reviewProduct.value;
         const text = reviewText.value.trim();
 
@@ -1583,6 +1664,87 @@
         });
 
     });
+
+/* =================================
+   V2.0 REVIEW AUTH CONTROL
+================================= */
+
+function renderReviewAuth() {
+
+    const auth = window.IpdeokAuth;
+
+    const isMember = Boolean(
+        auth && auth.isLoggedIn()
+    );
+
+    const guestCard =
+        document.getElementById("guestReviewCard");
+
+    const memberCard =
+        document.getElementById("memberReviewCard");
+
+
+    // 회원 및 비회원 화면 구분
+
+    guestCard.hidden = isMember;
+
+    memberCard.hidden = !isMember;
+
+
+    // 로그아웃 상태에서 리뷰 창 닫기
+
+    if (!isMember && reviewDialog.open) {
+
+        reviewDialog.close();
+
+    }
+
+
+    // 하단 메뉴 로그인 문구 변경
+
+    const footerLogin = document.querySelector(
+        '.footer-navigation a[href="../login/login.html"]'
+    );
+
+    if (footerLogin) {
+
+        footerLogin.textContent = isMember
+            ? "마이페이지"
+            : "로그인";
+
+    }
+
+
+    // 아이콘 갱신
+
+    if (window.lucide) {
+
+        lucide.createIcons();
+
+    }
+
+}
+
+
+// 최초 화면 실행
+
+renderReviewAuth();
+
+
+// 뒤로가기 및 페이지 복귀 시 확인
+
+window.addEventListener(
+    "pageshow",
+    renderReviewAuth
+);
+
+
+// 로그인 상태 변경 시 확인
+
+window.addEventListener(
+    "storage",
+    renderReviewAuth
+);
 
 
     /* =================================

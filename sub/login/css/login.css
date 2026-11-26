@@ -1692,3 +1692,527 @@ main {
     }
 
 }
+
+/* ========================================
+   V2.0 MY ORDER HISTORY
+======================================== */
+
+.order-history {
+
+    width: 100%;
+
+    margin: 30px 0;
+
+    text-align: left;
+
+    scroll-margin-top: 80px;
+
+}
+
+
+/* ========================================
+   주문 내역 제목
+======================================== */
+
+.history-heading {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+}
+
+.history-heading h2 {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #302019;
+
+    font-size: 20px;
+    font-weight: 800;
+
+}
+
+.history-heading h2 svg {
+
+    width: 23px;
+    height: 23px;
+
+    color: #e63323;
+
+    flex-shrink: 0;
+
+}
+
+#historyCount {
+
+    color: #e63323;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    flex-shrink: 0;
+
+}
+
+.history-description {
+
+    margin-top: 8px;
+
+    color: #81756d;
+
+    font-size: 12px;
+
+}
+
+
+/* ========================================
+   주문 내역이 없는 경우
+======================================== */
+
+.history-empty {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 18px;
+    padding: 30px 16px;
+
+    border: 1px dashed #ebddd0;
+    border-radius: 16px;
+
+    background: #ffffff;
+
+    text-align: center;
+
+}
+
+.history-empty > svg {
+
+    width: 42px;
+    height: 42px;
+
+    color: #d9b8a1;
+
+}
+
+.history-empty h3 {
+
+    color: #302019;
+
+    font-size: 16px;
+    font-weight: 700;
+
+}
+
+.history-empty p {
+
+    color: #81756d;
+
+    font-size: 12px;
+
+}
+
+.history-empty a {
+
+    padding: 10px 20px;
+
+    border-radius: 10px;
+
+    background: #ffe8d2;
+    color: #e63323;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition: 0.2s ease;
+
+}
+
+.history-empty a:active {
+
+    transform: scale(0.97);
+
+}
+
+
+/* ========================================
+   주문 내역 목록
+======================================== */
+
+.history-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 16px;
+
+    margin-top: 18px;
+
+}
+
+.history-list:empty {
+
+    display: none;
+
+}
+
+.history-card {
+
+    padding: 18px 16px;
+
+    border: 1px solid #ebddd0;
+    border-radius: 16px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 5px 15px rgba(80, 40, 20, 0.04);
+
+}
+
+
+/* 주문 날짜 및 결제 상태 */
+
+.history-card-top {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 8px;
+
+    padding-bottom: 12px;
+
+    border-bottom: 1px solid #ebddd0;
+
+}
+
+.history-date {
+
+    color: #81756d;
+
+    font-size: 12px;
+
+}
+
+.history-status {
+
+    color: #659b43;
+
+    font-size: 12px;
+    font-weight: 700;
+
+}
+
+
+/* ========================================
+   주문 상품 정보
+======================================== */
+
+.history-product {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-top: 16px;
+
+}
+
+.history-image {
+
+    width: 90px;
+    height: 90px;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    object-fit: cover;
+
+    background: #fff8ef;
+
+}
+
+.history-product-info {
+
+    flex: 1;
+
+    min-width: 0;
+
+}
+
+.history-name {
+
+    color: #302019;
+
+    font-size: 17px;
+    font-weight: 800;
+
+    line-height: 1.5;
+
+    word-break: keep-all;
+
+}
+
+.history-quantity {
+
+    margin-top: 4px;
+
+    color: #81756d;
+
+    font-size: 12px;
+
+}
+
+
+/* ========================================
+   맵기 표시
+======================================== */
+
+.history-spicy {
+
+    display: block;
+
+    margin-top: 6px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+}
+
+.history-peppers {
+
+    display: flex;
+
+    gap: 3px;
+
+    margin-top: 4px;
+
+}
+
+.history-peppers span {
+
+    font-size: 15px;
+
+    filter: grayscale(1);
+
+    opacity: 0.2;
+
+}
+
+.history-peppers span.active {
+
+    filter: none;
+
+    opacity: 1;
+
+}
+
+
+/* ========================================
+   결제 금액
+======================================== */
+
+.history-price-row {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 8px;
+
+    margin-top: 16px;
+    padding-top: 14px;
+
+    border-top: 1px solid #ebddd0;
+
+}
+
+.history-price-row > span {
+
+    color: #81756d;
+
+    font-size: 12px;
+
+}
+
+.history-price {
+
+    color: #302019;
+
+    font-size: 19px;
+    font-weight: 800;
+
+}
+
+
+/* ========================================
+   다시 주문하기 버튼
+======================================== */
+
+.history-reorder {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    min-height: 44px;
+
+    margin-top: 16px;
+    padding: 10px;
+
+    border: 1px solid #f2c8ad;
+    border-radius: 10px;
+
+    background: #fff8ef;
+    color: #e63323;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition: 0.2s ease;
+
+}
+
+.history-reorder svg {
+
+    width: 17px;
+    height: 17px;
+
+}
+
+.history-reorder:hover {
+
+    background: #ffe8d2;
+
+}
+
+.history-reorder:active {
+
+    transform: scale(0.98);
+
+}
+
+
+/* 숨김 상태 유지 */
+
+.history-empty[hidden] {
+
+    display: none !important;
+
+}
+
+
+/* ========================================
+   SMALL MOBILE
+======================================== */
+
+@media (max-width: 380px) {
+
+    .history-card {
+
+        padding: 16px 12px;
+
+    }
+
+    .history-image {
+
+        width: 75px;
+        height: 75px;
+
+    }
+
+    .history-product {
+
+        gap: 10px;
+
+    }
+
+    .history-name {
+
+        font-size: 15px;
+
+    }
+
+    .history-heading h2 {
+
+        font-size: 18px;
+
+    }
+
+    .history-price {
+
+        font-size: 17px;
+
+    }
+
+}
+
+
+/* 애니메이션 최소화 설정 */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .history-reorder,
+    .history-empty a {
+
+        transition: none;
+
+    }
+
+}
+/* ========================================
+   V2.0 COMMON AUTH UI
+======================================== */
+
+.side-menu .common-auth-card {
+
+    flex-shrink: 0;
+
+}
+
+.side-menu .common-auth-card + .side-navigation {
+
+    margin-top: 0;
+
+}
+
+.side-menu .side-navigation {
+
+    flex-shrink: 0;
+
+}
+
+.side-menu {
+
+    overscroll-behavior: contain;
+
+}
+
+.side-menu .common-auth-logout {
+
+    flex-shrink: 0;
+
+}
